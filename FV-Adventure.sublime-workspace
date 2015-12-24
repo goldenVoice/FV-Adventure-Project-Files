@@ -1,0 +1,746 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"canva",
+				"canvas_confirmDialog	GameObject"
+			],
+			[
+				"time",
+				"timeScale	float { get; set; }"
+			],
+			[
+				"unity",
+				"UnityEngine	UnityEngine"
+			],
+			[
+				"hb",
+				"hbCounter"
+			],
+			[
+				"hbg",
+				"hbgCounter"
+			],
+			[
+				"orig",
+				"orig_y"
+			],
+			[
+				"ori",
+				"orig_x"
+			],
+			[
+				"health",
+				"healthbar	Transform"
+			],
+			[
+				"get",
+				"GetComponent(string type)	Component"
+			],
+			[
+				"can",
+				"canPlaceHero()	bool"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"sor",
+				"sortingCounter	int"
+			],
+			[
+				"Vec",
+				"Vector3(float x, float y, float z)	Vector3(float x, float y, float z)"
+			],
+			[
+				"Vector",
+				"Vector3()	Vector3()"
+			],
+			[
+				"sortin",
+				"sortingOrder_counter"
+			],
+			[
+				"GEt",
+				"GetComponent<T>()	T"
+			],
+			[
+				"game",
+				"gameObject	GameObject { get; }"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Assets/Scripts/MoveEnemy.cs",
+			"settings":
+			{
+				"buffer_size": 3588,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/PotholeManager.cs",
+			"settings":
+			{
+				"buffer_size": 1938,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/RangeManager.cs",
+			"settings":
+			{
+				"buffer_size": 818,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/pauseScene.cs",
+			"settings":
+			{
+				"buffer_size": 1194,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "using UnityEngine;\nusing System.Collections;\n\npublic class pauseMenuManager : MonoBehaviour {\n \n  public bool paused;\n  GameObject canvas_pauseMenu;\n  GameObject canvas_restartDialog; \n  GameObject canvas_MapDialog;\n	// Use this for initialization\n	void Start () {\n		paused = false;\n		// look for the canvas with the pause menu\n		canvas_pauseMenu = GameObject.Find(\"Canvas_PauseMenu\");\n		canvas_pauseMenu.GetComponent<Canvas>().enabled = false;	// hide the pause menu\n\n		canvas_restartDialog = GameObject.Find(\"Canvas_RestartDialog\");\n		canvas_restartDialog.GetComponent<Canvas>().enabled = false;	// hide the confirmation dialog\n\n		canvas_MapDialog = GameObject.Find(\"Canvas_BackToMapDialog\");\n		canvas_MapDialog.GetComponent<Canvas>().enabled = false;	// hide the confirmation dialog\n\n	}\n	\n	// Update is called once per frame\n	void Update () {\n	\n	}\n\n	// note: tinanggal ko yung mga if statements, di kase nag se save yung boolean value ng paused, kase tong script na to\n	// naka attach sa mag kaibang canvas, Canvas_pauseMenu and Canvas (pinaka main).\n\n	public void pauseTheScene(){\n	//	if (paused == false){\n			Time.timeScale = 0.0f;		// when set to 0.0f, parang yung Update function ng lahat ng nasa scene, naka tigil, IN SHORT PAUSE.\n			canvas_pauseMenu.GetComponent<Canvas>().enabled = true;  // show the pause menu\n			paused = true;\n	//	}\n	}\n\n	public void resumeTheScene(){\n	//	if(paused == true){\n			Time.timeScale = 1.0f;\n			canvas_pauseMenu.GetComponent<Canvas>().enabled = false;	// hide the pause menu\n			paused = false;\n	//	}\n	}\n\n	public void RestartDialog(){\n		canvas_restartDialog.GetComponent<Canvas>().enabled = true;	// show the confirmation dialog\n		canvas_pauseMenu.GetComponent<Canvas>().enabled = false;	// hide the pause menu\n	}\n\n	public void BackToMapDialog(){\n		canvas_MapDialog.GetComponent<Canvas>().enabled = true;	// show the confirmation dialog\n		canvas_pauseMenu.GetComponent<Canvas>().enabled = false;	// hide the pause menu\n	}\n\n}\n\n",
+			"file": "Assets/Scripts/pauseMenuManager.cs",
+			"file_size": 2284,
+			"file_write_time": 130927574983874162,
+			"settings":
+			{
+				"buffer_size": 1964,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/ConfrimDialogManager.cs",
+			"settings":
+			{
+				"buffer_size": 1282,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Assets/Scripts/SpawnEnemy.cs",
+			"settings":
+			{
+				"buffer_size": 4182,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 24 files for \"transform.position.\"\n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\MoveEnemy.cs:\n   32  \n   33       // check if the enemy has reached the endPosition, if yes, handle the following possible scenarios.\n   34:      if(gameObject.transform.position.Equals(endPosition)) {\n   35            // if the enemy is not yet at the last wayPoint, increase its currentWaypoint.\n   36            if(currentWaypoint < waypoints.Length - 2){\n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\SpawnEnemy.cs:\n   56                newEnemy.GetComponent<MoveEnemy>().waypoints = waypoints;\n   57                sortingCounter++;		// increment for z position, para mas maganda tignan yung healthbar ng mga enemy, hindi magkakapantay;\n   58:               newEnemy.transform.position.z = sortingCounter;\n   59                enemiesSpawned++;\n   60          }\n\n2 matches across 2 files\n\n\nSearching 24 files for \"transform.position\"\n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\MoveEnemy.cs:\n   21  	void Update () {\n   22  // you retrieve the start and end position of the current path segment\n   23:      Vector3 startPosition = waypoints[currentWaypoint].transform.position;\n   24:      Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;\n   25  \n   26       float pathLength = Vector3.Distance(startPosition, endPosition);\n   ..\n   29       float currentTimeOnPath = Time.time - lastWaypointSwitchTime;\n   30       // using vector3.Lerp, you interpolate the current position of the enemy between the segment's start and end positions.\n   31:      gameObject.transform.position = Vector3.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);\n   32  \n   33       // check if the enemy has reached the endPosition, if yes, handle the following possible scenarios.\n   34:      if(gameObject.transform.position.Equals(endPosition)) {\n   35            // if the enemy is not yet at the last wayPoint, increase its currentWaypoint.\n   36            if(currentWaypoint < waypoints.Length - 2){\n   ..\n   51                gameManager.deductHealth();\n   52                //  AudioSource audioSource = gameObject.GetComponent<AudioSource>();\n   53:               //  AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);\n   54              }\n   55              else{   // talo yung player\n   ..\n   65  //  private void RotateIntoMoveDirection(){\n   66  \n   67: //    Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;\n   68: //    Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;\n   69  //    Vector3 newDirection = (newEndPosition - newStartPosition);\n   70  \n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\PotholeManager.cs:\n   38        if( canPlaceHero() && (GameManager.water >= cost)) {\n   39          \n   40:         hero =  (GameObject) Instantiate(heroPrefab, transform.position, gameObject.transform.rotation);\n   41          \n   42          // dito naman, kung anong hero (example carrot) yung naka attach sa gameObject,\n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\SpawnEnemy.cs:\n   56                newEnemy.GetComponent<MoveEnemy>().waypoints = waypoints;\n   57                sortingCounter++;		// increment for z position, para mas maganda tignan yung healthbar ng mga enemy, hindi magkakapantay;\n   58:               newEnemy.transform.position.z = sortingCounter;\n   59                enemiesSpawned++;\n   60          }\n\n9 matches across 3 files\n\n\nSearching 24 files for \"transform.position\"\n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\MoveEnemy.cs:\n   21  	void Update () {\n   22  // you retrieve the start and end position of the current path segment\n   23:      Vector3 startPosition = waypoints[currentWaypoint].transform.position;\n   24:      Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;\n   25  \n   26       float pathLength = Vector3.Distance(startPosition, endPosition);\n   ..\n   29       float currentTimeOnPath = Time.time - lastWaypointSwitchTime;\n   30       // using vector3.Lerp, you interpolate the current position of the enemy between the segment's start and end positions.\n   31:      gameObject.transform.position = Vector3.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);\n   32  \n   33       // check if the enemy has reached the endPosition, if yes, handle the following possible scenarios.\n   34:      if(gameObject.transform.position.Equals(endPosition)) {\n   35            // if the enemy is not yet at the last wayPoint, increase its currentWaypoint.\n   36            if(currentWaypoint < waypoints.Length - 2){\n   ..\n   51                gameManager.deductHealth();\n   52                //  AudioSource audioSource = gameObject.GetComponent<AudioSource>();\n   53:               //  AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);\n   54              }\n   55              else{   // talo yung player\n   ..\n   65  //  private void RotateIntoMoveDirection(){\n   66  \n   67: //    Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;\n   68: //    Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;\n   69  //    Vector3 newDirection = (newEndPosition - newStartPosition);\n   70  \n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\PotholeManager.cs:\n   38        if( canPlaceHero() && (GameManager.water >= cost)) {\n   39          \n   40:         hero =  (GameObject) Instantiate(heroPrefab, transform.position, gameObject.transform.rotation);\n   41          \n   42          // dito naman, kung anong hero (example carrot) yung naka attach sa gameObject,\n\nC:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts\\SpawnEnemy.cs:\n   55                Instantiate(waves[currentWave].enemyPrefab);\n   56                sortingCounter++;		// increment for z position, para mas maganda tignan yung healthbar ng mga enemy, hindi magkakapantay;\n   57:               newEnemy.transform.position. = sortingCounter;\n   58                newEnemy.GetComponent<MoveEnemy>().waypoints = waypoints;\n   59                enemiesSpawned++;\n\n9 matches across 3 files\n",
+			"settings":
+			{
+				"buffer_size": 6258,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "Assets/Scripts/musicPlayer.cs",
+			"settings":
+			{
+				"buffer_size": 301,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 384.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Jeymow/Documents/KUNG ANO ANO/FV-Adventure"
+	],
+	"file_history":
+	[
+		"/C/Users/Jeymow/Documents/KUNG ANO ANO/FV-Adventure/Assets/Scripts/HeroData.cs",
+		"/C/Users/Jeymow/Documents/KUNG ANO ANO/FV-Adventure/Assets/Scripts/HealthBar.cs",
+		"/C/Users/Jeymow/Documents/KUNG ANO ANO/FV-Adventure/FV-Adventure.sublime-project",
+		"/C/Users/Jeymow/Documents/KUNG ANO ANO/FV-Adventure/Assets/Scripts/NextScene.cs"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"C:\\Users\\Jeymow\\Documents\\KUNG ANO ANO\\FV-Adventure\\Assets\\Scripts",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"canvas_confirmDialog",
+			"transform.position",
+			"transform.position."
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"canvas_MapDialog",
+			"canvas_restartDialog"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Scripts/MoveEnemy.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3588,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								532,
+								532
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 64.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/PotholeManager.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1938,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								44,
+								44
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"113,123": "Name should have prefix '_'. (Rule 'Fields').",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"607,609": "Convert to 'return' statement"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Assets/Scripts/RangeManager.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 818,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								690,
+								690
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"815,815": "Unexpected symbol `end-of-file''"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 326.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Assets/Scripts/pauseScene.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1194,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								960,
+								960
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"103,109": "Name should have prefix '_'. (Rule 'Fields').",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"59,69": "'pauseScene' should start with an upper case letter. (Rule 'Types')",
+								"679,692": "'pauseTheScene' should start with an upper case letter. (Rule 'Methods')",
+								"974,988": "'resumeTheScene' should start with an upper case letter. (Rule 'Methods')"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Assets/Scripts/pauseMenuManager.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1964,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								417,
+								417
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1068,1081": "'pauseTheScene' should start with an upper case letter. (Rule 'Methods')",
+								"110,116": "Name should have prefix '_'. (Rule 'Fields').",
+								"1363,1377": "'resumeTheScene' should start with an upper case letter. (Rule 'Methods')",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"1974,1985": "'closeDialog' should start with an upper case letter. (Rule 'Methods')",
+								"59,75": "'pauseMenuManager' should start with an upper case letter. (Rule 'Types')"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Assets/Scripts/ConfrimDialogManager.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								353,
+								353
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"750,769": "Method 'RestartCurrentLevel' can be made static.",
+								"894,903": "Method 'BackToMap' can be made static.",
+								"977,988": "'closeDialog' should start with an upper case letter. (Rule 'Methods')"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 83.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Assets/Scripts/SpawnEnemy.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4182,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3465,
+								3465
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1529,1539": "Use 'var' keyword",
+								"164,175": "Name should have prefix '_'. (Rule 'Fields').",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"192,205": "Name should have prefix '_'. (Rule 'Fields').",
+								"224,234": "Name should have prefix '_'. (Rule 'Fields').",
+								"343,352": "Name should have prefix '_'. (Rule 'Fields').",
+								"377,390": "Name should have prefix '_'. (Rule 'Fields').",
+								"412,424": "The private field 'MoveTheEnemy' is never assigned",
+								"463,468": "Name should have prefix '_'. (Rule 'Fields').",
+								"483,499": "Name should have prefix '_'. (Rule 'Fields').",
+								"612,613": "Initializing field by default value is redundant",
+								"647,648": "Initializing field by default value is redundant",
+								"695,696": "Initializing field by default value is redundant"
+							},
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 771.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6258,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										273,
+										292
+									],
+									[
+										807,
+										826
+									],
+									[
+										1222,
+										1240
+									],
+									[
+										1307,
+										1325
+									],
+									[
+										1647,
+										1665
+									],
+									[
+										1894,
+										1912
+									],
+									[
+										2310,
+										2328
+									],
+									[
+										2531,
+										2549
+									],
+									[
+										2620,
+										2638
+									],
+									[
+										2950,
+										2968
+									],
+									[
+										3448,
+										3466
+									],
+									[
+										3863,
+										3881
+									],
+									[
+										3948,
+										3966
+									],
+									[
+										4288,
+										4306
+									],
+									[
+										4535,
+										4553
+									],
+									[
+										4951,
+										4969
+									],
+									[
+										5172,
+										5190
+									],
+									[
+										5261,
+										5279
+									],
+									[
+										5591,
+										5609
+									],
+									[
+										6076,
+										6094
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								6258,
+								6258
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 3,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Assets/Scripts/musicPlayer.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C#/C#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "FV-Adventure.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

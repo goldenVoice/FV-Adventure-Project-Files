@@ -28,12 +28,14 @@ public class List_hero : MonoBehaviour {
 //                Debug.Log("makita ka dapt");
 				hero.GetComponent<RangeManager>().range.renderer.enabled = true;
 				hero.GetComponent<RangeManager>().x_mark.SetActive(true);
+				hero.GetComponent<RangeManager>().element.SetActive(true);
               }
               else{
 //                print("Range is disabled");
 				hero.GetComponent<RangeManager>().range.renderer.enabled = false;
 				hero.GetComponent<RangeManager>().heroSelected = false;
 				hero.GetComponent<RangeManager>().x_mark.SetActive(false);
+				hero.GetComponent<RangeManager>().element.SetActive(false);
               }
       }
   }
@@ -43,6 +45,7 @@ public class List_hero : MonoBehaviour {
             hero.GetComponent<RangeManager>().range.renderer.enabled = false;
             hero.GetComponent<RangeManager>().x_mark.SetActive(false);
 			hero.GetComponent<RangeManager>().heroSelected = false;
+			hero.GetComponent<RangeManager>().element.SetActive(false);
       }      
   }
   	

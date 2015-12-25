@@ -8,6 +8,7 @@ public class RangeManager : MonoBehaviour {
 
 	public GameObject range;
 	public GameObject x_mark;
+	public GameObject element;
 
 	Button hiddenButton;	// akala ng user, yung pipindutin nila, yung hero, actually eto yun.
 
@@ -23,6 +24,7 @@ public class RangeManager : MonoBehaviour {
 		//Debug.Log("DAPAT LALABAS TO PAG KATANIM");
 //		range.renderer.enabled = false;
 		x_mark.SetActive(false);
+		element.SetActive(false);
 
 		//hiddenButton = (Button)gameObject.AddComponent<Button>;
 	}
@@ -36,6 +38,7 @@ public class RangeManager : MonoBehaviour {
 		if(this.heroSelected){
 			range.renderer.enabled = false;
 			x_mark.SetActive(false);
+			element.SetActive(false);
 			this.heroSelected = false;
 		}
 		else{

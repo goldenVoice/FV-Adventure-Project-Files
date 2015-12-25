@@ -13,6 +13,8 @@ public class TutorialManager1 : MonoBehaviour {
 	bool activeNa;	// temporary variable. lalagay ko to sa update para isang bes lang mag true yung conditions na nag a activate ng hidden objects like pothole highlight ganon
 	bool activeNaPotholes;		// check if active na yung lahat ng potholes, same lang den sa taas temporary variable
 	public Animator anim_kingGuava;
+//	public Animator anim_captionCloud;
+
 	private int counter;
 	public GameObject[] buttons;	// sa start ng tutorial dapat naka disable/ not interactable to. para di makapag laro ang user, at makinig sa tutorial :P
 	
@@ -40,9 +42,17 @@ public class TutorialManager1 : MonoBehaviour {
 		tutorial_dialog.Add("Here's another pothole, now drag the Carrot hero to plant. Try it!");	
 		tutorial_dialog.Add("Tap a Carrot to show its range and element. Tap X to remove a Carrot.");	
 		tutorial_dialog.Add("Every hero removed gives you a water refund.");	
-		tutorial_dialog.Add("I added more potholes. Feel free to plant Carrots as long as you have enough water.");	
-		//		tutorial_dialog.Add();	
+		tutorial_dialog.Add("I added more potholes. Feel free to plant Carrots as long as you have enough water and...");	
+		tutorial_dialog.Add("Click on the Start wave button to start fighting those insects! But before that..");	
+		tutorial_dialog.Add("You can look at the Next Wave indicator to know the element of the enemies that are upcoming");	
+		tutorial_dialog.Add("and if they are a walking or flying type of insect.");	
+		tutorial_dialog.Add("Here, you can see that the insects approaching are walking insects possessing Fire element.");	
+		tutorial_dialog.Add("Here is a list of the precedence of the elements");
+		tutorial_dialog.Add("When a hero attacks an element stronger than him. The damage is lesser, and vice versa.");
+		tutorial_dialog.Add("If an element is attacked by the same element the damage is normal.");
 		
+//		tutorial_dialog.Add("");	
+//		
 	}
 	// Use this for initialization
 	void Start () {
@@ -131,7 +141,7 @@ public class TutorialManager1 : MonoBehaviour {
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
 				}
 			}
-			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water." && !activeNaPotholes){
+			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water and..." && !activeNaPotholes){
 				// loop through the pothole array and show all hidden potholes. 
 				for (int i = 0; i < potholes_array.Length; i++){
 					if(potholes_array[i].activeSelf){
@@ -146,8 +156,19 @@ public class TutorialManager1 : MonoBehaviour {
 				}
 				activeNaPotholes = true;
 			}
-			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water." && activeNaPotholes){
-				Debug.Log ("This should show when all the potholes collider are disabled");
+			// wait  for king guava to go to the right side before showing the next message
+			else if(anim_kingGuava.GetCurrentAnimatorStateInfo(0).IsName("king guava on right side") && 
+			       tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water and..."){
+				nextMessage();
+				tutorialText.transform.parent.transform.localScale = new Vector3(-1f, 1f, 1f);	  // set the localScale to 1 para di bumaliktad yung text
+				tutorialText.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);	  // set the localScale to 1 para di bumaliktad yung caption cloud
+				tutorialText.transform.parent.gameObject.SetActive(true);	      			  // show the tutorial text
+				Debug.Log("hoy magpakita ka");
+				tutorialText.transform.parent.gameObject.GetComponent<Image>().enabled = true;	      // show the caption cloud image
+				tutorialText.GetComponent<Text>().enabled = true;	     							  // show the tutorial text object
+				buttons[1].SetActive(true);							// show the startWave button
+				buttons[1].GetComponent<Button>().enabled = false;	// dont let the user interact with the button. di pa tapos mag salita si king guava
+				buttons[10].SetActive(true);						// show NextButton	
 
 			}
 
@@ -177,7 +198,24 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text ==  "Every hero removed gives you a water refund."){
 				nextMessage();
 			}
-			
+			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water and..." && activeNaPotholes){
+				anim_kingGuava.SetBool("moveRight", true);
+//				anim_captionCloud.SetBool("flip",true);
+				tutorialText.transform.parent.gameObject.GetComponent<Image>().enabled = false;	      // hide the caption cloud image
+				tutorialText.GetComponent<Text>().enabled = false;	     							  // hide the tutorial text object
+				buttons[10].SetActive(false);					  								      // hide NextButton	
+				
+			}
+			else if(tutorialText.text == "Click on the Start wave button to start fighting those insects! But before that.."){
+				nextMessage();
+				buttons[1].transform.GetChild(0).gameObject.SetActive(false);							// hide the highlight of startWave button
+				buttons[8].SetActive(true);
+
+			}
+			else if(tutorialText.text ==  "You can look at the Next Wave indicator to know the element of the enemies that are upcoming"){
+				nextMessage();
+			}
+
 		}
 	}
 	

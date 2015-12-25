@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\SpawnEnemy.cs" />
      <Compile Include="Assets\Scripts\SpriteManager.cs" />
      <Compile Include="Assets\Scripts\TutorialManager.cs" />
+     <Compile Include="Assets\Scripts\TutorialManager1.cs" />
      <Compile Include="Assets\Scripts\Tutorial_forPothole.cs" />
      <Compile Include="Assets\Scripts\WaveManager.cs" />
      <Compile Include="Assets\Scripts\fadeManager.cs" />

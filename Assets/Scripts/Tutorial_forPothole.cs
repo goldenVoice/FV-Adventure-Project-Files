@@ -16,7 +16,8 @@ public class Tutorial_forPothole : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(tutorialManager.tutorial){ 	// if the tutorial is still playing
-			if(gameObject.GetComponent<PotholeManager>().hero != null && !heroPlaced){
+			if(gameObject.GetComponent<PotholeManager>().hero != null && gameObject.GetComponent<PotholeManager>().hero.name != "dummy_object" // check if the hero is not the dummy object then add it to the list
+			   && !heroPlaced){
 				tutorialManager.hero_forTutorial.Add( gameObject.GetComponent<PotholeManager>().hero);	// add this pothole's hero to the list of hero_forTutorial
 				gameObject.GetComponent<PotholeManager>().hero.GetComponent<BoxCollider2D>().enabled = false;
 				heroPlaced = true;
@@ -25,6 +26,12 @@ public class Tutorial_forPothole : MonoBehaviour {
 			else if(gameObject.GetComponent<PotholeManager>().hero  == null && heroPlaced){
 				tutorialManager.hero_forTutorial.Remove( gameObject.GetComponent<PotholeManager>().hero);	// so remove the hero from the list
 			}
+
+			// check if the user 
+			if(gameObject.GetComponent<PotholeManager>().hero != null){
+
+			}
+
 		}
 	}
 }

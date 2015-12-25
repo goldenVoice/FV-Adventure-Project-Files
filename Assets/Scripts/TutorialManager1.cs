@@ -11,7 +11,7 @@ public class TutorialManager1 : MonoBehaviour {
 
 	bool kingGuavaEntered;
 	bool activeNa;	// temporary variable. lalagay ko to sa update para isang bes lang mag true yung conditions na nag a activate ng hidden objects like pothole highlight ganon
-
+	bool activeNaPotholes;		// check if active na yung lahat ng potholes, same lang den sa taas temporary variable
 	public Animator anim_kingGuava;
 	private int counter;
 	public GameObject[] buttons;	// sa start ng tutorial dapat naka disable/ not interactable to. para di makapag laro ang user, at makinig sa tutorial :P
@@ -38,9 +38,9 @@ public class TutorialManager1 : MonoBehaviour {
 		tutorial_dialog.Add("As shown below the Carrot's image, this hero costs 80 water.");	
 		tutorial_dialog.Add("Tap on the Carrot then tap on the pothole.");	
 		tutorial_dialog.Add("Here's another pothole, now drag the Carrot hero to plant. Try it!");	
-		tutorial_dialog.Add("Click a Carrot to show its range and element. Try to remove a carrot by pressing X");	
+		tutorial_dialog.Add("Tap a Carrot to show its range and element. Tap X to remove a Carrot.");	
 		tutorial_dialog.Add("Every hero removed gives you a water refund.");	
-		//		tutorial_dialog.Add();	
+		tutorial_dialog.Add("I added more potholes. Feel free to plant Carrots as long as you have enough water.");	
 		//		tutorial_dialog.Add();	
 		
 	}
@@ -49,6 +49,7 @@ public class TutorialManager1 : MonoBehaviour {
 		tutorial = true;
 		kingGuavaEntered = false;
 		activeNa = false;
+		activeNaPotholes = false;
 		counter = 0;
 		tutorialText.text = tutorial_dialog[counter];	// display the first tutorial text from the array tutorial_dialog
 		foreach(GameObject button in buttons){
@@ -106,15 +107,48 @@ public class TutorialManager1 : MonoBehaviour {
 				else if(potholes_array[1].GetComponent<PotholeManager>().hero != null){	// hero is now planted! using dragging
 					nextMessage();
 					potholes_array[0].GetComponent<PotholeManager>().hero.GetComponent<BoxCollider2D>().enabled = true;	// enabled para pwede na i remove
+					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     		// disable the highlight of the carrot
 				}
 				else if(potholes_array[1].GetComponent<PotholeManager>().dragManager == null){	// if walang laman. the user is ended dragging/ has not dragged
 					showTutorialStuffs();
 //					colliders_pothole1[0].enabled = false;									// disable both para di muna makapag tanim yung user :D
 //					colliders_pothole1[1].enabled = false;									// 2 kase yung collider kaya nilagay ko sa array
-					buttons[0].transform.GetChild(1).gameObject.SetActive(true);     		// disable the highlight of the carrot
+					buttons[0].transform.GetChild(1).gameObject.SetActive(true);     		// show the highlight of the carrot
 					buttons[10].SetActive(false);											// hide NextButton
 					potholes_array[1].transform.GetChild(1).gameObject.SetActive(false);	// hide pothole 2 highlight
 				}
+			}
+			else if(tutorialText.text == "Tap a Carrot to show its range and element. Tap X to remove a Carrot." ){
+				// just check if one of the 2 potholes got their hero removed
+				if(potholes_array[0].GetComponent<PotholeManager>().hero == null){			// true if nakapag remove na ang user ng hero
+					nextMessage();
+					showTutorialStuffs();
+					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
+				}
+				else if(potholes_array[1].GetComponent<PotholeManager>().hero == null){
+					nextMessage();
+					showTutorialStuffs();
+					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
+				}
+			}
+			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water." && !activeNaPotholes){
+				// loop through the pothole array and show all hidden potholes. 
+				for (int i = 0; i < potholes_array.Length; i++){
+					if(potholes_array[i].activeSelf){
+						// do nothing. this pothole is already active
+					}
+					else{
+						potholes_array[i].SetActive(true);	// show hidden pothole
+						BoxCollider2D[] tempCollider = potholes_array[i].GetComponents<BoxCollider2D>();
+						tempCollider[0].enabled = false;	// disable the collider para di muna makapag tanim yung user
+						tempCollider[1].enabled = false;
+					}
+				}
+				activeNaPotholes = true;
+			}
+			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water." && activeNaPotholes){
+				Debug.Log ("This should show when all the potholes collider are disabled");
+
 			}
 
 		}
@@ -140,6 +174,10 @@ public class TutorialManager1 : MonoBehaviour {
 				nextMessage();
 				showTutorialStuffs();
 			}
+			else if(tutorialText.text ==  "Every hero removed gives you a water refund."){
+				nextMessage();
+			}
+			
 		}
 	}
 	

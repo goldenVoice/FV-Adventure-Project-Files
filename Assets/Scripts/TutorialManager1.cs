@@ -31,12 +31,16 @@ public class TutorialManager1 : MonoBehaviour {
 	public GameObject[]	potholes_array;
 	private BoxCollider2D[] colliders_pothole1;
 
+	private pauseMenuManager pauseMenuManagerScript;
+
 	void Awake(){
 		gameManager = (GameManagerBehavior) GameObject.FindObjectOfType(typeof(GameManagerBehavior));
 		list_potholes = (Potholes_list) GameObject.FindObjectOfType(typeof(Potholes_list));
 		potholeManager = (PotholeManager) GameObject.FindObjectOfType(typeof(PotholeManager));
 		list_hero = (List_hero) GameObject.FindObjectOfType(typeof(List_hero));
 		
+		pauseMenuManagerScript = (pauseMenuManager) GameObject.FindObjectOfType(typeof(pauseMenuManager));
+
 		SpawnEnemy spawnEnemy = (SpawnEnemy) GameObject.FindObjectOfType(typeof(SpawnEnemy));
 		spawnEnemy.GetComponent<SpawnEnemy>().waves[0].WaveElement = ElementManager.Element.Air;	// kailangan gantong order yung elements para
 		spawnEnemy.GetComponent<SpawnEnemy>().waves[1].WaveElement = ElementManager.Element.Water;	// makita ng user yung pagkakaiba ng damgages
@@ -64,7 +68,7 @@ public class TutorialManager1 : MonoBehaviour {
 
 		tutorial_dialog.Add("Another wave of enemy is coming!");
 		tutorial_dialog.Add("You may tap the Next Wave Button if you want to fight them right away");	
-		tutorial_dialog.Add("Notice that the Next Wave indicator showed early to inform you.");	
+		tutorial_dialog.Add("Notice that the Next Wave indicator changed. Water element is next");	
 //		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
@@ -165,11 +169,15 @@ public class TutorialManager1 : MonoBehaviour {
 					nextMessage();
 					showTutorialStuffs();
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
+					buttons[0].GetComponent<Button>().interactable = false;			// para di muna makapag tanim yung user
+					buttons[0].GetComponent<DragManager>().enabled = false;			// para di muna makapag tanim yung user
 				}
 				else if(potholes_array[1].GetComponent<PotholeManager>().hero == null){
 					nextMessage();
 					showTutorialStuffs();
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
+					buttons[0].GetComponent<Button>().interactable = false;			// para di muna makapag tanim yung user
+					buttons[0].GetComponent<DragManager>().enabled = false;			// para di muna makapag tanim yung user
 				}
 			}
 			else if(tutorialText.text == "I added more potholes. Plant Carrots as long as you have enough water and" && !activeNaPotholes){
@@ -180,7 +188,7 @@ public class TutorialManager1 : MonoBehaviour {
 					}
 					else{
 						list_potholes.potholesList[i].renderer.enabled = true;	// show hidden pothole
-						BoxCollider2D[] tempCollider = potholes_array[i].GetComponents<BoxCollider2D>();
+						BoxCollider2D[] tempCollider = list_potholes.potholesList[i].GetComponents<BoxCollider2D>();
 						tempCollider[0].enabled = false;	// disable the collider para di muna makapag tanim yung user
 						tempCollider[1].enabled = false;
 
@@ -204,7 +212,6 @@ public class TutorialManager1 : MonoBehaviour {
 
 			}
 			else if(tutorialText.text == "GOOD LUCK!"){
-				Debug.Log("THIS SHOULD SHOWW");
 				if(buttons[14].activeSelf == true){
 					buttons[14].transform.GetChild(1).gameObject.SetActive(false);	// hide the next wave button highlight gameObject
 					if(buttons[14].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("next_wave_idle") ){
@@ -214,6 +221,10 @@ public class TutorialManager1 : MonoBehaviour {
 						buttons[0].GetComponent<Button>().interactable = false;			// para di muna makapag tanim yung user
 						buttons[0].GetComponent<DragManager>().enabled = false;			// para di muna makapag tanim yung user
 						Time.timeScale = 0f;
+							// enable dragging
+						if(buttons[0].GetComponent<DragManager>().heroPreview != null){
+							Destroy(buttons[0].GetComponent<DragManager>().heroPreview.gameObject);
+						}
 					}
 				}
 			}
@@ -242,6 +253,7 @@ public class TutorialManager1 : MonoBehaviour {
 			}
 			else if(tutorialText.text ==  "Every hero removed gives you a water refund."){
 				nextMessage();
+
 			}
 			else if(tutorialText.text == "I added more potholes. Plant Carrots as long as you have enough water and" && activeNaPotholes){
 				anim_kingGuava.SetBool("moveRight", true);
@@ -310,6 +322,10 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[7].gameObject.SetActive(true);
 				buttons[2].gameObject.SetActive(true);
 				buttons[3].gameObject.SetActive(true);
+
+				buttons[0].GetComponent<Button>().interactable = true;			// makapag tanim yung user
+				buttons[0].GetComponent<DragManager>().enabled = true;			// makapag tanim yung user
+
 			}
 			else if(tutorialText.text == "Another wave of enemy is coming!"){
 				nextMessage ();	
@@ -322,12 +338,12 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[8].transform.GetChild(1).gameObject.SetActive(true);	// show highlight of next Wave indicator
 				buttons[10].GetComponentInChildren<Text>().text = "Continue";		// baguhin yung text ng tutorial_nextbutton, para maayos. mahalay naman kung next yung nakalagay.
 			}
-			else if(tutorialText.text == "Notice that the Next Wave indicator showed early to inform you."){
+			else if(tutorialText.text == "Notice that the Next Wave indicator changed. Water element is next"){
 				hideTutorialStuffs();
 				buttons[0].GetComponent<Button>().interactable = true;			// para makapag tanim na  yung user
 				buttons[0].GetComponent<DragManager>().enabled = true;			// para makapag tanim na yung user
 				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
-				Time.timeScale = 1f;											// resume the gameplay
+				pauseMenuManagerScript.resumeTheScene();						// resume the gameplay
 				//nextMessage();
 			}
 //			else if(tutorialText.text == ""){

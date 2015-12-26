@@ -22,7 +22,8 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	public bool dragBegin;
 	public bool dragEnd;
 
-	GameObject heroPreview;
+	[HideInInspector]
+	public GameObject heroPreview;
 
 	GameObject[] potholes_list;
 

@@ -41,7 +41,6 @@ public class fade_panelDialog : MonoBehaviour
 	
 	IEnumerator FadeIn(CanvasGroup canvasGroup)	
 	{	
-	
 		float time = 1f;
 		while(canvasGroup.alpha < 1)
 		{

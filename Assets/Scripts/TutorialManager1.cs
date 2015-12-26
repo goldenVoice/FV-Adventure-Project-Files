@@ -24,6 +24,7 @@ public class TutorialManager1 : MonoBehaviour {
 	
 	private GameManagerBehavior gameManager;
 	private Potholes_list list_potholes;
+	private List_hero list_hero;
 	
 	private PotholeManager potholeManager;
 
@@ -34,23 +35,39 @@ public class TutorialManager1 : MonoBehaviour {
 		gameManager = (GameManagerBehavior) GameObject.FindObjectOfType(typeof(GameManagerBehavior));
 		list_potholes = (Potholes_list) GameObject.FindObjectOfType(typeof(Potholes_list));
 		potholeManager = (PotholeManager) GameObject.FindObjectOfType(typeof(PotholeManager));
+		list_hero = (List_hero) GameObject.FindObjectOfType(typeof(List_hero));
 		
+		SpawnEnemy spawnEnemy = (SpawnEnemy) GameObject.FindObjectOfType(typeof(SpawnEnemy));
+		spawnEnemy.GetComponent<SpawnEnemy>().waves[0].WaveElement = ElementManager.Element.Air;	// kailangan gantong order yung elements para
+		spawnEnemy.GetComponent<SpawnEnemy>().waves[1].WaveElement = ElementManager.Element.Water;	// makita ng user yung pagkakaiba ng damgages
+		spawnEnemy.GetComponent<SpawnEnemy>().waves[2].WaveElement = ElementManager.Element.Fire;	// per element
+
 		tutorial_dialog.Add("The insects have arrived! Defend our place!"); 
 		tutorial_dialog.Add("I will give you my Veggie hero, the Carrot.");	
 		tutorial_dialog.Add("As shown below the Carrot's image, this hero costs 80 water.");	
 		tutorial_dialog.Add("Tap on the Carrot then tap on the pothole.");	
-		tutorial_dialog.Add("Here's another pothole, now drag the Carrot hero to plant. Try it!");	
-		tutorial_dialog.Add("Tap a Carrot to show its range and element. Tap X to remove a Carrot.");	
+		tutorial_dialog.Add("Here's another pothole, now DRAG the Carrot hero to plant. Try it!");	
+		tutorial_dialog.Add("Tap a Carrot to see an X mark, the Carrot's range, and element.");
+		tutorial_dialog.Add("Remove a hero by tapping the X mark.");	
 		tutorial_dialog.Add("Every hero removed gives you a water refund.");	
-		tutorial_dialog.Add("I added more potholes. Feel free to plant Carrots as long as you have enough water and...");	
-		tutorial_dialog.Add("Click on the Start wave button to start fighting those insects! But before that..");	
-		tutorial_dialog.Add("You can look at the Next Wave indicator to know the element of the enemies that are upcoming");	
+		tutorial_dialog.Add("I added more potholes. Plant Carrots as long as you have enough water and");	
+		tutorial_dialog.Add("Click on the Start wave button to start fighting! But before that..");	
+		tutorial_dialog.Add("The Next Wave indicator shows the element of the approaching enemies");	
 		tutorial_dialog.Add("and if they are a walking or flying type of insect.");	
-		tutorial_dialog.Add("Here, you can see that the insects approaching are walking insects possessing Fire element.");	
+		tutorial_dialog.Add("Here, you can see that the insects approaching are");
+		tutorial_dialog.Add("walking insects possessing Air element.");
 		tutorial_dialog.Add("Here is a list of the precedence of the elements");
 		tutorial_dialog.Add("When a hero attacks an element stronger than him. The damage is lesser, and vice versa.");
 		tutorial_dialog.Add("If an element is attacked by the same element the damage is normal.");
-		
+		tutorial_dialog.Add("As you go on, you'll acquire hero with different elements. Use them well!");
+		tutorial_dialog.Add("GOOD LUCK!");
+
+		tutorial_dialog.Add("Another wave of enemy is coming!");
+		tutorial_dialog.Add("Click on the Next Wave Button if you want to fight them right away");	
+		tutorial_dialog.Add("Notice that the Next Wave indicator showed early to inform you.");	
+//		tutorial_dialog.Add("");	
+//		tutorial_dialog.Add("");	
+//		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
 //		
 	}
@@ -97,7 +114,7 @@ public class TutorialManager1 : MonoBehaviour {
 					nextMessage();
 				}
 			}
-			else if(tutorialText.text == "Here's another pothole, now drag the Carrot hero to plant. Try it!" && !activeNa){
+			else if(tutorialText.text == "Here's another pothole, now DRAG the Carrot hero to plant. Try it!" && !activeNa){
 				showTutorialStuffs();
 				buttons[10].SetActive(false);									// hide NextButton
 				buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
@@ -107,7 +124,7 @@ public class TutorialManager1 : MonoBehaviour {
 //				colliders_pothole1 = buttons[12].GetComponents<BoxCollider2D>();// get the 2 colliders of the 2nd pothole
 				activeNa = true;												// use this variable para isang bes lang mag execute tong expression na to, showing ng stuffs lang kase to kaya 1 bes lang dapat
 			}
-			else if(tutorialText.text == "Here's another pothole, now drag the Carrot hero to plant. Try it!"){
+			else if(tutorialText.text == "Here's another pothole, now DRAG the Carrot hero to plant. Try it!"){
 				if(potholes_array[1].GetComponent<PotholeManager>().dragManager != null){	// if may laman. the user is currently dragging
 					hideTutorialStuffs();
 //					colliders_pothole1[0].enabled = true;		// enable both para di muna makapag tanim yung user :D
@@ -128,37 +145,54 @@ public class TutorialManager1 : MonoBehaviour {
 					potholes_array[1].transform.GetChild(1).gameObject.SetActive(false);	// hide pothole 2 highlight
 				}
 			}
-			else if(tutorialText.text == "Tap a Carrot to show its range and element. Tap X to remove a Carrot." ){
+			else if(tutorialText.text == "Tap a Carrot to see an X mark, the Carrot's range, and element."){
+				if(list_hero.plantedHeroes[0].transform.GetChild(2).renderer.enabled == true){			// true if na tap na yung hero
+					nextMessage();
+					showTutorialStuffs();
+					buttons[10].gameObject.SetActive(false);						  // hide next button
+					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
+				}
+				else if(list_hero.plantedHeroes[1].transform.GetChild(2).renderer.enabled == true){			// true if na tap na ng user ng hero
+					nextMessage();
+					showTutorialStuffs();
+					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
+					buttons[10].gameObject.SetActive(false);						  // hide next button
+				}
+			}
+			else if(tutorialText.text == "Remove a hero by tapping the X mark."){
 				// just check if one of the 2 potholes got their hero removed
 				if(potholes_array[0].GetComponent<PotholeManager>().hero == null){			// true if nakapag remove na ang user ng hero
+					Debug.Log ("YOU REMOVED ME.");
 					nextMessage();
 					showTutorialStuffs();
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
 				}
 				else if(potholes_array[1].GetComponent<PotholeManager>().hero == null){
+					Debug.Log ("YOU REMOVED ME.");
 					nextMessage();
 					showTutorialStuffs();
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
 				}
 			}
-			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water and..." && !activeNaPotholes){
+			else if(tutorialText.text == "I added more potholes. Plant Carrots as long as you have enough water and" && !activeNaPotholes){
 				// loop through the pothole array and show all hidden potholes. 
-				for (int i = 0; i < potholes_array.Length; i++){
-					if(potholes_array[i].activeSelf){
+				for (int i = 0; i < list_potholes.potholesList.Length; i++){
+					if(list_potholes.potholesList[i].activeSelf && list_potholes.potholesList[i].renderer.enabled == true){
 						// do nothing. this pothole is already active
 					}
 					else{
-						potholes_array[i].SetActive(true);	// show hidden pothole
+						list_potholes.potholesList[i].renderer.enabled = true;	// show hidden pothole
 						BoxCollider2D[] tempCollider = potholes_array[i].GetComponents<BoxCollider2D>();
 						tempCollider[0].enabled = false;	// disable the collider para di muna makapag tanim yung user
 						tempCollider[1].enabled = false;
+
 					}
 				}
 				activeNaPotholes = true;
 			}
 			// wait  for king guava to go to the right side before showing the next message
 			else if(anim_kingGuava.GetCurrentAnimatorStateInfo(0).IsName("king guava on right side") && 
-			       tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water and..."){
+			       tutorialText.text == "I added more potholes. Plant Carrots as long as you have enough water and"){
 				nextMessage();
 				tutorialText.transform.parent.transform.localScale = new Vector3(-1f, 1f, 1f);	  // set the localScale to 1 para di bumaliktad yung text
 				tutorialText.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);	  // set the localScale to 1 para di bumaliktad yung caption cloud
@@ -171,7 +205,9 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[10].SetActive(true);						// show NextButton	
 
 			}
-
+			else if(tutorialText.text == "GOOD LUCK!"){
+//				if()
+			}
 		}
 	}
 
@@ -198,7 +234,7 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text ==  "Every hero removed gives you a water refund."){
 				nextMessage();
 			}
-			else if(tutorialText.text == "I added more potholes. Feel free to plant Carrots as long as you have enough water and..." && activeNaPotholes){
+			else if(tutorialText.text == "I added more potholes. Plant Carrots as long as you have enough water and" && activeNaPotholes){
 				anim_kingGuava.SetBool("moveRight", true);
 //				anim_captionCloud.SetBool("flip",true);
 				tutorialText.transform.parent.gameObject.GetComponent<Image>().enabled = false;	      // hide the caption cloud image
@@ -206,16 +242,76 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[10].SetActive(false);					  								      // hide NextButton	
 				
 			}
-			else if(tutorialText.text == "Click on the Start wave button to start fighting those insects! But before that.."){
+			else if(tutorialText.text == "Click on the Start wave button to start fighting! But before that.."){
 				nextMessage();
 				buttons[1].transform.GetChild(0).gameObject.SetActive(false);							// hide the highlight of startWave button
 				buttons[8].SetActive(true);
 
 			}
-			else if(tutorialText.text ==  "You can look at the Next Wave indicator to know the element of the enemies that are upcoming"){
+			else if(tutorialText.text ==  "The Next Wave indicator shows the element of the approaching enemies"){
 				nextMessage();
 			}
+			else if(tutorialText.text == "and if they are a walking or flying type of insect."){
+				nextMessage();
+			}
+			else if(tutorialText.text == "Here, you can see that the insects approaching are"){
+				nextMessage();
+			}
+			else if(tutorialText.text == "walking insects possessing Air element."){
+				nextMessage();
+			}
+			else if(tutorialText.text == "Here is a list of the precedence of the elements" && buttons[13].activeSelf == false){	// precedence not yet shown
+				// SHOW PANEL CONTAINING PRECEDENCE OF ELEMENTS.
+				buttons[13].SetActive(true);
+			}
+			else if(buttons[13].activeSelf == true){
+				nextMessage();
+				// HIDE PANEL CONTAINING PRECEDENCE OF ELEMENTS.
+				buttons[13].SetActive(false);
+			}
+			else if(tutorialText.text == "When a hero attacks an element stronger than him. The damage is lesser, and vice versa."){
+				nextMessage();
 
+			}
+			else if(tutorialText.text == "If an element is attacked by the same element the damage is normal."){
+				nextMessage();
+				
+			}
+			else if(tutorialText.text == "As you go on, you'll acquire hero with different elements. Use them well!"){
+				nextMessage();
+			}
+			else if(tutorialText.text == "GOOD LUCK!"){
+				hideTutorialStuffs();
+				buttons[8].transform.GetChild(1).gameObject.SetActive(false);
+				for (int i = 0; i < list_potholes.potholesList.Length; i++){
+					BoxCollider2D[] tempCollider = list_potholes.potholesList[i].GetComponents<BoxCollider2D>();	// enable the colliders of the pothole so the user can plant on them
+					if(tempCollider[0].enabled == false && tempCollider[1].enabled == false){
+						tempCollider[0].enabled = true;													// disable the collider para di muna makapag tanim yung user
+						tempCollider[1].enabled = true;
+						GameObject waterText = GameObject.Find("WaterBarText");
+						list_potholes.potholesList[i].GetComponent<PotholeManager>().waterText = waterText;			// assign water to pothole
+					}
+				}
+				buttons[1].GetComponent<Button>().enabled = true;
+
+			}
+//			else if(tutorialText.text == ""){
+//				nextMessage();
+//			}
+//			else if(tutorialText.text == ""){
+//				nextMessage();
+//			}
+//			else if(tutorialText.text == ""){
+//				nextMessage();
+//			}
+//			else if(tutorialText.text == ""){
+//				nextMessage();
+//			}
+//			else if(tutorialText.text == ""){
+//				nextMessage();
+//			}
+
+//
 		}
 	}
 	
@@ -249,7 +345,7 @@ public class TutorialManager1 : MonoBehaviour {
 		}
 	}
 	public void disableClickToPlant(){
-		if(tutorialText.text == "Here's another pothole, now drag the Carrot hero to plant. Try it!"){
+		if(tutorialText.text == "Here's another pothole, now DRAG the Carrot hero to plant. Try it!"){
 			Debug.Log("You shouldnt be clickin' start dragging!");
 			gameManager.currentSelectedHero = null;
 		}

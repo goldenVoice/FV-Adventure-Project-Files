@@ -54,7 +54,7 @@ public class SpawnEnemy : MonoBehaviour {
 	   	gameManager = (GameManagerBehavior)FindObjectOfType(typeof(GameManagerBehavior));
 //		elementManager = (ElementManager) FindObjectOfType(typeof(ElementManager));
 		nextWaveIndicator  = (SpriteManager) FindObjectOfType(typeof(SpriteManager));
-
+		print("next wave object: " + nextWaveIndicator.gameObject);
 	 }
 	
 	// Update is called once per frame
@@ -93,7 +93,20 @@ public class SpawnEnemy : MonoBehaviour {
 				// <type> <var name> = gameObject.transform.Find("/shoulder/arms");
 				Transform healthBarBackground =  newEnemy.transform.Find("HealthBarBackground"); 
 				Transform healthBar =  newEnemy.transform.Find("HealthBar");
+
 				
+				if(waves[currentWave].WaveElement == ElementManager.Element.Air){
+					newEnemy.transform.GetChild(3).gameObject.SetActive(true);
+//					enemy_element = newEnemy.transform.GetChild(3).gameObject.transform;
+				}
+				else if(waves[currentWave].WaveElement == ElementManager.Element.Fire){
+					newEnemy.transform.GetChild(4).gameObject.SetActive(true);
+//					enemy_element = newEnemy.transform.GetChild(4).gameObject.transform;
+				}
+				else if(waves[currentWave].WaveElement == ElementManager.Element.Water){
+					newEnemy.transform.GetChild(5).gameObject.SetActive(true);
+//					enemy_element = newEnemy.transform.GetChild(5).gameObject.transform;
+				}
 				// before changing the z coordinates, store the orig x and y values ng healthbarBackground
 				float hbg_x = healthBarBackground.transform.localPosition.x;
 				float hbg_y = healthBarBackground.transform.localPosition.y;
@@ -101,7 +114,8 @@ public class SpawnEnemy : MonoBehaviour {
 				// pate na rin ng healthbar
 				float hb_x = healthBar.transform.localPosition.x;
 				float hb_y = healthBar.transform.localPosition.y;
-				
+
+				// 
 				// saka i-store yung z coordinatess
 				healthBarBackground.transform.localPosition = new Vector3(hbg_x, hbg_y, hbgCounter+= 0.1f);
 				healthBar.transform.localPosition =  new Vector3(hb_x, hb_y, hbCounter+= 0.1f);
@@ -132,6 +146,7 @@ public class SpawnEnemy : MonoBehaviour {
 //					Debug.Log (timeInterval);
 					// show the next wave element
 					nextWaveIndicator.displayNextElement(waves, currentWave + 1);	// this is currentWave + 1, kase nga idi display yung element ng NEXT wave, hindi ng current
+					nextWaveIndicator.gameObject.GetComponent<Image>().enabled = true;
 					if(timeInterval >= 1){ // check if one second has passed
 						waves[currentWave].timeBetweenWaves -= 1;	// if so play the pulsate animation
 						lastSpawnTime = Time.time;
@@ -175,7 +190,7 @@ public class SpawnEnemy : MonoBehaviour {
 		nextWaveButton.GetComponent<Animator>().SetTrigger("next_wave");
 //		nextWaveButton.GetComponentInChildren<Text>().text =  "" + waves[currentWave+1].timeBetweenWaves;
 		nextWaveButton.SetActive(false);
-
+		nextWaveIndicator.gameObject.GetComponent<Image>().enabled = false;
 		gameManager.wave++;
 		hbgCounter = 1;		// balik sa 1 ule para di umabot sa mataas na bilang yung .z ng gameObject, baka mag log
 		hbCounter = 0;    // BALIK SA 0, just like at the top

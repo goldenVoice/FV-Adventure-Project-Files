@@ -1,15 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TutorialManager1.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\fade_panelDialog.cs">
     <Files>
-      <File FileName="Assets\Scripts\TutorialManager1.cs" Line="306" Column="5" />
-      <File FileName="Assets\Scripts\Tutorial_forPothole.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\fade_panelDialog.cs" Line="48" Column="1" />
+      <File FileName="Assets\resources\DialogManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SpawnEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TutorialManager1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Tutorial_forPothole.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\WaveManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MoveEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SpriteManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FadeCanvas.cs" Line="52" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\Jeymow\Documents\FV-Adventure\Assets\Scripts\FadeCanvas.cs" line="46" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

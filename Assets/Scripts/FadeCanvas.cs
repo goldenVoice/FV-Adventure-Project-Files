@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FadeCanvas : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class FadeCanvas : MonoBehaviour
 //	{
 //		canvasGroup = GetComponent<CanvasGroup>();
 //	}
-
+	public Button nextButton;
+	
 	public CanvasGroup canvasGroup;
 
 	void Start ()
@@ -26,12 +28,14 @@ public class FadeCanvas : MonoBehaviour
 
 	IEnumerator FadeOut(CanvasGroup canvasGroup)
 	{	
+		nextButton.GetComponent<Button>().interactable = false;		// dont let the user touch the button para di masira yung sequence ng storyline
 		float time = 1f;
 		while(canvasGroup.alpha > 0)
 		{
 			canvasGroup.alpha -= Time.deltaTime / time;
 			yield return null;
 		}
+
 	}
 
 	IEnumerator FadeIn(CanvasGroup canvasGroup)	
@@ -41,6 +45,11 @@ public class FadeCanvas : MonoBehaviour
 		{
 			canvasGroup.alpha += Time.deltaTime / time;
 			yield return null;
+		}
+		
+		if(canvasGroup.alpha == 1){
+			Debug.Log("lalabas pag tapos mag fade in.");
+			nextButton.GetComponent<Button>().interactable = true;
 		}
 	}
 

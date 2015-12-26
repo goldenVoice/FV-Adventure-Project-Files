@@ -70,7 +70,8 @@ public class SpriteManager : MonoBehaviour {
 			}
 		}
 
-		// now change the source image name, to the newly acquired sprite name
+		isFlying = false;		// set back to false.
+		isWalking = false;		// para hindi sya mag both. para mag check ule yung code, pag ka ulet
 
 	}
 }

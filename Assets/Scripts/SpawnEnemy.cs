@@ -66,12 +66,12 @@ public class SpawnEnemy : MonoBehaviour {
 
 	void SpawnTheEnemy(){
 		int currentWave = gameManager.wave;
-		Debug.Log ("currentWave number: " + currentWave);
-		Debug.Log ("waves.length: " + waves.Length);
-		Debug.Log ("health: " + gameManager.health);
-		Debug.Log ("" + gameManager.health);
-
-		Debug.Log ("" + GameObject.FindGameObjectWithTag("Enemy"));
+//		Debug.Log ("currentWave number: " + currentWave);
+//		Debug.Log ("waves.length: " + waves.Length);
+//		Debug.Log ("health: " + gameManager.health);
+//		Debug.Log ("" + gameManager.health);
+//
+//		Debug.Log ("" + GameObject.FindGameObjectWithTag("Enemy"));
 		// check kung yung current wave is hindi pa huling wave
 		if (currentWave < waves.Length) {
 			timeInterval = (Time.time) - lastSpawnTime; 	

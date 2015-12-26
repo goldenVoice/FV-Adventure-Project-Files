@@ -63,7 +63,7 @@ public class TutorialManager1 : MonoBehaviour {
 		tutorial_dialog.Add("GOOD LUCK!");
 
 		tutorial_dialog.Add("Another wave of enemy is coming!");
-		tutorial_dialog.Add("Click on the Next Wave Button if you want to fight them right away");	
+		tutorial_dialog.Add("You may tap the Next Wave Button if you want to fight them right away");	
 		tutorial_dialog.Add("Notice that the Next Wave indicator showed early to inform you.");	
 //		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
@@ -162,13 +162,11 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text == "Remove a hero by tapping the X mark."){
 				// just check if one of the 2 potholes got their hero removed
 				if(potholes_array[0].GetComponent<PotholeManager>().hero == null){			// true if nakapag remove na ang user ng hero
-					Debug.Log ("YOU REMOVED ME.");
 					nextMessage();
 					showTutorialStuffs();
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
 				}
 				else if(potholes_array[1].GetComponent<PotholeManager>().hero == null){
-					Debug.Log ("YOU REMOVED ME.");
 					nextMessage();
 					showTutorialStuffs();
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);     // disable the highlight of the carrot
@@ -206,7 +204,18 @@ public class TutorialManager1 : MonoBehaviour {
 
 			}
 			else if(tutorialText.text == "GOOD LUCK!"){
-//				if()
+				Debug.Log("THIS SHOULD SHOWW");
+				if(buttons[14].activeSelf == true){
+					buttons[14].transform.GetChild(1).gameObject.SetActive(false);	// hide the next wave button highlight gameObject
+					if(buttons[14].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("next_wave_idle") ){
+						nextMessage();
+						showTutorialStuffs();
+						buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
+						buttons[0].GetComponent<Button>().interactable = false;			// para di muna makapag tanim yung user
+						buttons[0].GetComponent<DragManager>().enabled = false;			// para di muna makapag tanim yung user
+						Time.timeScale = 0f;
+					}
+				}
 			}
 		}
 	}
@@ -294,15 +303,37 @@ public class TutorialManager1 : MonoBehaviour {
 				}
 				buttons[1].GetComponent<Button>().enabled = true;
 
+				// SHOW ALL OTHER NECESSARY GAME PANELS: moneybar, pause, etc
+				buttons[4].gameObject.SetActive(true);
+				buttons[5].gameObject.SetActive(true);
+				buttons[6].gameObject.SetActive(true);
+				buttons[7].gameObject.SetActive(true);
+				buttons[2].gameObject.SetActive(true);
+				buttons[3].gameObject.SetActive(true);
+			}
+			else if(tutorialText.text == "Another wave of enemy is coming!"){
+				nextMessage ();	
+				buttons[14].transform.GetChild(1).gameObject.SetActive(true);	// show next wave button highlight
+			}
+			else if(tutorialText.text == "You may tap the Next Wave Button if you want to fight them right away"){
+				nextMessage();
+				buttons[1].transform.GetChild(0).gameObject.SetActive(false);
+				buttons[14].transform.GetChild(1).gameObject.SetActive(false);	// hide next wave button highlight
+				buttons[8].transform.GetChild(1).gameObject.SetActive(true);	// show highlight of next Wave indicator
+				buttons[10].GetComponentInChildren<Text>().text = "Continue";		// baguhin yung text ng tutorial_nextbutton, para maayos. mahalay naman kung next yung nakalagay.
+			}
+			else if(tutorialText.text == "Notice that the Next Wave indicator showed early to inform you."){
+				hideTutorialStuffs();
+				buttons[0].GetComponent<Button>().interactable = true;			// para makapag tanim na  yung user
+				buttons[0].GetComponent<DragManager>().enabled = true;			// para makapag tanim na yung user
+				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
+				Time.timeScale = 1f;											// resume the gameplay
+				//nextMessage();
 			}
 //			else if(tutorialText.text == ""){
 //				nextMessage();
-//			}
-//			else if(tutorialText.text == ""){
-//				nextMessage();
-//			}
-//			else if(tutorialText.text == ""){
-//				nextMessage();
+//			buttons[0].GetComponent<Button>().interactable = true;			// para makapag tanim na  yung user
+//			buttons[0].GetComponent<DragManager>().enabled = true;			// para makapag tanim na yung user
 //			}
 //			else if(tutorialText.text == ""){
 //				nextMessage();

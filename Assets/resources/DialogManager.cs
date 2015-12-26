@@ -114,7 +114,7 @@ public class DialogManager : MonoBehaviour {
 		else if(counter  == 10){
 //			Application.LoadLevel ("Level_1-1");
 			story_6.GetComponent<CanvasGroup>().alpha = 0;
-			LoadingScreen loadingScreen = (LoadingScreen) GameObject.FindObjectOfType(typeof(LoadingScreen));
+			LoadingScreen1 loadingScreen = (LoadingScreen1) GameObject.FindObjectOfType(typeof(LoadingScreen1));
 			loadingScreen.enabled = true;
 		}
 		story_text.text = dialog_lines[counter];

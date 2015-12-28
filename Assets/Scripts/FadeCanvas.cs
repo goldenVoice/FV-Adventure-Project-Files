@@ -48,7 +48,7 @@ public class FadeCanvas : MonoBehaviour
 		}
 		
 		if(canvasGroup.alpha == 1){
-			Debug.Log("lalabas pag tapos mag fade in.");
+//			Debug.Log("lalabas pag tapos mag fade in.");
 			nextButton.GetComponent<Button>().interactable = true;
 		}
 	}

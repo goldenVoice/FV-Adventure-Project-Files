@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour {
 
+	public string sceneToLoad;
 	public List<string> dialog_lines;
 	public TextAsset _xml;
 
@@ -34,6 +35,7 @@ public class DialogManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		PlayerPrefs.SetInt("Tutorial", 1); 						// this will be used later para malaman na kailangan ng user mag tutorial pag dating ng level 1
 		fadeCanvas = gameObject.GetComponent<FadeCanvas>();
 		fade_panel = (fade_panelDialog) GameObject.FindObjectOfType(typeof(fade_panelDialog));
 
@@ -113,9 +115,10 @@ public class DialogManager : MonoBehaviour {
 
 		else if(counter  == 10){
 //			Application.LoadLevel ("Level_1-1");
-			story_6.GetComponent<CanvasGroup>().alpha = 0;
+			story_6.GetComponent<CanvasGroup>().alpha = 0;		// hide current scenario
+			panel_dialog.alpha = 0;								// hide panel
 			LoadingScreen1 loadingScreen = (LoadingScreen1) GameObject.FindObjectOfType(typeof(LoadingScreen1));
-			loadingScreen.enabled = true;
+			loadingScreen.LoadScene(sceneToLoad);
 		}
 		story_text.text = dialog_lines[counter];
 		counter++;

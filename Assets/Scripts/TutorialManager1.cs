@@ -34,6 +34,7 @@ public class TutorialManager1 : MonoBehaviour {
 	private pauseMenuManager pauseMenuManagerScript;
 
 	void Awake(){
+
 		gameManager = (GameManagerBehavior) GameObject.FindObjectOfType(typeof(GameManagerBehavior));
 		list_potholes = (Potholes_list) GameObject.FindObjectOfType(typeof(Potholes_list));
 		potholeManager = (PotholeManager) GameObject.FindObjectOfType(typeof(PotholeManager));
@@ -73,21 +74,55 @@ public class TutorialManager1 : MonoBehaviour {
 //		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
-//		
 	}
 	// Use this for initialization
 	void Start () {
-		tutorial = true;
-		kingGuavaEntered = false;
-		activeNa = false;
-		activeNaPotholes = false;
-		counter = 0;
-		tutorialText.text = tutorial_dialog[counter];	// display the first tutorial text from the array tutorial_dialog
-		foreach(GameObject button in buttons){
-			button.SetActive(false);	// hide first the buttons
+		Debug.Log ("HEYYY");
+		if(PlayerPrefs.HasKey("Tutorial")){		 // this key is set from the storyline.
+			if(PlayerPrefs.GetInt("Tutorial") == 0){
+				tutorial = false;							// this means pwedeng na fail ni user yung level 1 tas kelangan nya laruin ule
+				GameObject.Find("tutorial").gameObject.SetActive(false);
+				buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
+				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
+				buttons[1].transform.GetChild(0).gameObject.SetActive(false);	// hide the highlight of startWave button
+				buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
+				
+			}
+			else if(PlayerPrefs.GetInt("Tutorial") == 1){
+				tutorial = true;							// if true, 1st time mag laro ng user & he needs to undergo tutorial
+				
+				kingGuavaEntered = false;
+				activeNa = false;
+				activeNaPotholes = false;
+				counter = 0;
+				tutorialText.text = tutorial_dialog[counter];	// display the first tutorial text from the array tutorial_dialog
+				foreach(GameObject button in buttons){
+					button.SetActive(false);	// hide first the buttons
+				}
+
+				// hide potholes
+				for (int i = 0; i < list_potholes.potholesList.Length; i++){
+					if(list_potholes.potholesList[i].activeSelf && list_potholes.potholesList[i].renderer.enabled == true){
+						list_potholes.potholesList[i].renderer.enabled = false;	// show hidden pothole
+						BoxCollider2D[] tempCollider = list_potholes.potholesList[i].GetComponents<BoxCollider2D>();
+						tempCollider[0].enabled = false;	// disable the collider para di muna makapag tanim yung user
+						tempCollider[1].enabled = false;
+
+					}
+					else{
+
+					}
+				}
+
+				BoxCollider2D[] tempCollider1 =buttons[11].GetComponents<BoxCollider2D>();
+				tempCollider1[0].enabled = false;	// disable the collider para di muna makapag tanim yung user
+				tempCollider1[1].enabled = false;
+
+				buttons[11].gameObject.SetActive(true);	// show first pothole
+				buttons[11].renderer.enabled = true;
+				counter++;
+			}
 		}
-		buttons[11].gameObject.SetActive(true);	// show first pothole
-		counter++;
 	}
 
 	void Update(){
@@ -315,12 +350,11 @@ public class TutorialManager1 : MonoBehaviour {
 				}
 				buttons[1].GetComponent<Button>().enabled = true;
 
-				// SHOW ALL OTHER NECESSARY GAME PANELS: moneybar, pause, etc
+				// SHOW ALL OTHER NECESSARY GAME PANELS: moneybar, etc. except pause. i se set later on
 				buttons[4].gameObject.SetActive(true);
 				buttons[5].gameObject.SetActive(true);
 				buttons[6].gameObject.SetActive(true);
 				buttons[7].gameObject.SetActive(true);
-				buttons[2].gameObject.SetActive(true);
 				buttons[3].gameObject.SetActive(true);
 
 				buttons[0].GetComponent<Button>().interactable = true;			// makapag tanim yung user
@@ -344,6 +378,11 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[0].GetComponent<DragManager>().enabled = true;			// para makapag tanim na yung user
 				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
 				pauseMenuManagerScript.resumeTheScene();						// resume the gameplay
+
+				// show the pause button. tapos na yung tutorial. pwede na mag restart yung user :D
+				buttons[2].gameObject.SetActive(true);
+				disableTutorial();
+				
 				//nextMessage();
 			}
 //			else if(tutorialText.text == ""){
@@ -396,5 +435,11 @@ public class TutorialManager1 : MonoBehaviour {
 			Debug.Log("You shouldnt be clickin' start dragging!");
 			gameManager.currentSelectedHero = null;
 		}
+	}
+
+	// called when the resume & back to map button is pressed.
+	public void disableTutorial(){
+		PlayerPrefs.SetInt("Tutorial", 0);
+		
 	}
 }

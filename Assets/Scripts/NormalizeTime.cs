@@ -15,4 +15,9 @@ public class NormalizeTime : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void NormalTime(){		// reset the time to the normal runtime
+		Time.timeScale = 1f;
+
+	}
 }

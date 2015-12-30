@@ -195,7 +195,6 @@ public class SpawnEnemy : MonoBehaviour {
 		hbgCounter = 1;		// balik sa 1 ule para di umabot sa mataas na bilang yung .z ng gameObject, baka mag log
 		hbCounter = 0;    // BALIK SA 0, just like at the top
 		gameManager.displayWave(gameManager.wave);
-		gameManager.Gold = Mathf.RoundToInt(gameManager.Gold * 1.1f);
 		enemiesSpawned = 0;
 		enemyIndex = 0;
 		timeInterval = 0;

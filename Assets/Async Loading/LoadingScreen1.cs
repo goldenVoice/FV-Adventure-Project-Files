@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+
 public class LoadingScreen1 : MonoBehaviour {
 	
 	private string levelToLoad;
@@ -27,10 +28,11 @@ public class LoadingScreen1 : MonoBehaviour {
 		progressBar = GameObject.Find ("progressBar");
 		textObj = GameObject.Find ("LoadText");
 
-		background.SetActive(false);
-		progressBar_bg.SetActive(false);
-		progressBar.SetActive(false);
-		textObj.SetActive(false);
+//		background.SetActive(false);
+//		progressBar_bg.SetActive(false);
+//		progressBar.SetActive(false);
+//		textObj.SetActive(false);
+	
 	}
 	// Use this for initialization
 	void Start () {
@@ -41,10 +43,12 @@ public class LoadingScreen1 : MonoBehaviour {
 		origScale = progressBar.transform.localScale.x;
 
 		// show the progress bar, dark bg
-		background.SetActive(true);
-		progressBar_bg.SetActive(true);
-		progressBar.SetActive(true);
-		textObj.gameObject.SetActive(true);
+		background.GetComponent<Image>().enabled = true;
+		progressBar_bg.GetComponent<Image>().enabled = true;
+		progressBar.GetComponent<Image>().enabled = true;
+		textObj.GetComponent<Text>().enabled = true;
+
+
 
 		// start with the size of the progress bar as 0
 		progressBar.transform.localScale = new Vector3 (0f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
@@ -76,7 +80,6 @@ public class LoadingScreen1 : MonoBehaviour {
 		levelToLoad = levelName; 	// levelName typed in the inspector
 		this.enabled = true;	// enable the script to start loading
 		//isLoading = true;
-
 	}
 
 }

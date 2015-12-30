@@ -9,6 +9,8 @@ public class TutorialManager1 : MonoBehaviour {
 	[HideInInspector]
 	public bool tutorial;
 
+	bool shopTutorial;
+
 	bool kingGuavaEntered;
 	bool activeNa;	// temporary variable. lalagay ko to sa update para isang bes lang mag true yung conditions na nag a activate ng hidden objects like pothole highlight ganon
 	bool activeNaPotholes;		// check if active na yung lahat ng potholes, same lang den sa taas temporary variable
@@ -42,34 +44,66 @@ public class TutorialManager1 : MonoBehaviour {
 		
 		pauseMenuManagerScript = (pauseMenuManager) GameObject.FindObjectOfType(typeof(pauseMenuManager));
 
-		SpawnEnemy spawnEnemy = (SpawnEnemy) GameObject.FindObjectOfType(typeof(SpawnEnemy));
-		spawnEnemy.GetComponent<SpawnEnemy>().waves[0].WaveElement = ElementManager.Element.Air;	// kailangan gantong order yung elements para
-		spawnEnemy.GetComponent<SpawnEnemy>().waves[1].WaveElement = ElementManager.Element.Water;	// makita ng user yung pagkakaiba ng damgages
-		spawnEnemy.GetComponent<SpawnEnemy>().waves[2].WaveElement = ElementManager.Element.Fire;	// per element
+		if(PlayerPrefs.GetInt("Tutorial") == 1){		// tutorial enabled
+			ElementManager elementManager = (ElementManager) GameObject.FindObjectOfType(typeof(ElementManager));
+			elementManager.GetComponent<ElementManager>().enabled = false;								// ng wag mag random ang mga element
+			
+			SpawnEnemy spawnEnemy = (SpawnEnemy) GameObject.FindObjectOfType(typeof(SpawnEnemy));
+			spawnEnemy.GetComponent<SpawnEnemy>().waves[0].WaveElement = ElementManager.Element.Air;	// kailangan gantong order yung elements para
+			spawnEnemy.GetComponent<SpawnEnemy>().waves[1].WaveElement = ElementManager.Element.Water;	// makita ng user yung pagkakaiba ng damgages
+			spawnEnemy.GetComponent<SpawnEnemy>().waves[2].WaveElement = ElementManager.Element.Fire;	// per element
 
-		tutorial_dialog.Add("The insects have arrived! Defend our place!"); 
-		tutorial_dialog.Add("I will give you my Veggie hero, the Carrot.");	
-		tutorial_dialog.Add("As shown below the Carrot's image, this hero costs 80 water.");	
-		tutorial_dialog.Add("Tap on the Carrot then tap on the pothole.");	
-		tutorial_dialog.Add("Here's another pothole, now DRAG the Carrot hero to plant. Try it!");	
-		tutorial_dialog.Add("Tap a Carrot to see an X mark, the Carrot's range, and element.");
-		tutorial_dialog.Add("Remove a hero by tapping the X mark.");	
-		tutorial_dialog.Add("Every hero removed gives you a water refund.");	
-		tutorial_dialog.Add("I added more potholes. Plant Carrots as long as you have enough water and");	
-		tutorial_dialog.Add("Click on the Start wave button to start fighting! But before that..");	
-		tutorial_dialog.Add("The Next Wave indicator shows the element of the approaching enemies");	
-		tutorial_dialog.Add("and if they are a walking or flying type of insect.");	
-		tutorial_dialog.Add("Here, you can see that the insects approaching are");
-		tutorial_dialog.Add("walking insects possessing Air element.");
-		tutorial_dialog.Add("Here is a list of the precedence of the elements");
-		tutorial_dialog.Add("When a hero attacks an element stronger than him. The damage is lesser, and vice versa.");
-		tutorial_dialog.Add("If an element is attacked by the same element the damage is normal.");
-		tutorial_dialog.Add("As you go on, you'll acquire hero with different elements. Use them well!");
-		tutorial_dialog.Add("GOOD LUCK!");
+			tutorial_dialog.Add("The insects have arrived! Defend our place!"); 
+			tutorial_dialog.Add("I will give you my Veggie hero, the Carrot.");	
+			tutorial_dialog.Add("As shown below the Carrot's image, this hero costs 80 water.");	
+			tutorial_dialog.Add("Tap on the Carrot then tap on the pothole.");	
+			tutorial_dialog.Add("Here's another pothole, now DRAG the Carrot hero to plant. Try it!");	
+			tutorial_dialog.Add("Tap a Carrot to see an X mark, the Carrot's range, and element.");
+			tutorial_dialog.Add("Remove a hero by tapping the X mark.");	
+			tutorial_dialog.Add("Every hero removed gives you a water refund.");	
+			tutorial_dialog.Add("I added more potholes. Plant Carrots as long as you have enough water and");	
+			tutorial_dialog.Add("Click on the Start wave button to start fighting! But before that..");	
+			tutorial_dialog.Add("The Next Wave indicator shows the element of the approaching enemies");	
+			tutorial_dialog.Add("and if they are a walking or flying type of insect.");	
+			tutorial_dialog.Add("Here, you can see that the insects approaching are");
+			tutorial_dialog.Add("walking insects possessing Air element.");
+			tutorial_dialog.Add("Here is a list of the precedence of the elements");
+			tutorial_dialog.Add("When a hero attacks an element stronger than him. The damage is lesser, and vice versa.");
+			tutorial_dialog.Add("If an element is attacked by the same element the damage is normal.");
+			tutorial_dialog.Add("As you go on, you'll acquire hero with different elements. Use them well!");
+			tutorial_dialog.Add("GOOD LUCK!");
+			
+			tutorial_dialog.Add("Another wave of enemy is coming!");
+			tutorial_dialog.Add("You may tap the Next Wave Button if you want to fight them right away");	
+			tutorial_dialog.Add("Notice that the Next Wave indicator changed. Water element is next");	
+		}
 
-		tutorial_dialog.Add("Another wave of enemy is coming!");
-		tutorial_dialog.Add("You may tap the Next Wave Button if you want to fight them right away");	
-		tutorial_dialog.Add("Notice that the Next Wave indicator changed. Water element is next");	
+		if(PlayerPrefs.GetInt("ShopTutorial") == 1){		// shop tutorial enabled
+			buttons[7].SetActive(true);						// tutorial parent gameObject
+			shopTutorial = true;
+			tutorial_dialog.Add("This is the Map, you can scroll sideways to navigate.");	
+			tutorial_dialog.Add("Upgrade and buy heroes at the shop!");	
+			
+			tutorial_dialog.Add("You can also buy certain boosters for your battle.");	
+
+			tutorial_dialog.Add("Claim rewards in the 'Achievements'.");	
+			tutorial_dialog.Add("Browse the 'Library' for references about enemies, etc.");	
+
+			buttons[1].SetActive(false);
+			buttons[2].SetActive(false);
+			buttons[3].SetActive(false);
+			buttons[5].SetActive(false);
+			buttons[6].GetComponent<Button>().enabled = false;	// stage 1 button
+			//		tutorial_dialog.Add("");	
+
+			counter = 0;
+			counter++;
+
+			tutorialText.text = tutorial_dialog[0];
+		}
+
+//		tutorial_dialog.Add("");	
+//		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
 //		tutorial_dialog.Add("");	
@@ -77,18 +111,9 @@ public class TutorialManager1 : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("HEYYY");
+//		Debug.Log ("HEYYY");
 		if(PlayerPrefs.HasKey("Tutorial")){		 // this key is set from the storyline.
-			if(PlayerPrefs.GetInt("Tutorial") == 0){
-				tutorial = false;							// this means pwedeng na fail ni user yung level 1 tas kelangan nya laruin ule
-				GameObject.Find("tutorial").gameObject.SetActive(false);
-				buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
-				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
-				buttons[1].transform.GetChild(0).gameObject.SetActive(false);	// hide the highlight of startWave button
-				buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
-				
-			}
-			else if(PlayerPrefs.GetInt("Tutorial") == 1){
+			if(PlayerPrefs.GetInt("Tutorial") == 1){
 				tutorial = true;							// if true, 1st time mag laro ng user & he needs to undergo tutorial
 				
 				kingGuavaEntered = false;
@@ -99,7 +124,9 @@ public class TutorialManager1 : MonoBehaviour {
 				foreach(GameObject button in buttons){
 					button.SetActive(false);	// hide first the buttons
 				}
-
+				
+				buttons[15].SetActive(true);						// tutorial parent gameObject
+				
 				// hide potholes
 				for (int i = 0; i < list_potholes.potholesList.Length; i++){
 					if(list_potholes.potholesList[i].activeSelf && list_potholes.potholesList[i].renderer.enabled == true){
@@ -107,20 +134,28 @@ public class TutorialManager1 : MonoBehaviour {
 						BoxCollider2D[] tempCollider = list_potholes.potholesList[i].GetComponents<BoxCollider2D>();
 						tempCollider[0].enabled = false;	// disable the collider para di muna makapag tanim yung user
 						tempCollider[1].enabled = false;
-
 					}
 					else{
-
+						
 					}
 				}
-
+				
 				BoxCollider2D[] tempCollider1 =buttons[11].GetComponents<BoxCollider2D>();
 				tempCollider1[0].enabled = false;	// disable the collider para di muna makapag tanim yung user
 				tempCollider1[1].enabled = false;
-
+				
 				buttons[11].gameObject.SetActive(true);	// show first pothole
 				buttons[11].renderer.enabled = true;
 				counter++;
+			}
+
+			else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("ShopTutorial") == 0){
+				tutorial = false;							// this means pwedeng na fail ni user yung level 1 tas kelangan nya laruin ule
+				buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
+				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
+				buttons[1].transform.GetChild(0).gameObject.SetActive(false);	// hide the highlight of startWave button
+				buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
+				
 			}
 		}
 	}
@@ -263,6 +298,23 @@ public class TutorialManager1 : MonoBehaviour {
 					}
 				}
 			}
+	
+		}
+		else if(shopTutorial){
+			 if(PlayerPrefs.GetInt("ShopTutorial") == 1 ){		// shop tutorial starts
+				anim_kingGuava.SetBool("shop_moveRight", true);
+				
+				// shop tutorial has diff set of buttons than gameplay tutorial WAG MALILITO :d
+				buttons[4].SetActive(true);														  // show caption cloud
+				
+				//				buttons[2].SetActive(true);			// achievements
+				//				buttons[3].SetActive(true);			 // library
+				//				buttons[5].SetActive(true);			// back button
+				
+				tutorialText.transform.parent.transform.localScale = new Vector3(-1f, 1f, 1f);	  // set the localScale to 1 para di bumaliktad yung text
+				tutorialText.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);	  	  // set the localScale to 1 para di bumaliktad yung caption cloud
+ 			}
+
 		}
 	}
 
@@ -364,6 +416,8 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text == "Another wave of enemy is coming!"){
 				nextMessage ();	
 				buttons[14].transform.GetChild(1).gameObject.SetActive(true);	// show next wave button highlight
+				buttons[14].transform.GetChild(1).GetComponent<Image>().enabled = true;	// show next wave button highlight
+				
 			}
 			else if(tutorialText.text == "You may tap the Next Wave Button if you want to fight them right away"){
 				nextMessage();
@@ -382,9 +436,12 @@ public class TutorialManager1 : MonoBehaviour {
 				// show the pause button. tapos na yung tutorial. pwede na mag restart yung user :D
 				buttons[2].gameObject.SetActive(true);
 				disableTutorial();
-				
-				//nextMessage();
+
+				// for the shop tutorial
+				PlayerPrefs.SetInt("ShopTutorial", 1);
+				nextMessage();
 			}
+
 //			else if(tutorialText.text == ""){
 //				nextMessage();
 //			buttons[0].GetComponent<Button>().interactable = true;			// para makapag tanim na  yung user
@@ -393,12 +450,55 @@ public class TutorialManager1 : MonoBehaviour {
 //			else if(tutorialText.text == ""){
 //				nextMessage();
 //			}
-//			else if(tutorialText.text == ""){
-//				nextMessage();
-//			}
 
 //
 		}
+		else if(shopTutorial){
+
+			if(tutorialText.text == "This is the Map, you can scroll sideways to navigate."){
+				Debug.Log("i am called");
+				nextMessage();
+				buttons[1].SetActive(true);			// show the shop button
+				buttons[1].GetComponent<Button>().enabled = false;
+ 			}
+			else if(tutorialText.text == "Upgrade and buy heroes at the shop!"){
+				nextMessage();
+			}
+			else if(tutorialText.text == "You can also buy certain boosters for your battle."){
+				nextMessage();
+				buttons[2].SetActive(true);			// show the achievement button
+				buttons[2].GetComponent<Button>().enabled = false;			 // disable clicking achievements
+				
+			}
+
+				//				buttons[2].SetActive(true);			// achievements
+				//				buttons[5].SetActive(true);			// back button
+			else if(tutorialText.text == "Claim rewards in the 'Achievements'."){
+				nextMessage();
+				buttons[3].SetActive(true);			 // library
+				buttons[3].GetComponent<Button>().enabled = false;			 // disable clicking library
+				buttons[0].transform.GetChild(0).GetComponent<Text>().text = "Okay";
+				
+			}	
+			else if(tutorialText.text == "Browse the 'Library' for references about enemies, etc."){
+				//nextMessage();
+				//hide everything shop tutorial finished
+				PlayerPrefs.SetInt("ShopTutorial", 0);
+				buttons[6].SetActive(true);			 // stage 1
+				buttons[3].SetActive(true);			 // library
+
+				anim_kingGuava.gameObject.SetActive(false);					 // hide king guava
+				buttons[4].SetActive(false);								 // hide caption cloud
+				buttons[1].GetComponent<Button>().enabled = true;			 // enable clicking shop
+				buttons[2].GetComponent<Button>().enabled = true;			 // enable clicking achievements
+				buttons[3].GetComponent<Button>().enabled = true;			 // enable clicking library
+				buttons[6].GetComponent<Button>().enabled = true;			 // enable clicking stage 1
+				buttons[0].SetActive(false);			 					 // hide tutorial next buttton
+				buttons[5].SetActive(true);			 						 // back
+			}	
+
+		}
+
 	}
 	
 	void hideTutorialStuffs(){
@@ -440,6 +540,7 @@ public class TutorialManager1 : MonoBehaviour {
 	// called when the resume & back to map button is pressed.
 	public void disableTutorial(){
 		PlayerPrefs.SetInt("Tutorial", 0);
+		PlayerPrefs.SetInt("Tutorial_another", 2);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
 		
 	}
 }

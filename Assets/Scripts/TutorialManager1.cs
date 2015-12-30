@@ -149,12 +149,14 @@ public class TutorialManager1 : MonoBehaviour {
 				counter++;
 			}
 
-			else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("ShopTutorial") == 0){
+			else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("ShopTutorial") == 0 && PlayerPrefs.GetInt("playerReturns_toLvl_1") == 1){
 				tutorial = false;							// this means pwedeng na fail ni user yung level 1 tas kelangan nya laruin ule
-				buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
-				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
-				buttons[1].transform.GetChild(0).gameObject.SetActive(false);	// hide the highlight of startWave button
-				buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
+				if(GameObject.Find("tutorial") != null){
+					buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
+					buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
+					buttons[1].transform.GetChild(0).gameObject.SetActive(false);	// hide the highlight of startWave button
+					buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
+				}
 				
 			}
 		}
@@ -439,7 +441,7 @@ public class TutorialManager1 : MonoBehaviour {
 
 				// for the shop tutorial
 				PlayerPrefs.SetInt("ShopTutorial", 1);
-				nextMessage();
+				//nextMessage();
 			}
 
 //			else if(tutorialText.text == ""){
@@ -540,7 +542,7 @@ public class TutorialManager1 : MonoBehaviour {
 	// called when the resume & back to map button is pressed.
 	public void disableTutorial(){
 		PlayerPrefs.SetInt("Tutorial", 0);
-		PlayerPrefs.SetInt("Tutorial_another", 2);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
+		PlayerPrefs.SetInt("playerReturns_toLvl_1", 1);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
 		
 	}
 }

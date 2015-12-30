@@ -151,7 +151,7 @@ public class TutorialManager1 : MonoBehaviour {
 
 			else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("ShopTutorial") == 0 && PlayerPrefs.GetInt("playerReturns_toLvl_1") == 1){
 				tutorial = false;							// this means pwedeng na fail ni user yung level 1 tas kelangan nya laruin ule
-				if(GameObject.Find("tutorial") != null){
+				if(GameObject.Find("circle_carrot") != null){
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
 					buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
 					buttons[1].transform.GetChild(0).gameObject.SetActive(false);	// hide the highlight of startWave button

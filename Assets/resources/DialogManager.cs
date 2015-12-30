@@ -35,7 +35,6 @@ public class DialogManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		PlayerPrefs.SetInt("Tutorial", 1); 						// this will be used later para malaman na kailangan ng user mag tutorial pag dating ng level 1
 		fadeCanvas = gameObject.GetComponent<FadeCanvas>();
 		fade_panel = (fade_panelDialog) GameObject.FindObjectOfType(typeof(fade_panelDialog));
 
@@ -74,18 +73,16 @@ public class DialogManager : MonoBehaviour {
 		// Line #4: King Guava had a beautiful wife named Queen Bitter Gourd 
 		else if(counter == 3){
 			panel_dialog.GetComponentInChildren<Button>().interactable = false;
-			fade_panel.fadeOutPanel(panel_dialog);
+			fade_panel.hidePanel(panel_dialog);
 			fadeCanvas.fadeOutPanel(story_1);	// hide the panel story_1
 			fadeCanvas.fadeInPanel(story_2);	// show the panel story_2
-	//		StartCoroutine(wait() );
-			panel_dialog.GetComponentInChildren<Button>().interactable = true;
 			fade_panel.fadeInPanel(panel_dialog);
 
 		}
 
 		// Line #6: because of this, she ran away from the King and left the palace.
 		else if(counter == 5){
-			fade_panel.fadeOutPanel(panel_dialog);
+			fade_panel.hidePanel(panel_dialog);
 			fadeCanvas.fadeOutPanel(story_2);
 			fade_panel.fadeInPanel(panel_dialog);
 
@@ -93,21 +90,21 @@ public class DialogManager : MonoBehaviour {
 		}
 
 		else if(counter == 6){
-			fade_panel.fadeOutPanel(panel_dialog);
+			fade_panel.hidePanel(panel_dialog);
 			fadeCanvas.fadeOutPanel(story_3);
 			fade_panel.fadeInPanel(panel_dialog);
 			fadeCanvas.fadeInPanel(story_4);
 		}
 
 		else if(counter == 8){
-			fade_panel.fadeOutPanel(panel_dialog);
+			fade_panel.hidePanel(panel_dialog);
 			fadeCanvas.fadeOutPanel(story_4);
 			fade_panel.fadeInPanel(panel_dialog);
 			fadeCanvas.fadeInPanel(story_5);
 		}
 
 		else if(counter == 9){
-			fade_panel.fadeOutPanel(panel_dialog);
+			fade_panel.hidePanel(panel_dialog);
 			fadeCanvas.fadeOutPanel(story_5);
 			fade_panel.fadeInPanel(panel_dialog);
 			fadeCanvas.fadeInPanel(story_6);
@@ -119,6 +116,8 @@ public class DialogManager : MonoBehaviour {
 			panel_dialog.alpha = 0;								// hide panel
 			LoadingScreen1 loadingScreen = (LoadingScreen1) GameObject.FindObjectOfType(typeof(LoadingScreen1));
 			loadingScreen.LoadScene(sceneToLoad);
+			PlayerPrefs.SetInt("Tutorial", 1); 						// this will be used later para malaman na kailangan ng user mag tutorial pag dating ng level 1
+
 		}
 		story_text.text = dialog_lines[counter];
 		counter++;

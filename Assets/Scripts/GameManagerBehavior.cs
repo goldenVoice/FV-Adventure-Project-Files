@@ -15,6 +15,8 @@ public class GameManagerBehavior : MonoBehaviour {
   	public int initialWater;
   	public int water;
   	public int money;
+
+	bool moneyComputed;				// para sa money reward  pag nanalo
 	
   	public int wave;
   	public bool gameOver = false;
@@ -22,6 +24,7 @@ public class GameManagerBehavior : MonoBehaviour {
   
   	public Text healthText;
   	public int health;
+	private int maxhealth;
 
   	GameObject canvas_restart;
   	GameObject restartConfrimTxt;
@@ -41,6 +44,7 @@ public class GameManagerBehavior : MonoBehaviour {
 	void Start () {
      // object.component.property
 		Debug.Log ("Time scale!: " + Time.timeScale);
+		maxhealth = health;
     	canvas_restart = GameObject.Find("Canvas_RestartDialog");  // get the gameObject canvasRestartDialog
 	  	restartConfrimTxt = GameObject.Find("RestartConfirmTxt"); // get the restart text object. tapos i access mamaya pag natalo yung player, tatanungin kung gusto nya mag restart
      	waterText.GetComponent<Text>().text = "" + initialWater;
@@ -48,9 +52,11 @@ public class GameManagerBehavior : MonoBehaviour {
      	currentSelectedHero = null;
      	wave = 0;    // kailangan talaga 0 to, kase sa Wave[] array sa SpawnEnemy script yung elements non nag sisimula sa 0
      	waveText.GetComponent<Text>().text = "Wave: " + (wave + 1);
-		moneyText.GetComponent<Text>().text = "" + PlayerPrefs.GetInt("Money"); 
-		healthText.GetComponent<Text>().text = "Health: " + health;
 
+		money = PlayerPrefs.GetInt("Money");
+		moneyText.GetComponent<Text>().text = "" + money; 
+		healthText.GetComponent<Text>().text = "Health: " + health;
+		moneyComputed = false;
      	heroSelected = false;
     	canvas_PlayerWin = GameObject.Find("Canvas_playerWin");
 		SpawnEnemy spawnEnemy = (SpawnEnemy) FindObjectOfType(typeof(SpawnEnemy));
@@ -101,8 +107,8 @@ public class GameManagerBehavior : MonoBehaviour {
     	}
     	else{
      		Debug.Log("You Won!");
-     		canvas_PlayerWin.GetComponent<Canvas>().enabled = true;
 			LevelFin();
+     		canvas_PlayerWin.GetComponent<Canvas>().enabled = true;
     	}
   	}  
 
@@ -120,8 +126,35 @@ public class GameManagerBehavior : MonoBehaviour {
   	}      
 
   	public void LevelFin(){
+		Text moneyRewardText = canvas_PlayerWin.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>();		// from canvas player win
+
+		if(!moneyComputed){								// pag di pa na co compute money ng user
+			moneyToReward = moneyDependOnLivesLeft();	// compute money depending on lives of user
+			moneyComputed = true;
+		}
 		PlayerPrefs.SetInt("Money", money + moneyToReward);
+		moneyRewardText.text = moneyToReward.ToString();
+		// add the other rewards: (items, etc) here
 		PlayerPrefs.SetInt (thisSceneFin, 1);	// ex: thisSceneFin = 'Level_1-1'. set to 1. meaning tapos na yung level.
   	}
+
+	int moneyDependOnLivesLeft(){											// function to compute how much money to reward the user depending on his current lives
+		float currentMoneyToReward = moneyToReward;
+		float _health = health;												// store in a float variable para di mag integer division (discard decimal)
+		float _maxhealth = maxhealth;
+		
+		float healthPercent = ( _health / _maxhealth);							// where health is how many lives left on user: .9 means 90%
+		Debug.Log(currentMoneyToReward + " * " + healthPercent + " = " + (currentMoneyToReward * healthPercent) );
+		int moneyComputed = Mathf.RoundToInt(currentMoneyToReward * healthPercent);	// ex: 500 * .80	means 80% of 500
+
+		if(healthPercent == 1){										// walang bawas yung life
+			PlayerPrefs.SetInt(thisSceneFin + "_status", 1);		// ex: 'Level 1-1_status', value of 1 means PERFECT
+		}
+		else if(healthPercent < 1){									// if less than 1 meaning di perfect
+			PlayerPrefs.SetInt(thisSceneFin + "_status", 0);		// ex: Level 1-1_status, so 0 gives status of CLEARED
+		}
+
+		return moneyComputed;
+	}
 
 }

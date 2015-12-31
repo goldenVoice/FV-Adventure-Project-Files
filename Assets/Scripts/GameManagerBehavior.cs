@@ -113,6 +113,7 @@ public class GameManagerBehavior : MonoBehaviour {
      		Debug.Log("You Won!");
 			LevelFin();
      		canvas_PlayerWin.GetComponent<Canvas>().enabled = true;
+      		Time.timeScale = 0.0f;  // pause the game
     	}
   	}  
 
@@ -131,7 +132,7 @@ public class GameManagerBehavior : MonoBehaviour {
 
   	public void LevelFin(){
 		Text moneyRewardText = canvas_PlayerWin.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>();		// from canvas player win
-
+		Debug.Log ("moneyComputed: " + moneyComputed);
 		if(!moneyComputed){										// pag di pa na co compute money ng user
 			if(PlayerPrefs.HasKey(thisSceneFin + "_status")){	// returns true if the user came back to the level, pwedeng gusto nya i perfect or what ever
 				if(PlayerPrefs.GetFloat(thisSceneFin + "_status") < 1){
@@ -140,6 +141,7 @@ public class GameManagerBehavior : MonoBehaviour {
 				}
 			}
 			else{
+				Debug.Log ("dito dapat didiretso kapag 1st time mag laro");
 				moneyToReward = moneyDependOnLivesLeft();		// compute money depending on lives of user
 				moneyComputed = true;
 			}

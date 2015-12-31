@@ -3,6 +3,8 @@ using System.Collections;
 
 public class DataManager : MonoBehaviour {
 
+	//public GameObject[] profiles;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,5 +17,9 @@ public class DataManager : MonoBehaviour {
 
 	public void ClearData(){		// reset ALL current user data
 		PlayerPrefs.DeleteAll();
+	}
+
+	public void LoadProgress(){
+
 	}
 }

@@ -82,11 +82,11 @@ public class DialogManager : MonoBehaviour {
 
 		// Line #6: because of this, she ran away from the King and left the palace.
 		else if(counter == 5){
+			panel_dialog.GetComponentInChildren<Button>().interactable = false;
 			fade_panel.hidePanel(panel_dialog);
 			fadeCanvas.fadeOutPanel(story_2);
-			fade_panel.fadeInPanel(panel_dialog);
-
 			fadeCanvas.fadeInPanel(story_3);
+			fade_panel.fadeInPanel(panel_dialog);
 		}
 
 		else if(counter == 6){

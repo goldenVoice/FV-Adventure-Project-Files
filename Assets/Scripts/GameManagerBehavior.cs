@@ -103,7 +103,11 @@ public class GameManagerBehavior : MonoBehaviour {
       		GameObject NoButton_backToMap = GameObject.Find("NoButton_backToMap");
       		GameObject NoButton_restart = GameObject.Find("NoButton_restart");
       		NoButton_backToMap.SetActive(true);
-      		NoButton_restart.SetActive(false);
+
+			if(NoButton_restart != null){
+      			NoButton_restart.SetActive(false);
+			}
+
     	}
     	else{
      		Debug.Log("You Won!");
@@ -128,9 +132,17 @@ public class GameManagerBehavior : MonoBehaviour {
   	public void LevelFin(){
 		Text moneyRewardText = canvas_PlayerWin.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>();		// from canvas player win
 
-		if(!moneyComputed){								// pag di pa na co compute money ng user
-			moneyToReward = moneyDependOnLivesLeft();	// compute money depending on lives of user
-			moneyComputed = true;
+		if(!moneyComputed){										// pag di pa na co compute money ng user
+			if(PlayerPrefs.HasKey(thisSceneFin + "_status")){	// returns true if the user came back to the level, pwedeng gusto nya i perfect or what ever
+				if(PlayerPrefs.GetFloat(thisSceneFin + "_status") < 1){
+					moneyToReward = moneyRewardComeBack();		// pate sa laro may comeback
+					moneyComputed = true;
+				}
+			}
+			else{
+				moneyToReward = moneyDependOnLivesLeft();		// compute money depending on lives of user
+				moneyComputed = true;
+			}
 		}
 		PlayerPrefs.SetInt("Money", money + moneyToReward);
 		moneyRewardText.text = moneyToReward.ToString();
@@ -148,13 +160,50 @@ public class GameManagerBehavior : MonoBehaviour {
 		int moneyComputed = Mathf.RoundToInt(currentMoneyToReward * healthPercent);	// ex: 500 * .80	means 80% of 500
 
 		if(healthPercent == 1){										// walang bawas yung life
-			PlayerPrefs.SetInt(thisSceneFin + "_status", 1);		// ex: 'Level 1-1_status', value of 1 means PERFECT
+			PlayerPrefs.SetFloat(thisSceneFin + "_status", 1);		// ex: 'Level 1-1_status', value of 1 means PERFECT
 		}
 		else if(healthPercent < 1){									// if less than 1 meaning di perfect
-			PlayerPrefs.SetInt(thisSceneFin + "_status", 0);		// ex: Level 1-1_status, so 0 gives status of CLEARED
+			PlayerPrefs.SetFloat(thisSceneFin + "_status", healthPercent);		// ex: Level 1-1_status, healthpercent ranges from (0 - 99%) gives a status of CLEARED
 		}
 
 		return moneyComputed;
+	}
+
+	int moneyRewardComeBack(){		// when the user comes back to the level to achieve PERFECT status.
+		int moneyComputed = moneyToReward;
+		float lastPercent = PlayerPrefs.GetFloat(thisSceneFin + "_status");
+		float percentLeft = 1f - lastPercent;		// ex: last time, naka 80% lang sya. bale kailangan this time yung lives na meron sya. mapantayan yung 
+
+		float _health = health;												
+		float _maxhealth = maxhealth;
+		
+		float curhealthPercent = ( _health / _maxhealth);						
+		Debug.Log ("curhealthPercent: " + curhealthPercent);
+		float percentAllowance = curhealthPercent - lastPercent;		// ex: lastpercent: 80% ,curhealthPercent(yung ngayon): 90% = 10% yung nakuha nyang percent
+																		// may bubunuin pa syang 10% next game nya. kase di nya ren naman na perfect
+		Debug.Log ("percentAllowance(" + percentAllowance + ") = " + "curhealthPercent(" + curhealthPercent + ") - last percent(" + lastPercent + ") ");
+		if(percentAllowance <= 0){										// pag negative lumabas. natapos nya nga yung level. di nya naman na perfect at napuno yung kulang na health percent from last game
+			Debug.Log("Seems that the user failed, di nya nahigitan ang dati nya ng nagawa");
+			moneyComputed = Mathf.RoundToInt(moneyComputed * 0.05f);	// since di nya nanaman na perfect. the user will get a small default 5% of the moneyToReward
+			PlayerPrefs.SetFloat(thisSceneFin + "_status", lastPercent);// set the status to the last percent, since di ren naman na achieve ng user yung mahigitan yung last percent nya
+			return moneyComputed;
+		}
+		else{															// ex: percentcomputed = 10% add it to the laspercent of the user para pag nag laro ule sya. 90% na yung lastpercent nya. 10% percent na lang yung bubunuin nya :D
+			if(percentAllowance + lastPercent == 1){						// naka perfect na si User! 
+				Debug.Log ("Finally! naka perfect ka na den. May " + percentAllowance +"% allowance kang nadagdag mula sa huli mong laro");
+				PlayerPrefs.SetFloat(thisSceneFin + "_status", 1); 
+				moneyComputed = Mathf.RoundToInt(moneyComputed * percentAllowance);	// 500 * .1 = 10% of 500 nakaperfect na si user pero ang money reward nya ay yung kulang nya na percent.
+				return moneyComputed;				
+			}
+			else{
+				float newPercent = lastPercent + percentAllowance;
+				PlayerPrefs.SetFloat(thisSceneFin + "_status", newPercent);	// if di pa ren perfect, pero nahigitan nya naman yung last percent nya
+																								//add yung last percent sa percent allowance na nakuha nya ngayon
+				Debug.Log("Try again next time be :( ayos lang yan may nadagdag na " +percentAllowance+ "% sa last game mong naka "+lastPercent+"% ka lamang :D");
+				moneyComputed = Mathf.RoundToInt(moneyToReward * percentAllowance);
+				return moneyComputed;
+			}
+		}
 	}
 
 }

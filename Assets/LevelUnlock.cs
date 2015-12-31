@@ -33,11 +33,11 @@ public class LevelUnlock : MonoBehaviour {
 
 	void showStatus(Button button){
 
-		if(PlayerPrefs.GetInt(button.name + "_status") == 1){
+		if(PlayerPrefs.GetFloat(button.name + "_status") == 1){
 			button.transform.GetChild(1).GetComponent<Text>().text = "PERFECT!";
 			button.transform.GetChild(1).GetComponent<Text>().color = Color.green;
 		}
-		else if(PlayerPrefs.GetInt(button.name + "_status") == 0){
+		else if(PlayerPrefs.GetFloat(button.name + "_status") < 1){
 			button.transform.GetChild(1).GetComponent<Text>().text = "CLEARED!";
 			button.transform.GetChild(1).GetComponent<Text>().color = Color.yellow;
 		}

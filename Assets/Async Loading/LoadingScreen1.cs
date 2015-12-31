@@ -39,7 +39,7 @@ public class LoadingScreen1 : MonoBehaviour {
 
 		isLoading = true;
 		asyncop = Application.LoadLevelAsync (levelToLoad);
-		Debug.Log("Text Object: " + textObj);		
+//		Debug.Log("Text Object: " + textObj);		
 		origScale = progressBar.transform.localScale.x;
 
 		// show the progress bar, dark bg
@@ -48,11 +48,9 @@ public class LoadingScreen1 : MonoBehaviour {
 		progressBar.GetComponent<Image>().enabled = true;
 		textObj.GetComponent<Text>().enabled = true;
 
-
-
 		// start with the size of the progress bar as 0
 		progressBar.transform.localScale = new Vector3 (0f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
-		Debug.Log(isLoading);
+//		Debug.Log(isLoading);
 		Debug.Log(asyncop);
 		
 		asyncop.allowSceneActivation = false;		

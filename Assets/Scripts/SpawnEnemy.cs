@@ -54,7 +54,7 @@ public class SpawnEnemy : MonoBehaviour {
 	   	gameManager = (GameManagerBehavior)FindObjectOfType(typeof(GameManagerBehavior));
 //		elementManager = (ElementManager) FindObjectOfType(typeof(ElementManager));
 		nextWaveIndicator  = (SpriteManager) FindObjectOfType(typeof(SpriteManager));
-		print("next wave object: " + nextWaveIndicator.gameObject);
+//		print("next wave object: " + nextWaveIndicator.gameObject);
 	 }
 	
 	// Update is called once per frame
@@ -174,11 +174,11 @@ public class SpawnEnemy : MonoBehaviour {
 		}
 		// if eto na yung last wave, then di pa 0 yung health ng player. NANALO SYA
 		else if ((gameManager.health > 0 && GameObject.FindGameObjectWithTag("Enemy") == null) ){
-			Debug.Log ("forever");
+//			Debug.Log ("forever");
 			gameManager.gameOver = true;    // here, gameOver means tapos na yung laro, 
 			gameManager.didPlayerWin(true); // dito iche-check kung nanalo sya, which is true
 		}
-		else if (gameManager.health <= 0){  // tapos na yung wave, at wala na deng lives yung user.
+	    if (gameManager.health <= 0){  // tapos na yung wave, at wala na deng lives yung user.
 			gameManager.gameOver = true;
 			gameManager.didPlayerWin(false);   // TALO SYA			
 		}

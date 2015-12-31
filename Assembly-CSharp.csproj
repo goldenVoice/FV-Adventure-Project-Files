@@ -47,18 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Async Loading\LoadingScreen1.cs" />
-     <Compile Include="Assets\DataManager.cs" />
-     <Compile Include="Assets\InputName.cs" />
-     <Compile Include="Assets\LevelFinished.cs" />
-     <Compile Include="Assets\LevelUnlock.cs" />
-     <Compile Include="Assets\LoadProfiles.cs" />
-     <Compile Include="Assets\LoadSceneAhead.cs" />
-     <Compile Include="Assets\LoadUserProgress.cs" />
-     <Compile Include="Assets\ProfileData.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\ConfrimDialogManager.cs" />
      <Compile Include="Assets\Scripts\CountDownTimer.cs" />
+     <Compile Include="Assets\Scripts\DataManager.cs" />
      <Compile Include="Assets\Scripts\DestroyFinishedParticle.cs" />
      <Compile Include="Assets\Scripts\DragManager.cs" />
      <Compile Include="Assets\Scripts\DropManager.cs" />
@@ -72,12 +65,19 @@
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
      <Compile Include="Assets\Scripts\HeroData.cs" />
      <Compile Include="Assets\Scripts\IgnoreRaycast.cs" />
+     <Compile Include="Assets\Scripts\InputName.cs" />
+     <Compile Include="Assets\Scripts\LevelFinished.cs" />
+     <Compile Include="Assets\Scripts\LevelUnlock.cs" />
      <Compile Include="Assets\Scripts\List_hero.cs" />
+     <Compile Include="Assets\Scripts\LoadProfiles.cs" />
+     <Compile Include="Assets\Scripts\LoadSceneAhead.cs" />
+     <Compile Include="Assets\Scripts\LoadUserProgress.cs" />
      <Compile Include="Assets\Scripts\MoveEnemy.cs" />
      <Compile Include="Assets\Scripts\NextScene.cs" />
      <Compile Include="Assets\Scripts\NormalizeTime.cs" />
      <Compile Include="Assets\Scripts\PotholeManager.cs" />
      <Compile Include="Assets\Scripts\Potholes_list.cs" />
+     <Compile Include="Assets\Scripts\ProfileData.cs" />
      <Compile Include="Assets\Scripts\RangeManager.cs" />
      <Compile Include="Assets\Scripts\Remove_hero.cs" />
      <Compile Include="Assets\Scripts\SoundManager.cs" />
@@ -95,11 +95,13 @@
      <Compile Include="Assets\Scripts\musicPlayer.cs" />
      <Compile Include="Assets\Scripts\pauseMenuManager.cs" />
      <Compile Include="Assets\Scripts\pauseScene.cs" />
+     <Compile Include="Assets\Scripts\showOrHideCanvas.cs" />
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
+     <Compile Include="Assets\StageUnlock.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
      <Compile Include="Assets\resources\QuestionContainer.cs" />
      <Compile Include="Assets\resources\QuestionLoader.cs" />
-     <Compile Include="Assets\showOrHideCanvas.cs" />
+     <Compile Include="Assets\shopManager.cs" />
      <None Include="Assets\Sorting View\ReadMe.txt" />
      <None Include="Assets\resources\questions.xml" />
      <None Include="Assets\resources\storyline_dialog.xml" />

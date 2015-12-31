@@ -23,7 +23,11 @@ public class LevelUnlock : MonoBehaviour {
 			levelButtons[2].GetComponent<Button>().interactable = true;								// show/ enable the button. 
 			levelButtons[2].transform.GetChild(0).GetComponent<Text>().enabled = true;				// Show level text. 
 		}
-
+		if(PlayerPrefs.GetInt(levelButtons[2].name) == 1){											
+			
+			showStatus(levelButtons[2]);															// show status of level 2: perfect of complete lang
+			levelButtons[2].transform.GetChild(0).GetComponent<Text>().enabled = true;				// Show level text. 
+		}
 	}
 	
 	// Update is called once per frame

@@ -132,11 +132,17 @@ public class GameManagerBehavior : MonoBehaviour {
 
   	public void LevelFin(){
 		Text moneyRewardText = canvas_PlayerWin.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>();		// from canvas player win
-		Debug.Log ("moneyComputed: " + moneyComputed);
+		Debug.Log ("moneyToReward: " + moneyToReward);
+		Debug.Log(PlayerPrefs.HasKey(thisSceneFin + "_status"));
 		if(!moneyComputed){										// pag di pa na co compute money ng user
 			if(PlayerPrefs.HasKey(thisSceneFin + "_status")){	// returns true if the user came back to the level, pwedeng gusto nya i perfect or what ever
 				if(PlayerPrefs.GetFloat(thisSceneFin + "_status") < 1){
 					moneyToReward = moneyRewardComeBack();		// pate sa laro may comeback
+					moneyComputed = true;
+				}
+				else{		// naka perfect na sya last time. natapos nya ule.
+					Debug.Log("dito ka dumiretso, dapat. perffect ka nanaman eh");
+					moneyToReward = Mathf.RoundToInt(moneyToReward * 0.05f);		// give him 5 percent. HAHAHA
 					moneyComputed = true;
 				}
 			}
@@ -149,7 +155,7 @@ public class GameManagerBehavior : MonoBehaviour {
 		PlayerPrefs.SetInt("Money", money + moneyToReward);
 		moneyRewardText.text = moneyToReward.ToString();
 		// add the other rewards: (items, etc) here
-		PlayerPrefs.SetInt (thisSceneFin, 1);	// ex: thisSceneFin = 'Level_1-1'. set to 1. meaning tapos na yung level.
+		PlayerPrefs.SetInt (thisSceneFin, 1);	// ex: thisSceneFin = 'Level 1-1'. set to 1. meaning tapos na yung level.
   	}
 
 	int moneyDependOnLivesLeft(){											// function to compute how much money to reward the user depending on his current lives
@@ -195,6 +201,7 @@ public class GameManagerBehavior : MonoBehaviour {
 				Debug.Log ("Finally! naka perfect ka na den. May " + percentAllowance +"% allowance kang nadagdag mula sa huli mong laro");
 				PlayerPrefs.SetFloat(thisSceneFin + "_status", 1); 
 				moneyComputed = Mathf.RoundToInt(moneyComputed * percentAllowance);	// 500 * .1 = 10% of 500 nakaperfect na si user pero ang money reward nya ay yung kulang nya na percent.
+				Debug.Log("moneyComputed =  moneyComputed(" + moneyComputed + " * percentAllowance(" + percentAllowance + ") ");
 				return moneyComputed;				
 			}
 			else{

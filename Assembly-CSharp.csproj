@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Async Loading\LoadingScreen1.cs" />
+     <Compile Include="Assets\Inventory\Inventory.cs" />
+     <Compile Include="Assets\Inventory\Item.cs" />
+     <Compile Include="Assets\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\ConfrimDialogManager.cs" />
@@ -99,6 +102,7 @@
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
      <Compile Include="Assets\StageUnlock.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
+     <Compile Include="Assets\resources\DialogManager_ending.cs" />
      <Compile Include="Assets\resources\QuestionContainer.cs" />
      <Compile Include="Assets\resources\QuestionLoader.cs" />
      <Compile Include="Assets\shopManager.cs" />

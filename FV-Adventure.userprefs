@@ -1,14 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SpawnEnemy.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\resources\DialogManager_ending.cs">
     <Files>
-      <File FileName="Assets\StageUnlock.cs" Line="19" Column="4" />
+      <File FileName="Assets\resources\DialogManager_ending.cs" Line="199" Column="21" />
+      <File FileName="Assets\Inventory\Inventory.cs" Line="1" Column="1" />
+      <File FileName="Assets\StageUnlock.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\LevelUnlock.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManagerBehavior.cs" Line="135" Column="1" />
-      <File FileName="Assets\shopManager.cs" Line="10" Column="58" />
-      <File FileName="Assets\Scripts\TutorialManager1.cs" Line="155" Column="1" />
-      <File FileName="Assets\Async Loading\LoadingScreen1.cs" Line="63" Column="1" />
+      <File FileName="Assets\Scripts\GameManagerBehavior.cs" Line="1" Column="1" />
+      <File FileName="Assets\shopManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TutorialManager1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Async Loading\LoadingScreen1.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SpawnEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Inventory\Item.cs" Line="1" Column="1" />
+      <File FileName="Assets\Inventory\ItemDatabase.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -27,7 +27,10 @@ public class DialogManager_ending : MonoBehaviour {
 	public CanvasGroup story_4;
 	public CanvasGroup story_5;
 	public CanvasGroup story_6;
-
+	public CanvasGroup story_7;
+	public CanvasGroup story_8;
+	public CanvasGroup story_9;
+	
 	public CanvasGroup panel_dialog;
 	public int counter = 0;	
 
@@ -57,7 +60,17 @@ public class DialogManager_ending : MonoBehaviour {
 			story_text.text = dialogs[0];
 		}
 		else if(endingStoryline){
-
+			dialogs[0] = "\"NO I CAN'T BE DEFEATED!\" The Insect Queen cried in agony.";
+			dialogs[1] = "\"It's over now, Angela.\" The King said with a dominating tone.";
+			dialogs[2] = "\"Why?! Why did you chose Bitter Gourd instead of me?! I loved you so much...";
+			dialogs[3] = "If I can't make you mine, I won't give you to anyone else! You will die with me!\"";
+			dialogs[4] = "But before she could grab her staff, the Fruity-Veggie police came and arrested her.";
+			dialogs[5] = "The King returned to Fruity-Veggie world...";
+			dialogs[6] = "Imprisoned the Insect Queen...";
+			dialogs[7] = "Gave Queen Bitter Gourd a decent burial...";
+			dialogs[8] = "Peace was restored to Fruity-Veggie World once again...";
+			dialogs[9] = "";
+			story_text.text = dialogs[0];
 		}
 	}
 
@@ -203,6 +216,100 @@ public class DialogManager_ending : MonoBehaviour {
 			}
 
 		}
+		else if(endingStoryline){
+			if(story_text.text == "\"NO I CAN'T BE DEFEATED!\" The Insect Queen cried in agony."){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_1);	// hide the panel story_1
+				fadeCanvas.fadeInPanel(story_2);	// show the panel story_2
+				fade_panel.fadeInPanel(panel_dialog);
+
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "\"It's over now, Angela.\" The King said with a dominating tone."){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_2);	// hide the panel story_1
+				fadeCanvas.fadeInPanel(story_3);	// show the panel story_2
+				fade_panel.fadeInPanel(panel_dialog);
+
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "\"Why?! Why did you chose Bitter Gourd instead of me?! I loved you so much..."){	
+				
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "If I can't make you mine, I won't give you to anyone else! You will die with me!\""){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_3);	// hide the panel story_1
+				fadeCanvas.fadeInPanel(story_4);	// show the panel story_2
+				fade_panel.fadeInPanel(panel_dialog);
+
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "But before she could grab her staff, the Fruity-Veggie police came and arrested her."){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_4);	// hide the panel story_1
+				fadeCanvas.fadeInPanel(story_5);	// show the panel story_2
+				fade_panel.fadeInPanel(panel_dialog);
+
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "The King returned to Fruity-Veggie world..."){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_5);	// hide the panel story_1
+				fadeCanvas.fadeInPanel(story_6);	// show the panel story_2
+				fade_panel.fadeInPanel(panel_dialog);
+
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "Imprisoned the Insect Queen..."){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_6);	// hide the panel story_1
+				fadeCanvas.fadeInPanel(story_7);	// show the panel story_2
+				fade_panel.fadeInPanel(panel_dialog);
+
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "Gave Queen Bitter Gourd a decent burial..."){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_7);	// hide the panel story_1
+
+				fadeCanvas.fadeInPanel(story_8);	// show the panel story_2
+				story_8.transform.GetChild(1).GetComponent<Animator>().enabled = true;	// animation of the fruity veggie world
+				fade_panel.fadeInPanel(panel_dialog);
+
+				story_text.text = dialogs[counter];
+				counter++;	
+			}
+			else if(story_text.text == "Peace was restored to Fruity-Veggie World once again..."){	
+				panel_dialog.GetComponentInChildren<Button>().interactable = false;
+				fade_panel.hidePanel(panel_dialog);
+				fadeCanvas.fadeOutPanel(story_8);	// hide the panel story_1
+
+				StartCoroutine( wait() );
+
+				fadeCanvas.fadeInPanel(story_9);	// THE END
+				Debug.Log("GOING BACK TO THE TITLE SCREEN ...");
+				
+				StartCoroutine( wait() );
+			
+			}
+
+		}
+
 //
 //
 //		if(counter == 3){
@@ -259,6 +366,14 @@ public class DialogManager_ending : MonoBehaviour {
 	}
 
 	IEnumerator wait(){
-		yield return new WaitForSeconds(2);
-	}
+		print(Time.time);
+		yield return new WaitForSeconds(5);
+
+		// GO BACK TO TITLE SCREEN
+		story_9.GetComponent<CanvasGroup>().alpha = 0;		// hide current scenario
+		panel_dialog.alpha = 0;								// hide panel
+		LoadingScreen1 loadingScreen = (LoadingScreen1) GameObject.FindObjectOfType(typeof(LoadingScreen1));
+		loadingScreen.LoadScene(sceneToLoad);
+
+		print(Time.time);	}
 }

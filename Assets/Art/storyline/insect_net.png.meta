@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: a85ebf4d989dd3647af03b8a50d7b080
+guid: 7633950bbbb6f5e439fe94b6106ede58
 TextureImporter:
   fileIDToRecycleName:
-    21300000: queen_tomb_0
+    21300000: insect_net_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,13 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: queen_tomb_0
+    - name: insect_net_0
       rect:
         serializedVersion: 2
-        x: 463
-        y: 257
-        width: 2553
-        height: 1887
+        x: 672
+        y: 572
+        width: 2192
+        height: 1398
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

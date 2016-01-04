@@ -51,6 +51,7 @@
      <Compile Include="Assets\Inventory\Item.cs" />
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\InventoryManager.cs" />
+     <Compile Include="Assets\PlaySound.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\ConfrimDialogManager.cs" />
@@ -102,6 +103,7 @@
      <Compile Include="Assets\Scripts\showOrHideCanvas.cs" />
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
      <Compile Include="Assets\StageUnlock.cs" />
+     <Compile Include="Assets\VibrManager.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
      <Compile Include="Assets\resources\DialogManager_ending.cs" />
      <Compile Include="Assets\resources\QuestionContainer.cs" />

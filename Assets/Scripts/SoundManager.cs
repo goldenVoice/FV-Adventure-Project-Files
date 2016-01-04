@@ -7,8 +7,11 @@ public class SoundManager : MonoBehaviour {
     public Text text;
 
     void Start() {
-      audio = GetComponent<AudioSource>();
+      	audio = GetComponent<AudioSource>();
       
+		if(PlayerPrefs.GetInt("sounds") == 1){
+
+		}
     }
     
     void Update() {
@@ -20,11 +23,12 @@ public class SoundManager : MonoBehaviour {
         if (audio.mute){
                 audio.mute = false;
                 text.text = "Sounds: ON";
+				PlayerPrefs.SetInt("sounds", 1); 	// meaning on
         }
             else{
                 audio.mute = true;
                 text.text = "Sounds: OFF";
-        
+				PlayerPrefs.SetInt("sounds", 0); 	// meaning off
             }
                 
     

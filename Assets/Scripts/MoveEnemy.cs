@@ -46,7 +46,9 @@ public class MoveEnemy : MonoBehaviour {
           // else, the enemy had reached the last waypoint, so destroy it.
           else {
             Destroy(gameObject);
-            Handheld.Vibrate();
+				if(PlayerPrefs.GetInt("vibr") == 1){
+            		Handheld.Vibrate();
+				}
 
             // reference to GameManagerBehavior script to access method deductHealth
             GameManagerBehavior gameManager = (GameManagerBehavior)FindObjectOfType(typeof(GameManagerBehavior));
@@ -61,7 +63,6 @@ public class MoveEnemy : MonoBehaviour {
               
             }
           }
-
      }
 	}
 

@@ -47,9 +47,9 @@ TextureImporter:
     - name: loading bar_0
       rect:
         serializedVersion: 2
-        x: 72
+        x: 37
         y: 31
-        width: 863
+        width: 931
         height: 108
       alignment: 0
       pivot: {x: .5, y: .5}

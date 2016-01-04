@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: a05818b832082414ba8c68e63d22c72a
+guid: e230392b46c34d544b0302f1421b3de7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stage 10
-    21300002: stage 9
+    21300000: panel
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -24,7 +23,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 512
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -45,23 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: stage 10
+    - name: panel
       rect:
         serializedVersion: 2
-        x: 365
-        y: 578
-        width: 1065
-        height: 1347
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: stage 9
-      rect:
-        serializedVersion: 2
-        x: 2501
-        y: 564
-        width: 1076
-        height: 1203
+        x: 409
+        y: 64
+        width: 755
+        height: 614
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

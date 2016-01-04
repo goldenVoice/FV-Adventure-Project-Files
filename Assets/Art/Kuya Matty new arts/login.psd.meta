@@ -1,9 +1,7 @@
 fileFormatVersion: 2
-guid: a05818b832082414ba8c68e63d22c72a
+guid: 2c5bf286a7aeffe4f82bf16070079005
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: stage 10
-    21300002: stage 9
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -29,7 +27,7 @@ TextureImporter:
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -44,26 +42,6 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: stage 10
-      rect:
-        serializedVersion: 2
-        x: 365
-        y: 578
-        width: 1065
-        height: 1347
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: stage 9
-      rect:
-        serializedVersion: 2
-        x: 2501
-        y: 564
-        width: 1076
-        height: 1203
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 

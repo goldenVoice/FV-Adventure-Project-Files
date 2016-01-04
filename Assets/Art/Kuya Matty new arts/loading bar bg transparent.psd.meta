@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: a05818b832082414ba8c68e63d22c72a
+guid: 55c36810d44d69e489c0941aa47115f1
 TextureImporter:
   fileIDToRecycleName:
-    21300000: stage 10
-    21300002: stage 9
+    21300000: loading bar bg transparent_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -45,23 +44,13 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: stage 10
+    - name: loading bar bg transparent_0
       rect:
         serializedVersion: 2
-        x: 365
-        y: 578
-        width: 1065
-        height: 1347
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: stage 9
-      rect:
-        serializedVersion: 2
-        x: 2501
-        y: 564
-        width: 1076
-        height: 1203
+        x: 16
+        y: 12
+        width: 764
+        height: 78
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

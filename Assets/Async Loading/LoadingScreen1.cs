@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LoadingScreen1 : MonoBehaviour {
 	
-	public string levelToLoad;
+	string levelToLoad;
 
 	bool isLoading = false;
 
@@ -12,6 +12,7 @@ public class LoadingScreen1 : MonoBehaviour {
 	private GameObject progressBar_bg;
 	private GameObject progressBar;
 	private GameObject textObj;
+	private GameObject loadPanel;
 
 	private float origScale;
 	private float newProgress;
@@ -27,7 +28,8 @@ public class LoadingScreen1 : MonoBehaviour {
 		progressBar_bg = GameObject.Find ("progressBar_BG");
 		progressBar = GameObject.Find ("progressBar");
 		textObj = GameObject.Find ("LoadText");
-
+		loadPanel = GameObject.Find ("Load panel");
+		
 //		background.SetActive(false);
 //		progressBar_bg.SetActive(false);
 //		progressBar.SetActive(false);
@@ -47,7 +49,8 @@ public class LoadingScreen1 : MonoBehaviour {
 		progressBar_bg.GetComponent<Image>().enabled = true;
 		progressBar.GetComponent<Image>().enabled = true;
 		textObj.GetComponent<Text>().enabled = true;
-
+		loadPanel.GetComponent<Image>().enabled = true;
+		
 		// start with the size of the progress bar as 0
 		progressBar.transform.localScale = new Vector3 (0f, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 //		Debug.Log(isLoading);

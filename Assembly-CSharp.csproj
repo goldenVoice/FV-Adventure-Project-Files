@@ -109,6 +109,7 @@
      <Compile Include="Assets\resources\QuestionContainer.cs" />
      <Compile Include="Assets\resources\QuestionLoader.cs" />
      <Compile Include="Assets\shopManager.cs" />
+     <Compile Include="Assets\shopTutorialManager.cs" />
      <None Include="Assets\Sorting View\ReadMe.txt" />
      <None Include="Assets\resources\questions.xml" />
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />

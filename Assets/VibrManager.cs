@@ -19,6 +19,7 @@ public class VibrManager : MonoBehaviour {
 	public void enableDisable(){
 		if(PlayerPrefs.GetInt("vibr") == 0){		// vibr: off
 			text.text = "Vibration: ON";
+			Handheld.Vibrate();
 			PlayerPrefs.SetInt("vibr", 1); 	// meaning on
 
 		}

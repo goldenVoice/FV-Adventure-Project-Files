@@ -29,8 +29,6 @@ public class SoundManager : MonoBehaviour {
                 audio.mute = true;
                 text.text = "Sounds: OFF";
 				PlayerPrefs.SetInt("sounds", 0); 	// meaning off
-            }
-                
-    
+            }    
     }
 }

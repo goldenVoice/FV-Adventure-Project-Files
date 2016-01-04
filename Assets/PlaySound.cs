@@ -17,7 +17,7 @@ public class PlaySound : MonoBehaviour {
 
 	public void Play(AudioClip sound){				// checks if the sound settings is set to on then plays sound if yes
 		if(PlayerPrefs.GetInt("sounds") == 1){		// sounds: ON
-			audio.PlayOneShot(sound, 1f);
+			audio.PlayOneShot(sound, 0.7f);
 		}
 		else{
 

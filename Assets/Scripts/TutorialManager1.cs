@@ -77,29 +77,9 @@ public class TutorialManager1 : MonoBehaviour {
 			tutorial_dialog.Add("You may tap the Next Wave Button if you want to fight them right away");	
 			tutorial_dialog.Add("Notice that the Next Wave indicator changed. Water element is next");	
 		}
-
-		if(PlayerPrefs.GetInt("ShopTutorial") == 1){		// shop tutorial enabled
-			buttons[7].SetActive(true);						// tutorial parent gameObject
-			shopTutorial = true;
-			tutorial_dialog.Add("This is the Map, you can scroll sideways to navigate.");	
-			tutorial_dialog.Add("Upgrade and buy heroes at the shop!");	
-			
-			tutorial_dialog.Add("You can also buy certain boosters for your battle.");	
-
-			tutorial_dialog.Add("Claim rewards in the 'Achievements'.");	
-			tutorial_dialog.Add("Browse the 'Library' for references about enemies, etc.");	
-
-			buttons[1].SetActive(false);
-			buttons[2].SetActive(false);
-			buttons[3].SetActive(false);
-			buttons[5].SetActive(false);
-			buttons[6].GetComponent<Button>().enabled = false;	// stage 1 button
-			//		tutorial_dialog.Add("");	
-
-			counter = 0;
-			counter++;
-
-			tutorialText.text = tutorial_dialog[0];
+		else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("playerReturns_toLvl_1") == 1 ){
+				// DO NOTHING. JUST HIDE THE INVENTORY BOX PLAYER JUST RETURNED TO LEVEL 1. PWEDENG NAG RETRY SYA GANON
+			buttons[16].SetActive(false);
 		}
 
 //		tutorial_dialog.Add("");	
@@ -149,8 +129,9 @@ public class TutorialManager1 : MonoBehaviour {
 				counter++;
 			}
 
-			else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("ShopTutorial") == 0 && PlayerPrefs.GetInt("playerReturns_toLvl_1") == 1){
+			else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("playerReturns_toLvl_1") == 1){
 				tutorial = false;							// this means pwedeng na fail ni user yung level 1 tas kelangan nya laruin ule
+				Debug.Log("Tutorial is already finished");
 				if(GameObject.Find("circle_carrot") != null){
 					buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject
 					buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
@@ -302,22 +283,6 @@ public class TutorialManager1 : MonoBehaviour {
 			}
 	
 		}
-		else if(shopTutorial){
-			 if(PlayerPrefs.GetInt("ShopTutorial") == 1 ){		// shop tutorial starts
-				anim_kingGuava.SetBool("shop_moveRight", true);
-				
-				// shop tutorial has diff set of buttons than gameplay tutorial WAG MALILITO :d
-				buttons[4].SetActive(true);														  // show caption cloud
-				
-				//				buttons[2].SetActive(true);			// achievements
-				//				buttons[3].SetActive(true);			 // library
-				//				buttons[5].SetActive(true);			// back button
-				
-				tutorialText.transform.parent.transform.localScale = new Vector3(-1f, 1f, 1f);	  // set the localScale to 1 para di bumaliktad yung text
-				tutorialText.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);	  	  // set the localScale to 1 para di bumaliktad yung caption cloud
- 			}
-
-		}
 	}
 
 	public void tutorialNext(){
@@ -455,51 +420,6 @@ public class TutorialManager1 : MonoBehaviour {
 
 //
 		}
-		else if(shopTutorial){
-
-			if(tutorialText.text == "This is the Map, you can scroll sideways to navigate."){
-				Debug.Log("i am called");
-				nextMessage();
-				buttons[1].SetActive(true);			// show the shop button
-				buttons[1].GetComponent<Button>().enabled = false;
- 			}
-			else if(tutorialText.text == "Upgrade and buy heroes at the shop!"){
-				nextMessage();
-			}
-			else if(tutorialText.text == "You can also buy certain boosters for your battle."){
-				nextMessage();
-				buttons[2].SetActive(true);			// show the achievement button
-				buttons[2].GetComponent<Button>().enabled = false;			 // disable clicking achievements
-				
-			}
-
-				//				buttons[2].SetActive(true);			// achievements
-				//				buttons[5].SetActive(true);			// back button
-			else if(tutorialText.text == "Claim rewards in the 'Achievements'."){
-				nextMessage();
-				buttons[3].SetActive(true);			 // library
-				buttons[3].GetComponent<Button>().enabled = false;			 // disable clicking library
-				buttons[0].transform.GetChild(0).GetComponent<Text>().text = "Okay";
-				
-			}	
-			else if(tutorialText.text == "Browse the 'Library' for references about enemies, etc."){
-				//nextMessage();
-				//hide everything shop tutorial finished
-				PlayerPrefs.SetInt("ShopTutorial", 0);
-				buttons[6].SetActive(true);			 // stage 1
-				buttons[3].SetActive(true);			 // library
-
-				anim_kingGuava.gameObject.SetActive(false);					 // hide king guava
-				buttons[4].SetActive(false);								 // hide caption cloud
-				buttons[1].GetComponent<Button>().enabled = true;			 // enable clicking shop
-				buttons[2].GetComponent<Button>().enabled = true;			 // enable clicking achievements
-				buttons[3].GetComponent<Button>().enabled = true;			 // enable clicking library
-				buttons[6].GetComponent<Button>().enabled = true;			 // enable clicking stage 1
-				buttons[0].SetActive(false);			 					 // hide tutorial next buttton
-				buttons[5].SetActive(true);			 						 // back
-			}	
-
-		}
 
 	}
 	
@@ -542,7 +462,9 @@ public class TutorialManager1 : MonoBehaviour {
 	// called when the resume & back to map button is pressed.
 	public void disableTutorial(){
 		PlayerPrefs.SetInt("Tutorial", 0);
+	}
+
+	public void restartStageFromTut(){
 		PlayerPrefs.SetInt("playerReturns_toLvl_1", 1);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
-		
 	}
 }

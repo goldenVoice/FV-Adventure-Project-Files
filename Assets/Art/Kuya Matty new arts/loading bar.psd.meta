@@ -3,6 +3,7 @@ guid: d9fab57e451759648aac096ba6eac7c8
 TextureImporter:
   fileIDToRecycleName:
     21300000: loading bar_0
+    21300002: loading bar_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,6 +52,16 @@ TextureImporter:
         y: 31
         width: 859
         height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: loading bar_1
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 41
+        width: 925
+        height: 83
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

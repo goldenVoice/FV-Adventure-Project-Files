@@ -64,12 +64,12 @@ public class LoadingScreen1 : MonoBehaviour {
 		if(isLoading){		// if nag lo load na. 
 			Debug.Log ("LOAAAAAAAAAADING");
 			newProgress = asyncop.progress * origScale;		
-			textObj.GetComponent<Text>().text = "" + ((int) (asyncop.progress * 100)) + "%";		// show current percentage, kaya cinast ko sa int para whole num lang
+			textObj.GetComponent<Text>().text = "LOADING: " + ((int) (asyncop.progress * 100)) + "%";		// show current percentage, kaya cinast ko sa int para whole num lang
 			progressBar.transform.localScale = new Vector3 (newProgress, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
 			if(asyncop.progress == 0.9f){
 				newProgress = (asyncop.progress + 0.09f) * origScale;		// para 99 percent :D
-				textObj.GetComponent<Text>().text = "" + Mathf.RoundToInt((( (asyncop.progress + 0.1f) * 100))) + "%";		// show current percentage, kaya cinast ko sa int para whole num lang
+				textObj.GetComponent<Text>().text = "LOADING: " + Mathf.RoundToInt((( (asyncop.progress + 0.1f) * 100))) + "%";		// show current percentage, kaya cinast ko sa int para whole num lang
 				progressBar.transform.localScale = new Vector3 (newProgress, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
 				asyncop.allowSceneActivation = true;

@@ -17,7 +17,8 @@ public class GameManagerBehavior : MonoBehaviour {
   	public int money;
 
 	bool moneyComputed;				// para sa money reward  pag nanalo
-	
+	bool perfectStatus;					// is level perfect or Cleared?
+
   	public int wave;
   	public bool gameOver = false;
   	public Text waveText;
@@ -55,9 +56,11 @@ public class GameManagerBehavior : MonoBehaviour {
 
 		money = PlayerPrefs.GetInt("Money");
 		moneyText.GetComponent<Text>().text = "" + money; 
-		healthText.GetComponent<Text>().text = "Health: " + health;
+		healthText.GetComponent<Text>().text = "" + health;
 		moneyComputed = false;
      	heroSelected = false;
+		perfectStatus = false;
+
     	canvas_PlayerWin = GameObject.Find("Canvas_playerWin");
 		SpawnEnemy spawnEnemy = (SpawnEnemy) FindObjectOfType(typeof(SpawnEnemy));
 		spriteManager  = (SpriteManager) FindObjectOfType(typeof(SpriteManager));
@@ -92,7 +95,7 @@ public class GameManagerBehavior : MonoBehaviour {
 
   	public void deductHealth(){
     	health -= 1;
-    	healthText.GetComponent<Text>().text = "Health: " + health;
+    	healthText.GetComponent<Text>().text = "" + health;
   	}
 
   	public void didPlayerWin(bool playerWin){     // check if player won, 
@@ -131,7 +134,8 @@ public class GameManagerBehavior : MonoBehaviour {
   	}      
 
   	public void LevelFin(){
-		Text moneyRewardText = canvas_PlayerWin.transform.GetChild(0).GetChild(2).GetChild(0).GetComponent<Text>();		// from canvas player win
+		Text moneyRewardText = canvas_PlayerWin.transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Text>();		// from canvas player win
+		Text statusText = canvas_PlayerWin.transform.GetChild(1).GetChild(0).GetComponent<Text>();
 		Debug.Log ("moneyToReward: " + moneyToReward);
 		Debug.Log(PlayerPrefs.HasKey(thisSceneFin + "_status"));
 		if(!moneyComputed){										// pag di pa na co compute money ng user
@@ -144,6 +148,7 @@ public class GameManagerBehavior : MonoBehaviour {
 					Debug.Log("dito ka dumiretso, dapat. perffect ka nanaman eh");
 					moneyToReward = Mathf.RoundToInt(moneyToReward * 0.05f);		// give him 5 percent. HAHAHA
 					moneyComputed = true;
+					perfectStatus = true;
 				}
 			}
 			else{
@@ -152,9 +157,21 @@ public class GameManagerBehavior : MonoBehaviour {
 				moneyComputed = true;
 			}
 		}
+
 		PlayerPrefs.SetInt("Money", money + moneyToReward);
 		moneyRewardText.text = moneyToReward.ToString();
 		// add the other rewards: (items, etc) here
+
+		// para sa status: perfect / cleared when level finished
+		if(health == maxhealth){						// actually di maganda tong code na to kase what if di naman nanalo yung user?
+			statusText.text = "PERFECT!";		// pero ayos lang kase di naman mag sho show tong canvas na to pag natalo yung user :D
+			statusText.color = Color.green;
+		}
+		else{	
+			statusText.text = "CLEARED!";
+			statusText.color = Color.yellow;
+		}
+
 		PlayerPrefs.SetInt (thisSceneFin, 1);	// ex: thisSceneFin = 'Level 1-1'. set to 1. meaning tapos na yung level.
   	}
 
@@ -169,6 +186,7 @@ public class GameManagerBehavior : MonoBehaviour {
 
 		if(healthPercent == 1){										// walang bawas yung life
 			PlayerPrefs.SetFloat(thisSceneFin + "_status", 1);		// ex: 'Level 1-1_status', value of 1 means PERFECT
+			perfectStatus = true;
 		}
 		else if(healthPercent < 1){									// if less than 1 meaning di perfect
 			PlayerPrefs.SetFloat(thisSceneFin + "_status", healthPercent);		// ex: Level 1-1_status, healthpercent ranges from (0 - 99%) gives a status of CLEARED
@@ -202,6 +220,7 @@ public class GameManagerBehavior : MonoBehaviour {
 				PlayerPrefs.SetFloat(thisSceneFin + "_status", 1); 
 				moneyComputed = Mathf.RoundToInt(moneyComputed * percentAllowance);	// 500 * .1 = 10% of 500 nakaperfect na si user pero ang money reward nya ay yung kulang nya na percent.
 				Debug.Log("moneyComputed =  moneyComputed(" + moneyComputed + " * percentAllowance(" + percentAllowance + ") ");
+				perfectStatus = true;	// para sa status text
 				return moneyComputed;				
 			}
 			else{

@@ -53,10 +53,12 @@ public class ElementManager : MonoBehaviour {
 
 		// matches and effects for fire element
 		if(attacker == Element.Fire && defender == Element.Air){
-			return damage * 2.0f;
+			Debug.Log("Damage fire to air: " + ((damage + ( damage * 0.3f))));
+			return damage + ( damage * 0.3f);
 		}
 		else if(attacker == Element.Fire && defender == Element.Water){
-			return damage / 2.0f;
+			Debug.Log("Damage fire to water: " + ((damage - ( damage * 0.3f))));
+			return  damage - ( damage * 0.3f);
 		}
 		else if(attacker == Element.Fire && defender == Element.Fire){
 			return damage;
@@ -64,10 +66,10 @@ public class ElementManager : MonoBehaviour {
 
 		// matches and effects for water element
 		else if(attacker == Element.Water && defender == Element.Fire){
-			return damage * 2.0f;
+			return   + ( damage * 0.3f);
 		}
 		else if(attacker == Element.Water && defender == Element.Air){
-			return damage / 2.0f;
+			return   damage  - ( damage * 0.3f);
 		}
 		else if(attacker == Element.Water && defender == Element.Water){
 			return damage;
@@ -75,10 +77,10 @@ public class ElementManager : MonoBehaviour {
 
 		// matches and effects for Air element
 		else if(attacker == Element.Air && defender == Element.Water){
-			return damage * 2.0f;
+			return   + ( damage * 0.3f);
 		}
 		else if(attacker == Element.Air && defender == Element.Fire){
-			return damage / 2.0f;
+			return   damage  - ( damage * 0.3f);
 		}
 		else if(attacker == Element.Air && defender == Element.Air){
 			return damage;

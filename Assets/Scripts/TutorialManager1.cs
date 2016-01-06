@@ -55,10 +55,10 @@ public class TutorialManager1 : MonoBehaviour {
 
 			tutorial_dialog.Add("The insects have arrived! Defend our place!"); 
 			tutorial_dialog.Add("I will give you my Veggie hero, the Carrot.");	
-			tutorial_dialog.Add("As shown below the Carrot's image, this hero costs 80 water.");	
+			tutorial_dialog.Add("one carrot costs 80 water, as shown below.");	
 			tutorial_dialog.Add("Tap on the Carrot then tap on the pothole.");	
-			tutorial_dialog.Add("Here's another pothole, now DRAG the Carrot hero to plant. Try it!");	
-			tutorial_dialog.Add("Tap a Carrot to see an X mark, the Carrot's range, and element.");
+			tutorial_dialog.Add("DRAG the Carrot hero to plant. Try it!");	
+			tutorial_dialog.Add("Tap a Carrot to see an X mark, range and element");
 			tutorial_dialog.Add("Remove a hero by tapping the X mark.");	
 			tutorial_dialog.Add("Every hero removed gives you a water refund.");	
 			tutorial_dialog.Add("I added more potholes. Plant Carrots as long as you have enough water and");	
@@ -66,7 +66,7 @@ public class TutorialManager1 : MonoBehaviour {
 			tutorial_dialog.Add("The Next Wave indicator shows the element of the approaching enemies");	
 			tutorial_dialog.Add("and if they are a walking or flying type of insect.");	
 			tutorial_dialog.Add("Here, you can see that the insects approaching are");
-			tutorial_dialog.Add("walking insects possessing Air element.");
+			tutorial_dialog.Add("walking insects of Air element.");
 			tutorial_dialog.Add("Here is a list of the precedence of the elements");
 			tutorial_dialog.Add("When a hero attacks an element stronger than him. The damage is lesser, and vice versa.");
 			tutorial_dialog.Add("If an element is attacked by the same element the damage is normal.");
@@ -138,7 +138,7 @@ public class TutorialManager1 : MonoBehaviour {
 					buttons[1].transform.GetChild(0).gameObject.SetActive(false);	// hide the highlight of startWave button
 					buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
 				}
-				
+				buttons[16].SetActive(true);
 			}
 		}
 	}
@@ -171,7 +171,7 @@ public class TutorialManager1 : MonoBehaviour {
 					nextMessage();
 				}
 			}
-			else if(tutorialText.text == "Here's another pothole, now DRAG the Carrot hero to plant. Try it!" && !activeNa){
+			else if(tutorialText.text == "DRAG the Carrot hero to plant. Try it!" && !activeNa){
 				showTutorialStuffs();
 				buttons[10].SetActive(false);									// hide NextButton
 				buttons[0].GetComponent<DragManager>().enabled = true;			// enable dragging
@@ -181,7 +181,7 @@ public class TutorialManager1 : MonoBehaviour {
 //				colliders_pothole1 = buttons[12].GetComponents<BoxCollider2D>();// get the 2 colliders of the 2nd pothole
 				activeNa = true;												// use this variable para isang bes lang mag execute tong expression na to, showing ng stuffs lang kase to kaya 1 bes lang dapat
 			}
-			else if(tutorialText.text == "Here's another pothole, now DRAG the Carrot hero to plant. Try it!"){
+			else if(tutorialText.text == "DRAG the Carrot hero to plant. Try it!"){
 				if(potholes_array[1].GetComponent<PotholeManager>().dragManager != null){	// if may laman. the user is currently dragging
 					hideTutorialStuffs();
 //					colliders_pothole1[0].enabled = true;		// enable both para di muna makapag tanim yung user :D
@@ -202,7 +202,7 @@ public class TutorialManager1 : MonoBehaviour {
 					potholes_array[1].transform.GetChild(1).gameObject.SetActive(false);	// hide pothole 2 highlight
 				}
 			}
-			else if(tutorialText.text == "Tap a Carrot to see an X mark, the Carrot's range, and element."){
+			else if(tutorialText.text == "Tap a Carrot to see an X mark, range and element"){
 				if(list_hero.plantedHeroes[0].transform.GetChild(2).renderer.enabled == true){			// true if na tap na yung hero
 					nextMessage();
 					showTutorialStuffs();
@@ -301,7 +301,7 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text ==  "I will give you my Veggie hero, the Carrot."){
 				nextMessage();
 			}
-			else if(tutorialText.text ==  "As shown below the Carrot's image, this hero costs 80 water."){
+			else if(tutorialText.text ==  "one carrot costs 80 water, as shown below."){
 				nextMessage();
 				showTutorialStuffs();
 			}
@@ -332,7 +332,7 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text == "Here, you can see that the insects approaching are"){
 				nextMessage();
 			}
-			else if(tutorialText.text == "walking insects possessing Air element."){
+			else if(tutorialText.text == "walking insects of Air element."){
 				nextMessage();
 			}
 			else if(tutorialText.text == "Here is a list of the precedence of the elements" && buttons[13].activeSelf == false){	// precedence not yet shown
@@ -453,7 +453,7 @@ public class TutorialManager1 : MonoBehaviour {
 		}
 	}
 	public void disableClickToPlant(){
-		if(tutorialText.text == "Here's another pothole, now DRAG the Carrot hero to plant. Try it!"){
+		if(tutorialText.text == "DRAG the Carrot hero to plant. Try it!"){
 			Debug.Log("You shouldnt be clickin' start dragging!");
 			gameManager.currentSelectedHero = null;
 		}

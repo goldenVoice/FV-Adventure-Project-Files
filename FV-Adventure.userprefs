@@ -1,21 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameManagerBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TutorialManager1.cs">
     <Files>
-      <File FileName="Assets\Async Loading\LoadingScreen1.cs" Line="1" Column="1" />
-      <File FileName="Assets\StageUnlock.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LoadSceneAhead.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\musicPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SoundManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\VibrManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SpawnEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MoveEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PotholeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\TutorialManager1.cs" Line="1" Column="1" />
-      <File FileName="Assets\shopTutorialManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManagerBehavior.cs" Line="189" Column="25" />
-      <File FileName="Assets\Scripts\BulletBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ElementManager.cs" Line="74" Column="67" />
+      <File FileName="Assets\InventoryManager.cs" Line="56" Column="98" />
+      <File FileName="Assets\shopManager.cs" Line="26" Column="40" />
+      <File FileName="Assets\Scripts\TutorialManager1.cs" Line="82" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

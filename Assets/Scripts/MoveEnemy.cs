@@ -10,6 +10,7 @@ public class MoveEnemy : MonoBehaviour {
   private float lastWaypointSwitchTime;
   public  float speed = 1.0f;
 
+//	public float currentTimeOnPath;
 
 	// Use this for initialization
 	void Start () {
@@ -19,51 +20,7 @@ public class MoveEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-// you retrieve the start and end position of the current path segment
-     Vector3 startPosition = waypoints[currentWaypoint].transform.position;
-     Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;
-
-     float pathLength = Vector3.Distance(startPosition, endPosition);
-     // calculate the whole distance w/ the formula time = distance / speed, then determine the current time on the path.
-     float totalTimeForPath = pathLength / speed;
-     float currentTimeOnPath = Time.time - lastWaypointSwitchTime;
-     // using vector3.Lerp, you interpolate the current position of the enemy between the segment's start and end positions.
-     gameObject.transform.position = Vector3.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);
-     
-     
-
-     // check if the enemy has reached the endPosition, if yes, handle the following possible scenarios.
-     if(gameObject.transform.position.Equals(endPosition)) {
-          // if the enemy is not yet at the last wayPoint, increase its currentWaypoint.
-          if(currentWaypoint < waypoints.Length - 2){
-            currentWaypoint++;
-            // update lastWayPointSwitchTime, gagamitin mo tong variable na to para dun sa currentTimeOnPath na gagamitin para sa Vector3.Lerp. BASTA angulo.
-            lastWaypointSwitchTime = Time.time;
-            
-//				print ("keme");
-				SwitchIntoMoveDirection();
-          }
-          // else, the enemy had reached the last waypoint, so destroy it.
-          else {
-            Destroy(gameObject);
-				if(PlayerPrefs.GetInt("vibr") == 1){
-            		Handheld.Vibrate();
-				}
-
-            // reference to GameManagerBehavior script to access method deductHealth
-            GameManagerBehavior gameManager = (GameManagerBehavior)FindObjectOfType(typeof(GameManagerBehavior));
-            if(gameManager.health > 0){   // if health is not yet 0
-              gameManager.deductHealth();
-              //  AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-              //  AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
-            }
-            else{   // talo yung player
-              gameManager.gameOver = true;
-              gameManager.didPlayerWin(false);  // di nanalo yung player
-              
-            }
-          }
-     }
+		MovingTheEnemey();
 	}
 
   private void SwitchIntoMoveDirection(){
@@ -112,5 +69,52 @@ public class MoveEnemy : MonoBehaviour {
     }
     return distance;
   }
+
+	public void MovingTheEnemey(){
+		// you retrieve the start and end position of the current path segment
+		Vector3 startPosition = waypoints[currentWaypoint].transform.position;
+		Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;
+		
+		float pathLength = Vector3.Distance(startPosition, endPosition);
+		// calculate the whole distance w/ the formula time = distance / speed, then determine the current time on the path.
+		float totalTimeForPath = pathLength / speed;
+		float currentTimeOnPath = Time.time - lastWaypointSwitchTime;
+		// using vector3.Lerp, you interpolate the current position of the enemy between the segment's start and end positions.
+		gameObject.transform.position = Vector3.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);     
+		
+		// check if the enemy has reached the endPosition, if yes, handle the following possible scenarios.
+		if(gameObject.transform.position.Equals(endPosition)) {
+			// if the enemy is not yet at the last wayPoint, increase its currentWaypoint.
+			if(currentWaypoint < waypoints.Length - 2){
+				currentWaypoint++;
+				// update lastWayPointSwitchTime, gagamitin mo tong variable na to para dun sa currentTimeOnPath na gagamitin para sa Vector3.Lerp. BASTA angulo.
+				lastWaypointSwitchTime = Time.time;
+				
+				//				print ("keme");
+				SwitchIntoMoveDirection();
+			}
+			// else, the enemy had reached the last waypoint, so destroy it.
+			else {
+				Destroy(gameObject);
+				if(PlayerPrefs.GetInt("vibr") == 1){
+					Handheld.Vibrate();
+				}
+				
+				// reference to GameManagerBehavior script to access method deductHealth
+				GameManagerBehavior gameManager = (GameManagerBehavior)FindObjectOfType(typeof(GameManagerBehavior));
+				if(gameManager.health > 0){   // if health is not yet 0
+					gameManager.deductHealth();
+					//  AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+					//  AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+				}
+				else{   // talo yung player
+					gameManager.gameOver = true;
+					gameManager.didPlayerWin(false);  // di nanalo yung player
+					
+				}
+			}
+		}
+
+	}
 
 }

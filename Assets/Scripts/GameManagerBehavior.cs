@@ -163,7 +163,7 @@ public class GameManagerBehavior : MonoBehaviour {
 		// add the other rewards: (items, etc) here
 
 		// para sa status: perfect / cleared when level finished
-		if(health == maxhealth){						// actually di maganda tong code na to kase what if di naman nanalo yung user?
+		if(health >= maxhealth){						// actually di maganda tong code na to kase what if di naman nanalo yung user?
 			statusText.text = "PERFECT!";		// pero ayos lang kase di naman mag sho show tong canvas na to pag natalo yung user :D
 			statusText.color = Color.green;
 		}

@@ -32,14 +32,14 @@ public class shopManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		money = PlayerPrefs.GetInt("Money");
-		moneyText.text = "₱" + money;
+		moneyText.text = "" + money;
 
-		slowPriceText.text = "₱" + slowPrice;
+		slowPriceText.text = "" + slowPrice;
 		slowQty = PlayerPrefs.GetInt("slow qty:");
 		slowQtyText = slowPriceText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
 		slowQtyText.text = "" + slowQty + "/3";		
 
-		lifePotionText.text = "₱" + lifePotionPrice;
+		lifePotionText.text = "" + lifePotionPrice;
 		lifePotionQty = PlayerPrefs.GetInt("life potion qty:");
 		lifePotionQtyText = lifePotionText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
 		lifePotionQtyText.text = "" + lifePotionQty + "/3";		
@@ -64,7 +64,7 @@ public class shopManager : MonoBehaviour {
 			Debug.Log(slowQty);
 			PlayerPrefs.SetInt("Money", money - slowPrice);			// update the money variable, deduct price of item
 			money = PlayerPrefs.GetInt("Money");
-			moneyText.text = "₱" + money;// then display it again
+			moneyText.text = "" + money;// then display it again
 		}
 	}
 
@@ -77,7 +77,7 @@ public class shopManager : MonoBehaviour {
 			Debug.Log(lifePotionQty);
 			PlayerPrefs.SetInt("Money", money - lifePotionPrice);			// update the money variable, deduct price of item
 			money = PlayerPrefs.GetInt("Money");
-			moneyText.text = "₱" + money;// then display it again
+			moneyText.text = "" + money;// then display it again
 		}
 	}
 

@@ -95,12 +95,16 @@ public class PotholeManager : MonoBehaviour {
 					hero.transform.GetChild(1).renderer.sortingLayerName = "hero_lowerSide";	// carrotHero
 					hero.transform.GetChild(2).renderer.sortingLayerName = "hero_lowerSide";	// range
 					hero.transform.GetChild(4).renderer.sortingLayerName = "hero_lowerSide";	// element icon
+					hero.transform.GetChild(5).renderer.sortingLayerName = "hero_lowerSide";	// HealthBar BG
+					hero.transform.GetChild(6).renderer.sortingLayerName = "hero_lowerSide";	// HealthBar
 				}
 				else if(gameObject.renderer.sortingLayerName == "upper potholes"){
 					hero.transform.GetChild(0).renderer.sortingLayerName = "hero_upperSide";
 					hero.transform.GetChild(1).renderer.sortingLayerName = "hero_upperSide";
 					hero.transform.GetChild(2).renderer.sortingLayerName = "hero_upperSide";
 					hero.transform.GetChild(4).renderer.sortingLayerName = "hero_upperSide";
+					hero.transform.GetChild(5).renderer.sortingLayerName = "hero_lowerSide";	// HealthBar BG
+					hero.transform.GetChild(6).renderer.sortingLayerName = "hero_lowerSide";	// HealthBar
 				}
 				
 				// add the hero to the current lists of planted heroes

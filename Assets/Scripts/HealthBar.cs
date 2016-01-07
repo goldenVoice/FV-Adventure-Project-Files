@@ -3,15 +3,15 @@ using System.Collections;
 
 public class HealthBar : MonoBehaviour {
 
-  public float maxHealth = 100;
-  public float currentHealth = 100;
+  public float maxHealth;
+  public float currentHealth;
   private float originalScale;
 
 
 	// Use this for initialization
 	void Start () {
-	 // store the objects original scale;
-   originalScale = gameObject.transform.localScale.x;
+		 // store the objects original scale;
+   		originalScale = gameObject.transform.localScale.x;
 	}
 	
 	// Update is called once per frame

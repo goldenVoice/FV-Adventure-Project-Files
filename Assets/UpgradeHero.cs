@@ -8,9 +8,18 @@ public class UpgradeHero : MonoBehaviour {
 	int currentLevel;
 	private Text moneyText;
 
+	public GameObject otherUpgrade1;
+	public GameObject otherUpgrade2;
+
+	bool heroUpgraded = false;	// determines if an upgrade happened
+
+	void Awake(){
+		moneyText = GameObject.Find ("MoneyText").GetComponent<Text>();			// the moneyText gameObject
+	}
+
 	// Use this for initialization
 	void Start () {
-		moneyText = GameObject.Find ("MoneyText").GetComponent<Text>();			// the moneyText gameObject
+		heroUpgraded = false;
 
 		// ex: kung ilang upgrade na, hal: naka 3 na sya.
 		currentLevel = PlayerPrefs.GetInt(gameObject.name);				// hal: playerPrefs('Carrot speed') 
@@ -27,22 +36,26 @@ public class UpgradeHero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+//		if(heroUpgraded){	// kung na upgrade, saka lang i check yung money
+//			checkMoney();	// to refresh
+//			heroUpgraded = false;
+//			Debug.Log("3 TIMES LANG DAPT");
+//		}
 	}
 
 	public void Upgrade(){
 		Debug.Log("level before upgrade: " + currentLevel);
-		currentLevel++;														// increment the level upgrade
-		Debug.Log("level after upgrade: " + currentLevel);
 		int money = PlayerPrefs.GetInt("Money");							// deduct user money
 		PlayerPrefs.SetInt("Money", money - upgradePrice[currentLevel]);	// deduct user money
 		money = PlayerPrefs.GetInt("Money");								// get new money
-		
+		currentLevel++;														// increment the level upgrade
 		PlayerPrefs.SetInt(gameObject.name, currentLevel);					// dagdagan ng isa, hero upgraded na
 		displayBars();														// refresh the bars, nag upgrade na kase
 		displayUpgradePrice();												// refresh upgrade price
 		moneyText.text = "" + money;										// display money left
 		checkMoney();														// if may enough money pa. if not, disable button
+		Debug.Log("level after upgrade: " + currentLevel);
 	}
 
 	void displayBars(){
@@ -58,9 +71,36 @@ public class UpgradeHero : MonoBehaviour {
 	}
 
 	void checkMoney(){
-		Debug.Log (moneyText.text);
-		int price = int.Parse( moneyText.text);
-		if( price < upgradePrice[currentLevel] ){	// if kulang pera ng user
+
+			int money = int.Parse( moneyText.text);
+			if( money < upgradePrice[currentLevel] ){	// if kulang pera ng user
+				gameObject.transform.GetChild(2).GetComponent<Button>().interactable = false;	// disable upgrade button	
+			}
+
+			// call the check money function of the other 2 upgrade buttons.
+			// baka kase mamaya, nung nag upgrade ka. 100 na lang natira sayo. eh may avail na upgrade kanina (before ng upgrade na to.) so pwede pa ren yun pindutin
+			otherUpgrade1.GetComponent<UpgradeHero>().checkMoney_alone();
+			otherUpgrade2.GetComponent<UpgradeHero>().checkMoney_alone();
+	}
+
+	public void magicPera(){	// ikaw ay mabibigyan ng pa bwenas na 500. (for debugging purposes only)
+		int money = PlayerPrefs.GetInt("Money");
+		PlayerPrefs.SetInt("Money", money + 500);
+		money = PlayerPrefs.GetInt("Money");
+
+		moneyText.text = "" + money;
+	}
+
+	public void clearUpgrades(){		// for debugging purposes only
+		PlayerPrefs.SetInt("Carrot attack", 0);
+		PlayerPrefs.SetInt("Carrot speed", 0);
+		PlayerPrefs.SetInt("Carrot HP", 0);
+	}
+		
+	public void checkMoney_alone(){		// check money of this function only. para di mag stack overflow
+		//Debug.Log(moneyText);
+		int money = int.Parse( moneyText.text);
+		if( money < upgradePrice[currentLevel] ){	// if kulang pera ng user
 			gameObject.transform.GetChild(2).GetComponent<Button>().interactable = false;	// disable upgrade button	
 		}
 	}

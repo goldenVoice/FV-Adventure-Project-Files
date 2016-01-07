@@ -27,8 +27,9 @@ public class SpawnEnemy : MonoBehaviour {
  	GameObject prefab;
 
 	bool appearAnimation_finished = false;
-
 	int timeCounter = 0;
+
+	public int enemyLevel;
 
   	//  for the waves
   	public Wave[] waves;
@@ -87,13 +88,21 @@ public class SpawnEnemy : MonoBehaviour {
 				// set the element of this enemy to the current wave element
 				newEnemy.GetComponentInChildren<EnemyData>().enemyElement = waves[currentWave].WaveElement;
 
+				// set the speed & HP of the enemy here. (pate DAMAGE on hard mode)
+				EnemyData enemyData = newEnemy.transform.GetChild(0).GetComponent<EnemyData>();		//get the enemy data from the child
+				newEnemy.GetComponent<MoveEnemy>().speed = enemyData.enemySpeed[enemyLevel].speed;	// get the enemySpeed array/list then access the appropriate speed using the 'enemyLevel' as the index
+
+				HealthBar enemyHealthBar = newEnemy.transform.GetChild(2).GetComponent<HealthBar>();// get the enemyHealth array/list then 
+				Debug.Log(newEnemy.transform.GetChild(2).GetComponent<HealthBar>());
+				enemyHealthBar.maxHealth = enemyData.enemyHP[enemyLevel].health;					// access the appropriate heatlh using the 'enemyLevel' as the index
+				enemyHealthBar.currentHealth = enemyHealthBar.maxHealth;
+
 				// code to get child of an object
 				// if gumamit ng '/' mag tra-travel yung code sa pag hahanap ng childs of the head sa hierarchy,
 				// syntax:
 				// <type> <var name> = gameObject.transform.Find("/shoulder/arms");
 				Transform healthBarBackground =  newEnemy.transform.Find("HealthBarBackground"); 
 				Transform healthBar =  newEnemy.transform.Find("HealthBar");
-
 				
 				if(waves[currentWave].WaveElement == ElementManager.Element.Air){
 					newEnemy.transform.GetChild(3).gameObject.SetActive(true);

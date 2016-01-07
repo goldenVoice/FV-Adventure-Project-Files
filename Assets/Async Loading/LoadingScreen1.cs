@@ -83,4 +83,11 @@ public class LoadingScreen1 : MonoBehaviour {
 		//isLoading = true;
 	}
 
+	public void LoadTutorialScene(string levelName){
+		PlayerPrefs.SetInt("Tutorial", 1); 						// this will be used later para malaman na kailangan ng user mag tutorial pag dating ng level 1
+		levelToLoad = levelName; 	// levelName typed in the inspector
+		this.enabled = true;	// enable the script to start loading
+		//isLoading = true;
+	}			
+
 }

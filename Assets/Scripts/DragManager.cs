@@ -27,6 +27,8 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 	GameObject[] potholes_list;
 
+
+
 	void Start(){
 		dragBegin = false;
 		dragEnd = false;
@@ -40,11 +42,11 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		dragBegin = true;
 		dragEnd = false;
 		gameManager.currentSelectedHero = heroPrefab;
-	
 		// loop through all the current potholes in the scene
 		foreach(GameObject pothole in potholes_list){
 			// make them the 'listener' of this script. Para alam ng pothole kung anong hero ang kasalukuyang dina drag ng user
 			pothole.GetComponent<PotholeManager>().dragManager = this;
+		Debug.Log("hey drag begun");
 
 		}
 //		Debug.Log(Input.mousePosition);
@@ -79,6 +81,7 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		Destroy(heroPreview);
 		if(currentPothole != null){
 			currentPothole.drop = true;
+			
 		}
 		foreach(GameObject pothole in potholes_list){
 			// when the drag is over set all the potholes that will 'listen' to dragManager to null, kase nga tapos na yung drag di nila kailangan mag abang ng dragManager

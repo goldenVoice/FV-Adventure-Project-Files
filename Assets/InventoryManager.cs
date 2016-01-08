@@ -12,12 +12,18 @@ public class InventoryManager : MonoBehaviour {
 	float timeCounter;
 	float lastActivateTime;
 
-//	public Button slowButton;
-//	private Text slowQty;
+	public Button poisonButton;
+	private Text poisonQty;
 	
 	public Button LifePotionButton;
 	private Text LifePotionQty;
-	
+
+	public Button waterBoosterButton;
+	private Text waterBoosterQty;
+
+	public Button heroPotionButton;
+	private Text heroPotionQty;
+
 	public GameObject[] enemies;
 
 	private GameManagerBehavior gameManager;
@@ -33,27 +39,40 @@ public class InventoryManager : MonoBehaviour {
 		inventoryPanel = gameObject.transform.GetChild(0).gameObject;
 
 		// ilagay sa qtyText kung ilang boosters meron ang user
-//		slowQty = slowButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-//		slowQty.text = PlayerPrefs.GetInt("slow qty:").ToString();
+		poisonQty = poisonButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+		poisonQty.text = PlayerPrefs.GetInt("poison qty:").ToString();
 
 		LifePotionQty = LifePotionButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
 		LifePotionQty.text = PlayerPrefs.GetInt("life potion qty:").ToString();
 
+		waterBoosterQty = waterBoosterButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+		waterBoosterQty.text = PlayerPrefs.GetInt("water booster qty:").ToString();
 
-		if(PlayerPrefs.GetInt("slow qty:") == 0){
+		heroPotionQty = heroPotionButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+		heroPotionQty.text = PlayerPrefs.GetInt("hero potion qty:").ToString();
+
+		if(PlayerPrefs.GetInt("poison qty:") == 0){
 			// disable button kase 0 yung booster
-//			slowButton.interactable = false;
+			poisonButton.interactable = false;
 		}
 		if(PlayerPrefs.GetInt("life potion qty:") == 0){
 			// disable button kase 0 yung booster
 			LifePotionButton.interactable = false;
+		}
+		if(PlayerPrefs.GetInt("water booster qty:") == 0){
+			// disable button kase 0 yung booster
+			waterBoosterButton.interactable = false;
+		}
+		if(PlayerPrefs.GetInt("hero potion qty:") == 0){
+			// disable button kase 0 yung booster
+			heroPotionButton.interactable = false;
 		}
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+	
 		if(slowActivate){
 			timeCounter = lastActivateTime - Time.time;
 

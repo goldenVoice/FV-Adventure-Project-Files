@@ -22,7 +22,7 @@ public class BulletBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log(hero.GetComponentInChildren<HeroData>());
+//		Debug.Log(hero.GetComponentInChildren<HeroData>());
 		int currentLevel = PlayerPrefs.GetInt(hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
 		float currentDamage = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;	// then, you look up the corresponding damage depending on the user's current level of attack upgrade
 		damage = currentDamage;
@@ -51,6 +51,7 @@ public class BulletBehavior : MonoBehaviour {
           		Transform healthBarTransform = target.transform.parent.FindChild("HealthBar");
           		HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
           		Instantiate(bulletImpact_particle, targetPosition, transform.rotation);
+				Debug.Log(hero.name + " element: " + hero_element);
 		  		// call the method checkElement, to know if the hero_element is weaker/ stronger to the enemy's element, then change the damage depending on the condition, 
 		  		damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, damage); 	// ex: fire defeats air: damage x 2
 		  		Debug.Log ("Damage after checkElement: " + damage);

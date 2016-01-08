@@ -24,7 +24,7 @@ public class LevelUnlock : MonoBehaviour {
 			levelButtons[2].transform.GetChild(0).GetComponent<Text>().enabled = true;				// Show level text. 
 		}
 		if(PlayerPrefs.GetInt(levelButtons[2].name) == 1){											
-			
+			Debug.Log("level 3 cleared");
 			showStatus(levelButtons[2]);															// show status of level 2: perfect of complete lang
 			levelButtons[2].transform.GetChild(0).GetComponent<Text>().enabled = true;				// Show level text. 
 		}
@@ -36,14 +36,16 @@ public class LevelUnlock : MonoBehaviour {
 	}
 
 	void showStatus(Button button){
-
+		Debug.Log(PlayerPrefs.GetFloat(button.name + "_status"));
 		if(PlayerPrefs.GetFloat(button.name + "_status") == 1){
 			button.transform.GetChild(1).GetComponent<Text>().text = "PERFECT!";
 			button.transform.GetChild(1).GetComponent<Text>().color = Color.green;
+			button.transform.GetChild(1).GetComponent<Text>().enabled = true;
 		}
 		else if(PlayerPrefs.GetFloat(button.name + "_status") < 1){
 			button.transform.GetChild(1).GetComponent<Text>().text = "CLEARED!";
 			button.transform.GetChild(1).GetComponent<Text>().color = Color.yellow;
+			button.transform.GetChild(1).GetComponent<Text>().enabled = true;
 		}
 	}
 }

@@ -12,26 +12,37 @@ public class InventoryManager : MonoBehaviour {
 	float timeCounter;
 	float lastActivateTime;
 
-	public Button slowButton;
-	private Text slowQty;
+//	public Button slowButton;
+//	private Text slowQty;
 	
 	public Button LifePotionButton;
+	private Text LifePotionQty;
 	
 	public GameObject[] enemies;
+
+	private GameManagerBehavior gameManager;
+
+	GameObject inventoryPanel;
 	
 	// Use this for initialization
 	void Start () {
-		inventoryEnabled = false;
-		// ilagay sa qtyText kung ilang boosters meron ang user
-		slowQty = slowButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-		slowQty.text = PlayerPrefs.GetInt("slow qty:").ToString();
 
-		LifePotionButton.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = PlayerPrefs.GetInt("life potion qty:").ToString();
+		gameManager = (GameManagerBehavior) GameObject.Find ("GameManager").GetComponent<GameManagerBehavior>();
+		inventoryEnabled = false;
+
+		inventoryPanel = gameObject.transform.GetChild(0).gameObject;
+
+		// ilagay sa qtyText kung ilang boosters meron ang user
+//		slowQty = slowButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+//		slowQty.text = PlayerPrefs.GetInt("slow qty:").ToString();
+
+		LifePotionQty = LifePotionButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+		LifePotionQty.text = PlayerPrefs.GetInt("life potion qty:").ToString();
 
 
 		if(PlayerPrefs.GetInt("slow qty:") == 0){
 			// disable button kase 0 yung booster
-			slowButton.interactable = false;
+//			slowButton.interactable = false;
 		}
 		if(PlayerPrefs.GetInt("life potion qty:") == 0){
 			// disable button kase 0 yung booster
@@ -53,17 +64,15 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	public void showInventory(){
-		if(!inventoryEnabled){	// meaning naka hide ang inventory
+		if(!inventoryPanel.activeSelf){	// meaning naka hide ang inventory
 //			gameObject.transform.GetChild(0).GetComponent<Image>().enabled = false;			
 //			inventoryToggle.transform.GetChild(0).GetChild(0).GetComponent<Image>().enabled = true;
-			gameObject.transform.GetChild(0).gameObject.SetActive(true);			// this is the inventory panel
-			inventoryEnabled = true;
+			inventoryPanel.SetActive(true);
 		}
-		else if(inventoryEnabled){				// if naka off ang toggle
+		else if(inventoryPanel.activeSelf){				// if naka off ang toggle
 //			inventoryToggle.transform.GetChild(0).GetChild(0).GetComponent<Image>().enabled = false;
 //			inventoryToggle.transform.GetChild(0).GetComponent<Image>().enabled = true;
-			gameObject.transform.GetChild(0).gameObject.SetActive(false);			// this is the inventory panel
-			inventoryEnabled = false;
+			inventoryPanel.SetActive(false);
 		}
 	}
 
@@ -82,4 +91,18 @@ public class InventoryManager : MonoBehaviour {
 
 		lastActivateTime = Time.time;
 	}
+
+	public void UseLP(){		// LP = Life Potion
+		int newHealth = gameManager.health + 3;			// add extra 3 lives
+		if(newHealth > gameManager.maxhealth){			// ex: lives 3. tas nag potion sya. edi 6 na yon. eh example ang max lang ay 5 so check mo pag oo..
+			gameManager.health = gameManager.maxhealth; // display max health of user
+			gameManager.displayHealth();
+		}
+		else{											// kung di naman nag exceed, edi go
+			gameManager.health = newHealth;				// value should either be less or equal sa max health ng player
+			gameManager.displayHealth();
+		}
+
+	}
+
 }

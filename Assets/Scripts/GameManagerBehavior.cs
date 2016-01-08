@@ -25,7 +25,8 @@ public class GameManagerBehavior : MonoBehaviour {
   
   	public Text healthText;
   	public int health;
-	private int maxhealth;
+	[HideInInspector]
+	public int maxhealth;
 
   	GameObject canvas_restart;
   	GameObject restartConfrimTxt;
@@ -44,7 +45,12 @@ public class GameManagerBehavior : MonoBehaviour {
   	// Use this for initialization
 	void Start () {
      // object.component.property
+
+		// the starting max health is initialized before the start of the game. before level 1-1. sa may end ng STORYLINE
+		health = PlayerPrefs.GetInt("max health");
+
 		Debug.Log ("Time scale!: " + Time.timeScale);
+
 		maxhealth = health;
     	canvas_restart = GameObject.Find("Canvas_RestartDialog");  // get the gameObject canvasRestartDialog
 	  	restartConfrimTxt = GameObject.Find("RestartConfirmTxt"); // get the restart text object. tapos i access mamaya pag natalo yung player, tatanungin kung gusto nya mag restart
@@ -92,6 +98,10 @@ public class GameManagerBehavior : MonoBehaviour {
   	public void displayWave(int waveNumber){
     	waveText.GetComponent<Text>().text = "Wave: " + (waveNumber + 1);   // so you wont start counting with 0
   	}
+
+	public void displayHealth(){
+		healthText.GetComponent<Text>().text = "" + health;
+	}
 
   	public void deductHealth(){
     	health -= 1;

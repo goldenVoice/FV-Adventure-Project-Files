@@ -93,7 +93,7 @@ public class SpawnEnemy : MonoBehaviour {
 				newEnemy.GetComponent<MoveEnemy>().speed = enemyData.enemySpeed[enemyLevel].speed;	// get the enemySpeed array/list then access the appropriate speed using the 'enemyLevel' as the index
 
 				HealthBar enemyHealthBar = newEnemy.transform.GetChild(2).GetComponent<HealthBar>();// get the enemyHealth array/list then 
-				Debug.Log(newEnemy.transform.GetChild(2).GetComponent<HealthBar>());
+//				Debug.Log(newEnemy.transform.GetChild(2).GetComponent<HealthBar>());
 				enemyHealthBar.maxHealth = enemyData.enemyHP[enemyLevel].health;					// access the appropriate heatlh using the 'enemyLevel' as the index
 				enemyHealthBar.currentHealth = enemyHealthBar.maxHealth;
 

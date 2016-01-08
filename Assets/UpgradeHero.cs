@@ -37,11 +37,14 @@ public class UpgradeHero : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		// continually check the money. 
+		checkMoney();
+
 //		if(heroUpgraded){	// kung na upgrade, saka lang i check yung money
 //			checkMoney();	// to refresh
 //			heroUpgraded = false;
 //			Debug.Log("3 TIMES LANG DAPT");
-//		}
+////		}
 	}
 
 	public void Upgrade(){
@@ -79,8 +82,8 @@ public class UpgradeHero : MonoBehaviour {
 
 			// call the check money function of the other 2 upgrade buttons.
 			// baka kase mamaya, nung nag upgrade ka. 100 na lang natira sayo. eh may avail na upgrade kanina (before ng upgrade na to.) so pwede pa ren yun pindutin
-			otherUpgrade1.GetComponent<UpgradeHero>().checkMoney_alone();
-			otherUpgrade2.GetComponent<UpgradeHero>().checkMoney_alone();
+//			otherUpgrade1.GetComponent<UpgradeHero>().checkMoney_alone();
+//			otherUpgrade2.GetComponent<UpgradeHero>().checkMoney_alone();
 	}
 
 	public void magicPera(){	// ikaw ay mabibigyan ng pa bwenas na 500. (for debugging purposes only)

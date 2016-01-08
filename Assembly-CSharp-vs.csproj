@@ -103,6 +103,7 @@
      <Compile Include="Assets\Scripts\showOrHideCanvas.cs" />
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
      <Compile Include="Assets\StageUnlock.cs" />
+     <Compile Include="Assets\UnlockHero.cs" />
      <Compile Include="Assets\UpgradeHero.cs" />
      <Compile Include="Assets\VibrManager.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
@@ -111,6 +112,7 @@
      <Compile Include="Assets\resources\QuestionLoader.cs" />
      <Compile Include="Assets\shopManager.cs" />
      <Compile Include="Assets\shopTutorialManager.cs" />
+     <Compile Include="Assets\showHero.cs" />
      <None Include="Assets\Sorting View\ReadMe.txt" />
      <None Include="Assets\resources\questions.xml" />
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />

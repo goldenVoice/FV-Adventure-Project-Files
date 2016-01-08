@@ -117,7 +117,8 @@ public class DialogManager : MonoBehaviour {
 			LoadingScreen1 loadingScreen = (LoadingScreen1) GameObject.FindObjectOfType(typeof(LoadingScreen1));
 			loadingScreen.LoadScene(sceneToLoad);
 			PlayerPrefs.SetInt("Tutorial", 1); 						// this will be used later para malaman na kailangan ng user mag tutorial pag dating ng level 1
-
+		 	PlayerPrefs.SetInt("max health", 5);					// the starting max health of the user is 5
+			
 		}
 		story_text.text = dialog_lines[counter];
 		counter++;

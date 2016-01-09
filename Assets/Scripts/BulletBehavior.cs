@@ -56,7 +56,13 @@ public class BulletBehavior : MonoBehaviour {
 		  		damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, damage); 	// ex: fire defeats air: damage x 2
 		  		Debug.Log ("Damage after checkElement: " + damage);
 		  		healthBar.currentHealth -= Mathf.Max(damage, 0);
-       
+       			
+				if( !(target.GetComponent<EnemyData>().slowed) && hero.name == "Onion" ){	// check if the var slowed is false,
+					float enemySpeed = target.transform.parent.GetComponent<MoveEnemy>().speed;
+					target.transform.parent.GetComponent<MoveEnemy>().speed -= (enemySpeed * 0.2f);		// slow the enemy by 20%
+					target.GetComponent<EnemyData>().slowed = true;
+				}
+
           		if(healthBar.currentHealth <= 0){
 					// dahil yung mismong parent na enemy gameObject ang i destroy para mawala yung lahat ng components ng enemy
             		Destroy(target.transform.parent.gameObject);

@@ -19,6 +19,9 @@ public class EnemyData : MonoBehaviour {
 		public float health;
 	}
 
+	[HideInInspector]
+	public bool slowed;		// para sa onion hero. will be used to check if this enemy is already hit first time. para di maging super slow
+
   	public int waterRewarded;
 	public ElementManager.Element enemyElement;
 	public pathWay insectPath;

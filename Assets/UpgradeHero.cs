@@ -8,8 +8,8 @@ public class UpgradeHero : MonoBehaviour {
 	int currentLevel;
 	private Text moneyText;
 
-	public GameObject otherUpgrade1;
-	public GameObject otherUpgrade2;
+//	public GameObject otherUpgrade1;
+//	public GameObject otherUpgrade2;
 
 	bool heroUpgraded = false;	// determines if an upgrade happened
 

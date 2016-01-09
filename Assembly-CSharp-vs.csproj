@@ -51,6 +51,7 @@
      <Compile Include="Assets\Inventory\Item.cs" />
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\InventoryManager.cs" />
+     <Compile Include="Assets\MoneyChecker.cs" />
      <Compile Include="Assets\PlaySound.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />

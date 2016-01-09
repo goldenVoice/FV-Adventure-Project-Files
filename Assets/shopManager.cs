@@ -35,34 +35,34 @@ public class shopManager : MonoBehaviour {
 		if( !(PlayerPrefs.HasKey("life potion qty:")) ){	// if wala pa. meaning 1st time ng user sa shop, 1st time mag laro
 			PlayerPrefs.SetInt("life potion qty:", 0);
 		}
-
+		
+		money = PlayerPrefs.GetInt("Money");
+		moneyText.text = "" + money;
+		
+		poisonPriceText.text = "" + poisonPrice;
+		poisonQty = PlayerPrefs.GetInt("poison qty:");
+		poisonQtyText = poisonPriceText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
+		poisonQtyText.text = "" + poisonQty + "/3";		
+		
+		lifePotionText.text = "" + lifePotionPrice;
+		lifePotionQty = PlayerPrefs.GetInt("life potion qty:");
+		lifePotionQtyText = lifePotionText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
+		lifePotionQtyText.text = "" + lifePotionQty + "/3";		
+		
+		waterBoosterText.text = "" + waterBoosterPrice;
+		waterBoosterQty = PlayerPrefs.GetInt("water booster qty:");
+		waterBoosterQtyText = waterBoosterText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
+		waterBoosterQtyText.text = "" + waterBoosterQty + "/3";		
+		
+		heroPotionText.text = "" + heroPotionPrice;
+		heroPotionQty = PlayerPrefs.GetInt("hero potion qty:");
+		heroPotionQtyText = heroPotionText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
+		heroPotionQtyText.text = "" + heroPotionQty + "/3";		
 
 	}
 
 	// Use this for initialization
 	void Start () {
-		money = PlayerPrefs.GetInt("Money");
-		moneyText.text = "" + money;
-
-		poisonPriceText.text = "" + poisonPrice;
-		poisonQty = PlayerPrefs.GetInt("poison qty:");
-		poisonQtyText = poisonPriceText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
-		poisonQtyText.text = "" + poisonQty + "/3";		
-
-		lifePotionText.text = "" + lifePotionPrice;
-		lifePotionQty = PlayerPrefs.GetInt("life potion qty:");
-		lifePotionQtyText = lifePotionText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
-		lifePotionQtyText.text = "" + lifePotionQty + "/3";		
-
-		waterBoosterText.text = "" + waterBoosterPrice;
-		waterBoosterQty = PlayerPrefs.GetInt("water booster qty:");
-		waterBoosterQtyText = waterBoosterText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
-		waterBoosterQtyText.text = "" + waterBoosterQty + "/3";		
-
-		heroPotionText.text = "" + heroPotionPrice;
-		heroPotionQty = PlayerPrefs.GetInt("hero potion qty:");
-		heroPotionQtyText = heroPotionText.transform.parent.parent.GetChild(2).GetChild(0).GetComponent<Text>();	// the qty gameObject of the item
-		heroPotionQtyText.text = "" + heroPotionQty + "/3";		
 
 //		PlayerPrefs.SetInt("slow qty:", 0);	// TAGA RESET
 //		PlayerPrefs.SetInt("life potion qty:", 0);	// TAGA RESET

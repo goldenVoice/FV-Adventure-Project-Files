@@ -142,7 +142,7 @@ public class SpawnEnemy : MonoBehaviour {
 					nextWaveButton.SetActive(true);
 					nextWaveButton.GetComponentInChildren<Text>().text =  "" + waves[currentWave].timeBetweenWaves;
 				}
-				else if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("next_wave_idle") // check if the button is already idle
+				else if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") // check if the button is already idle
 				        && !appearAnimation_finished){  																// and if the appear animation is not yet finished
 					appearAnimation_finished = true;	// set it to true para di na daanan tong if statement na to				       																	
 					lastSpawnTime = Time.time;
@@ -150,7 +150,7 @@ public class SpawnEnemy : MonoBehaviour {
 					timeInterval = 0;				    // to start the counting						
 				}
 				// check if the nextwavebutton is idle
-				if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("next_wave_idle") &&
+				if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") &&
 				   currentWave < waves.Length){
 //					Debug.Log (timeInterval);
 					// show the next wave element

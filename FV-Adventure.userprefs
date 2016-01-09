@@ -1,19 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\InventoryManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ConfrimDialogManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\HealthBar.cs" Line="1" Column="1" />
-      <File FileName="Assets\InventoryManager.cs" Line="161" Column="22" />
-      <File FileName="Assets\shopManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\TutorialManager1.cs" Line="1" Column="1" />
-      <File FileName="Assets\UnlockHero.cs" Line="1" Column="1" />
-      <File FileName="Assets\UpgradeHero.cs" Line="1" Column="1" />
-      <File FileName="Assets\showHero.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManagerBehavior.cs" Line="1" Column="1" />
-      <File FileName="Assets\resources\DialogManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Async Loading\LoadingScreen1.cs" Line="1" Column="1" />
+      <File FileName="Assets\InventoryManager.cs" Line="303" Column="1" />
+      <File FileName="Assets\UpgradeHero.cs" Line="17" Column="16" />
       <File FileName="Assets\Scripts\BulletBehavior.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\DestroyFinishedParticle.cs" Line="1" Column="1" />
+      <File FileName="Assets\MoneyChecker.cs" Line="11" Column="96" />
+      <File FileName="Assets\shopManager.cs" Line="41" Column="3" />
+      <File FileName="Assets\Scripts\SpawnEnemy.cs" Line="143" Column="34" />
+      <File FileName="Assets\Scripts\ConfrimDialogManager.cs" Line="45" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

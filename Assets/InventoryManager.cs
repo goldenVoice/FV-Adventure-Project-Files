@@ -27,11 +27,12 @@ public class InventoryManager : MonoBehaviour {
 	float lastActivateTime;
 
 	public ParticleSystem poisonParticle;
-	public Button poisonButton;
-	private Text poisonQty;
-	
+
 	public Button LifePotionButton;
 	private Text LifePotionQty;
+
+	public Button poisonButton;
+	private Text poisonQty;
 
 	public Button waterBoosterButton;
 	private Text waterBoosterQty;
@@ -269,7 +270,7 @@ public class InventoryManager : MonoBehaviour {
 		lastActivateTime = Time.time;
 
 		int qty = PlayerPrefs.GetInt("poison qty:");
-		//qty--;
+		qty--;
 		PlayerPrefs.SetInt("poison qty:", qty);
 		qty = PlayerPrefs.GetInt("poison qty:");
 		poisonQty.text = PlayerPrefs.GetInt("poison qty:").ToString();

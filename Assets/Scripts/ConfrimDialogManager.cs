@@ -54,4 +54,9 @@ public class ConfrimDialogManager : MonoBehaviour {
     NoButton_restart.SetActive(true);
 
 	}
+
+	public void RestartScene() {
+		Debug.Log("Current level: " + Application.loadedLevelName);
+		Application.LoadLevel(Application.loadedLevelName);
+	}
 }

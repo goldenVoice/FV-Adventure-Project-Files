@@ -64,7 +64,7 @@ public class HeroAttack : MonoBehaviour {
 							anim.SetBool("enemy_at_leftSide", true);		// make the hero face left
 							anim.SetBool("enemy_at_rightSide", false);
 							
-					if(Time.time - lastShotTime > heroData.fireRate){
+					if(Time.time - lastShotTime > heroData.fireRate && checkTarget(target) ){
 						//	anim.SetTrigger("attack");
 						anim.SetTrigger("attack_left");
 						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
@@ -76,7 +76,7 @@ public class HeroAttack : MonoBehaviour {
 								anim.SetBool("enemy_at_rightSide", true);		// make the hero face right
 								anim.SetBool("enemy_at_leftSide", false);
 
-					if(Time.time - lastShotTime > heroData.fireRate){
+				if(Time.time - lastShotTime > heroData.fireRate && checkTarget(target) ){
 						//	anim.SetTrigger("attack");
 						anim.SetTrigger("attack");
 						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
@@ -143,6 +143,24 @@ public class HeroAttack : MonoBehaviour {
 		 // animator.SetTrigger("HeroFires");
 		 // AudioSource audioSource = gameObject.GetComponent<AudioSource>();
 		 // audioSource.PlayOneShot(audioSource.clip);
+	}
+
+	// checks if the the insect is kasama sa mga target enemy ng hero (example, flying, walking or both ba yung insect?)
+	bool checkTarget(GameObject target){
+		Debug.Log("insect path: " + target.GetComponent<EnemyData>().insectPath);
+		Debug.Log("hero target: " + heroData.target);
+		if(target.GetComponent<EnemyData>().insectPath == heroData.target){
+			return true; //target
+		}
+		else if(heroData.target == EnemyData.pathWay.both){	// basta both (flying, walking) ang target ng hero, a atakihin nya yung enemy
+			return true; //target
+		}
+		else{
+			enemiesInRange.Remove(target.gameObject);
+			EnemyDestructionDelegate del = target.gameObject.GetComponent<EnemyDestructionDelegate>();
+			del.enemyDelegate -= OnEnemyDestroy;			// you unregister the enemies in the delegate, now you know whic enemies are in range.
+			return false;	// meaning hindi niya target enemy yan :D
+		}
 	}
 
 }

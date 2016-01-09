@@ -6,6 +6,7 @@ public class EnemyData : MonoBehaviour {
 	public enum pathWay{
 		flying,
 		walking,
+		both,	// actually tong 'both' never mong gagamitin to for enemy. ang gagamit lang nito is hero
 	}
 
 	[System.Serializable]

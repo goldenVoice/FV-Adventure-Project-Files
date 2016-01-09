@@ -4,6 +4,17 @@ using System.Collections.Generic;
 
 public class HeroData : MonoBehaviour {
 
+//	public enum pathWay{
+//		flying,
+//		walking,
+//	}
+//
+//	public enum targetEnemy{
+//		flying,
+//		walking,
+//		both,
+//	}
+
 	[System.Serializable]
 	public class speedLevel{
 		public float fireRate;
@@ -21,7 +32,9 @@ public class HeroData : MonoBehaviour {
 
   	public int cost;
   	public GameObject bullet;
-						
+
+	public EnemyData.pathWay target;
+
   	public float fireRate;						// fire rate of the carrot
 	public float refundPercent;
 	public int waterRefund;

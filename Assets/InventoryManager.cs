@@ -21,6 +21,8 @@ public class InventoryManager : MonoBehaviour {
 	
 	//public Toggle inventoryToggle;
 
+	int counter;
+
 	float timeCounter;
 	float lastActivateTime;
 
@@ -46,6 +48,8 @@ public class InventoryManager : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+
+		counter = 0;
 
 		bool second1 = true;
 		bool second2 = true;
@@ -157,7 +161,7 @@ public class InventoryManager : MonoBehaviour {
 				second10 = false;
 			}
 
-			Debug.Log(timeCounter);
+//			Debug.Log(timeCounter);
 			if(timeCounter >= 10){
 				Debug.Log("10 sec passed. poison dissipating...");
 				poisonActivate = false;
@@ -165,6 +169,10 @@ public class InventoryManager : MonoBehaviour {
 				if(qty > 0){
 					poisonButton.interactable = true;
 				}
+				counter = 0;		// restore ule sa 0.
+
+				// clear the list of heroes para pag pinindot bago ule yung list ng ipo poison
+				enemies.Clear();
 			}
 		}
 	}
@@ -238,7 +246,6 @@ public class InventoryManager : MonoBehaviour {
 
 	public void usePoison(){
 		// IMPLEMENTATION HERE
-		poisonActivate = true;
 		enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
 
 		foreach (GameObject enemy in enemyArray){
@@ -257,10 +264,12 @@ public class InventoryManager : MonoBehaviour {
 		 second9 = true;
 		 second10 = true;
 
+		poisonActivate = true;
+		
 		lastActivateTime = Time.time;
 
 		int qty = PlayerPrefs.GetInt("poison qty:");
-		qty--;
+		//qty--;
 		PlayerPrefs.SetInt("poison qty:", qty);
 		qty = PlayerPrefs.GetInt("poison qty:");
 		poisonQty.text = PlayerPrefs.GetInt("poison qty:").ToString();
@@ -287,16 +296,24 @@ public class InventoryManager : MonoBehaviour {
 	void poison (){
 		foreach(GameObject enemy in enemies){
 			if(enemy != null){
+				counter++;
 				// enemy position
 				// instatntiate poisonParticle
 				Instantiate(poisonParticle, enemy.transform.position, enemy.transform.rotation);
 				HealthBar enemyHealth = enemy.transform.parent.GetChild(2).gameObject.GetComponent<HealthBar>();		// kaya sa parent ko kinuha. kase yung tag na 'Enemy' is nasa child na gameObject, tapos yung moveEnemy script nasa may parent
-				enemyHealth.currentHealth -= 3;
+				enemyHealth.currentHealth -= (enemyHealth.maxHealth * 0.03f);		// 3% of the max health. 10 times to mauulet so bale ang mababawas ay 30% of the monsters max health
+				Debug.Log("currentHealth (" + enemyHealth.currentHealth + ") -= maxhealth(" + enemyHealth.maxHealth + ") * 0.03f");
+//				Debug.Log("maxhealth 3% : " + enemyHealth.maxHealth * 0.03f);
 
 				if(enemyHealth.currentHealth <= 0){
 					enemies.Remove(enemy);
 					Destroy(enemy.transform.parent.gameObject);
 				}
+//				if(counter == 9){
+//					Debug.Log("rounding ...");
+//					enemyHealth.currentHealth = Mathf.RoundToInt(enemyHealth.currentHealth);
+//				}
+
 			}
 			//			Vector3 origPosition = enemy.transform.position;
 			//			enemy.transform.parent.GetComponent<MoveEnemy>().speed -= (OrigSpeed * 0.3f);	// para hindi 2 tag of the same enemy object yung ma store sa list. 

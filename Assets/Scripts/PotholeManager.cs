@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PotholeManager : MonoBehaviour {
 
+	public AudioClip noWaterSound;
   	public GameObject heroPrefab_parent; // ilalagay sa inspector
 
 	private GameObject heroPrefab;	// the actual hero
@@ -116,6 +117,13 @@ public class PotholeManager : MonoBehaviour {
 				hero.transform.GetChild(2).GetComponent<HeroAttack>().enabled = true;			// enable so the hero would start attacking, naka disable kase yan para di mag attack yung hero pag naka preview palang while dragging
 				gameObject.GetComponent<BoxCollider2D>().enabled = false;						// disable the potholes 2D collider, for now, para clickable yung hero,		
 				hero.transform.GetChild(0).GetComponent<Remove_hero>().potholeManager = this;	// make this script instance the potholeManager script to use it to remove the hero later
+
+				// play sound
+				if(PlayerPrefs.GetInt("sounds") == 1){		// if sounds: ON
+					AudioSource audio = GetComponent<AudioSource>();
+					audio.PlayOneShot(audio.clip, 0.8f);			// audio.clip is yung pinaka sound na naka attach sa audio source component of the object
+				}
+
 			}
 			// kung yung water ng user di na kaya i-afford yung cost nung hero :'(
 			else if(GameManager.water < cost){
@@ -124,6 +132,14 @@ public class PotholeManager : MonoBehaviour {
 				// ma-display yung kung ilang water pa meron yung user.
 				// 0 yung pinasang parameter kase walang ibabawas sa water
 				// kahet na wala naman talagang laman.
+
+				// play sound no water
+				if(PlayerPrefs.GetInt("sounds") == 1){		// if sounds: ON
+					AudioSource audio = GetComponent<AudioSource>();
+					//Debug.Log("play sound");
+					audio.PlayOneShot(noWaterSound, 0.8f);			// audio.clip is yung pinaka sound na naka attach sa audio source component of the object
+				}
+
 			}
 			// kapag na touch nya na yung pothole, i DESELECT mo yung currentSelected hero para 1 is to 1 yung pagtatanim, kailangan click ule sa button para makapag tanim
 			GameManager.currentSelectedHero = null;

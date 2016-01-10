@@ -267,7 +267,7 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text == "GOOD LUCK!"){
 				if(buttons[14].activeSelf == true){
 					buttons[14].transform.GetChild(1).gameObject.SetActive(false);	// hide the next wave button highlight gameObject
-					if(buttons[14].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("next_wave_idle") ){
+					if(buttons[14].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") ){
 						nextMessage();
 						showTutorialStuffs();
 						buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide carrot circle highlight gameObject

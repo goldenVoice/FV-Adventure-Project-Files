@@ -17,11 +17,15 @@ public class HeroAttack : MonoBehaviour {
 
 	private GameObject bulletPrefab;
 
+	private AudioSource attackSound;
 //	public GameObject bulletPrefab;
 	
 	private finishedPlanted_carrot planted_carrotScript;
 
 	Animator anim;
+	void Awake(){
+		attackSound = gameObject.GetComponent<AudioSource>();
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +35,6 @@ public class HeroAttack : MonoBehaviour {
     	anim = (Animator)parent_hero.transform.GetChild(1).GetComponent<Animator>(); 
 		lastShotTime = Time.time;
 		heroData = (HeroData)parent_hero.transform.GetChild(1).GetComponent<HeroData>();
-
 	}
 	
 	void FixedUpdate(){
@@ -67,6 +70,7 @@ public class HeroAttack : MonoBehaviour {
 					if(Time.time - lastShotTime > heroData.fireRate && checkTarget(target) ){
 						//	anim.SetTrigger("attack");
 						anim.SetTrigger("attack_left");
+						playSound();
 						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
 						lastShotTime = Time.time;
 					}
@@ -79,6 +83,7 @@ public class HeroAttack : MonoBehaviour {
 				if(Time.time - lastShotTime > heroData.fireRate && checkTarget(target) ){
 						//	anim.SetTrigger("attack");
 						anim.SetTrigger("attack");
+						playSound();
 						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
 						lastShotTime = Time.time;
 					}
@@ -163,4 +168,10 @@ public class HeroAttack : MonoBehaviour {
 		}
 	}
 
+	void playSound(){
+		if(PlayerPrefs.GetInt("sounds") == 1){		// sounds: ON
+			attackSound.PlayOneShot(attackSound.clip, 0.7f);
+		}
+
+	}
 }

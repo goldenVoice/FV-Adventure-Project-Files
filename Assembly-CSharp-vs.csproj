@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\GameManagerBehavior.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
+     <Compile Include="Assets\Scripts\HeroAttack_multiple.cs" />
      <Compile Include="Assets\Scripts\HeroData.cs" />
      <Compile Include="Assets\Scripts\IgnoreRaycast.cs" />
      <Compile Include="Assets\Scripts\InputName.cs" />

@@ -114,7 +114,16 @@ public class PotholeManager : MonoBehaviour {
 				GameManager.deductWater(cost);
 				waterText.GetComponent<Animator>().SetTrigger("water_deducted");
 
-				hero.transform.GetChild(2).GetComponent<HeroAttack>().enabled = true;			// enable so the hero would start attacking, naka disable kase yan para di mag attack yung hero pag naka preview palang while dragging
+				HeroAttack heroAttack = hero.transform.GetChild(2).GetComponent<HeroAttack>();
+				if(heroAttack != null){
+					heroAttack.enabled = true;			// enable so the hero would start attacking, naka disable kase yan para di mag attack yung hero pag naka preview palang while dragging
+				}
+				else{
+					// pupunta lang sa else na to kapag hindi heroAttack ang meron yung hero, kundi heroAttack_multiple :)
+					HeroAttack_multiple heroAttackMultiple = hero.transform.GetChild(2).GetComponent<HeroAttack_multiple>();
+					if(heroAttackMultiple != null)			// check kung meron ngang script
+						heroAttackMultiple.enabled = true;	// then set to true
+				}
 				gameObject.GetComponent<BoxCollider2D>().enabled = false;						// disable the potholes 2D collider, for now, para clickable yung hero,		
 				hero.transform.GetChild(0).GetComponent<Remove_hero>().potholeManager = this;	// make this script instance the potholeManager script to use it to remove the hero later
 

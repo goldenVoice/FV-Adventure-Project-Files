@@ -7,8 +7,8 @@ public class LoadUserProgress : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		PlayerPrefs.SetInt("sounds", 1);		// i put this here para at the start of the game sounds is on
-		PlayerPrefs.SetInt("vibr", 1);			// i put this here para at the start of the game vibration is on
+//		PlayerPrefs.SetInt("sounds", 1);		// i put this here para at the start of the game sounds is on
+//		PlayerPrefs.SetInt("vibr", 1);			// i put this here para at the start of the game vibration is on
 		loadingScreen = (LoadingScreen1) GameObject.FindObjectOfType(typeof(LoadingScreen1));	
 	}
 	

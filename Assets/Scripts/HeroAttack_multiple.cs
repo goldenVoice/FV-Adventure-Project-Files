@@ -10,9 +10,6 @@ public class HeroAttack_multiple : MonoBehaviour {
 
 	public List<GameObject> enemiesInRange;
 
-	public List<GameObject> enemiesToAttack;
-	public int maxEnemies;			// number of enemies to attack all at once
-
 	private float lastShotTime;
 	private HeroData heroData;
 
@@ -20,7 +17,8 @@ public class HeroAttack_multiple : MonoBehaviour {
 
 	private GameObject bulletPrefab;
 
-//	public GameObject bulletPrefab;
+	public int maxEnemyAttack;
+	int attackCounter;
 	
 	private finishedPlanted_carrot planted_carrotScript;
 
@@ -34,7 +32,7 @@ public class HeroAttack_multiple : MonoBehaviour {
     	anim = (Animator)parent_hero.transform.GetChild(1).GetComponent<Animator>(); 
 		lastShotTime = Time.time;
 		heroData = (HeroData)parent_hero.transform.GetChild(1).GetComponent<HeroData>();
-
+		attackCounter = 1;
 	}
 	
 	void FixedUpdate(){
@@ -46,66 +44,27 @@ public class HeroAttack_multiple : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// the hero 
-			 target = null;
+			if(enemiesInRange.Count > 0){
+					if(Time.time - lastShotTime > heroData.fireRate){
 
-			// 
-			float minimalEnemyDistance = float.MaxValue;		// the maximum possible distance
-			foreach(GameObject enemy in enemiesInRange){		// iterate through the list of enemies
-				float distanceToGoal = enemy.transform.parent.GetComponent<MoveEnemy>().distanceToGoal();		// get the distanceToGoal of the current enemy
-				if(distanceToGoal < minimalEnemyDistance){	// kapag yung distance to the end of the stage area (yung goal) ay mas maliit sa minimalEnemyDistance
-					target = enemy;
-					minimalEnemyDistance = distanceToGoal;		// set as new minimal distance.
-
-				}
-			}	
-
-			if(target != null){
-
-				if(target.transform.position.x < gameObject.transform.position.x){
-							
-							anim.SetBool("enemy_at_leftSide", true);		// make the hero face left
-							anim.SetBool("enemy_at_rightSide", false);
-							
-					if(Time.time - lastShotTime > heroData.fireRate && checkTarget(target) ){
-						//	anim.SetTrigger("attack");
-						
 						anim.SetTrigger("attack_left");
-						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
-						lastShotTime = Time.time;
-					}
-
-				}
-				else if(target.transform.position.x > gameObject.transform.position.x){
-								anim.SetBool("enemy_at_rightSide", true);		// make the hero face right
-								anim.SetBool("enemy_at_leftSide", false);
-
-				if(Time.time - lastShotTime > heroData.fireRate && checkTarget(target) ){
-						//	anim.SetTrigger("attack");
-						anim.SetTrigger("attack");
-						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
+						foreach(GameObject enemy in enemiesInRange){
+							if(checkTarget(enemy)){
+								Shoot(enemy.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
+								attackCounter++;
+								if(attackCounter > maxEnemyAttack){			// max number of enemy to attack. if it exceeds. break the loop. stop attacking
+									break;
+								}
+							}
+						}
+						attackCounter = 1;
 						lastShotTime = Time.time;
 					}
 				}
-
-//				else if(anim.GetTrigger("enemy_at_rightSide")){
-//						print("enemy in the right side");
-//				}
-				
-				// rotate the hero, depending where the target is, 
-				// in your case, pwedeng dito mo ilagay yung code para malaman kung which side haharap yung hero, (left or right)
-					
-//				Vector3 direction = gameObject.transform.position - target.transform.position;
-//				gameObject.transform.rotation = Quaternion.AngleAxis(
-//					Mathf.Atan2 (direction.y, direction.x) * 180 / Mathf.PI;
-//					new Vector3 (0,0,1) );
-			}
-
 	}
 
 	void OnEnemyDestroy (GameObject enemy){
 		enemiesInRange.Remove (enemy);
-		enemiesToAttack.Remove(enemy);
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
@@ -116,12 +75,6 @@ public class HeroAttack_multiple : MonoBehaviour {
 			del.enemyDelegate += OnEnemyDestroy;		// calls OnEnemyDestroy when the enemy is destroyed, idk kung pano nangyare yon
 
 			// ang 
-			if(enemiesToAttack.Count < maxEnemies){
-				enemiesToAttack.Add (other.gameObject);
-				EnemyDestructionDelegate del1 = other.gameObject.GetComponent<EnemyDestructionDelegate>();
-				del1.enemyDelegate += OnEnemyDestroy;		// calls OnEnemyDestroy when the enemy is destroyed, idk kung pano nangyare yon
-
-			}
 		}
 	}
 
@@ -130,13 +83,6 @@ public class HeroAttack_multiple : MonoBehaviour {
 			enemiesInRange.Remove(other.gameObject);
 			EnemyDestructionDelegate del = other.gameObject.GetComponent<EnemyDestructionDelegate>();
 			del.enemyDelegate -= OnEnemyDestroy;			// you unregister the enemies in the delegate, now you know whic enemies are in range.
-
-			if(enemiesToAttack.Contains(other.gameObject)){
-				Debug.Log("si enemy ay nasa list enemiestoattack list. tanggalin");
-				EnemyDestructionDelegate del1 = other.gameObject.GetComponent<EnemyDestructionDelegate>();
-				del1.enemyDelegate -= OnEnemyDestroy;		// calls OnEnemyDestroy when the enemy is destroyed, idk kung pano nangyare yon
-
-			}
 		}
 	}
 

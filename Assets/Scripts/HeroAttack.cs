@@ -23,6 +23,7 @@ public class HeroAttack : MonoBehaviour {
 	private finishedPlanted_carrot planted_carrotScript;
 
 	Animator anim;
+
 	void Awake(){
 		attackSound = gameObject.GetComponent<AudioSource>();
 	}
@@ -47,8 +48,8 @@ public class HeroAttack : MonoBehaviour {
 	void Update () {
 
 		// the hero 
-			 target = null;
 
+			 target = null;
 			// 
 			float minimalEnemyDistance = float.MaxValue;		// the maximum possible distance
 			foreach(GameObject enemy in enemiesInRange){		// iterate through the list of enemies
@@ -56,12 +57,10 @@ public class HeroAttack : MonoBehaviour {
 				if(distanceToGoal < minimalEnemyDistance){	// kapag yung distance to the end of the stage area (yung goal) ay mas maliit sa minimalEnemyDistance
 					target = enemy;
 					minimalEnemyDistance = distanceToGoal;		// set as new minimal distance.
-
 				}
 			}	
 
 			if(target != null){
-
 				if(target.transform.position.x < gameObject.transform.position.x){
 							
 							anim.SetBool("enemy_at_leftSide", true);		// make the hero face left
@@ -101,7 +100,6 @@ public class HeroAttack : MonoBehaviour {
 //					Mathf.Atan2 (direction.y, direction.x) * 180 / Mathf.PI;
 //					new Vector3 (0,0,1) );
 			}
-
 	}
 
 	void OnEnemyDestroy (GameObject enemy){
@@ -172,6 +170,10 @@ public class HeroAttack : MonoBehaviour {
 		if(PlayerPrefs.GetInt("sounds") == 1){		// sounds: ON
 			attackSound.PlayOneShot(attackSound.clip, 0.7f);
 		}
-
 	}
+
+	void ActivateScript(){
+		this.enabled = true;
+	}
+
 }

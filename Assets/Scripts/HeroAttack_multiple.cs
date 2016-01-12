@@ -128,4 +128,8 @@ public class HeroAttack_multiple : MonoBehaviour {
 		}
 	}
 
+	void ActivateScript(){
+		this.enabled = true;
+	}
+
 }

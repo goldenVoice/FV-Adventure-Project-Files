@@ -52,6 +52,8 @@
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\InventoryManager.cs" />
      <Compile Include="Assets\MoneyChecker.cs" />
+     <Compile Include="Assets\MushroomSummon.cs" />
+     <Compile Include="Assets\Mushroom_animatorChecker.cs" />
      <Compile Include="Assets\OnionBulletEffect.cs" />
      <Compile Include="Assets\PlaySound.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
@@ -71,9 +73,11 @@
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_multiple.cs" />
+     <Compile Include="Assets\Scripts\HeroAttack_mushroom.cs" />
      <Compile Include="Assets\Scripts\HeroData.cs" />
      <Compile Include="Assets\Scripts\IgnoreRaycast.cs" />
      <Compile Include="Assets\Scripts\InputName.cs" />
+     <Compile Include="Assets\Scripts\LeekBulletBehavior.cs" />
      <Compile Include="Assets\Scripts\LevelFinished.cs" />
      <Compile Include="Assets\Scripts\LevelUnlock.cs" />
      <Compile Include="Assets\Scripts\List_hero.cs" />
@@ -100,6 +104,7 @@
      <Compile Include="Assets\Scripts\finishedPlanted_carrot.cs" />
      <Compile Include="Assets\Scripts\heroShoot.cs" />
      <Compile Include="Assets\Scripts\invisible_colliderManager.cs" />
+     <Compile Include="Assets\Scripts\mushroom_BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\musicPlayer.cs" />
      <Compile Include="Assets\Scripts\pauseMenuManager.cs" />
      <Compile Include="Assets\Scripts\pauseScene.cs" />

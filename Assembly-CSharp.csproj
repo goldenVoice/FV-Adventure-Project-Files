@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Async Loading\LoadingScreen1.cs" />
+     <Compile Include="Assets\CarrotCannon_Impact_Behavior.cs" />
      <Compile Include="Assets\Inventory\Inventory.cs" />
      <Compile Include="Assets\Inventory\Item.cs" />
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />
@@ -58,6 +59,8 @@
      <Compile Include="Assets\PlaySound.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />
+     <Compile Include="Assets\Scripts\CarrotCannon_BulletBehavior.cs" />
+     <Compile Include="Assets\Scripts\CarrotCannon_HeroAttack.cs" />
      <Compile Include="Assets\Scripts\ConfrimDialogManager.cs" />
      <Compile Include="Assets\Scripts\CountDownTimer.cs" />
      <Compile Include="Assets\Scripts\DataManager.cs" />
@@ -99,6 +102,7 @@
      <Compile Include="Assets\Scripts\TutorialManager1.cs" />
      <Compile Include="Assets\Scripts\Tutorial_forPothole.cs" />
      <Compile Include="Assets\Scripts\WaveManager.cs" />
+     <Compile Include="Assets\Scripts\banana_HeroAttack.cs" />
      <Compile Include="Assets\Scripts\fadeManager.cs" />
      <Compile Include="Assets\Scripts\fade_panelDialog.cs" />
      <Compile Include="Assets\Scripts\finishedPlanted_carrot.cs" />

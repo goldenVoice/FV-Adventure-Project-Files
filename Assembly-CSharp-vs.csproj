@@ -39,15 +39,17 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Async Loading\LoadingScreen1.cs" />
      <Compile Include="Assets\CarrotCannon_Impact_Behavior.cs" />
+     <Compile Include="Assets\CarrotCannon_LandEnemy_ApplyDamage.cs" />
+     <Compile Include="Assets\CarrotCannon_particleBehavior.cs" />
      <Compile Include="Assets\Inventory\Inventory.cs" />
      <Compile Include="Assets\Inventory\Item.cs" />
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />
@@ -116,6 +118,7 @@
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
      <Compile Include="Assets\SoundButtonManager.cs" />
      <Compile Include="Assets\StageUnlock.cs" />
+     <Compile Include="Assets\StorylineSoundManager.cs" />
      <Compile Include="Assets\UnlockHero.cs" />
      <Compile Include="Assets\UpgradeHero.cs" />
      <Compile Include="Assets\VibrManager.cs" />
@@ -131,7 +134,7 @@
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />
      <None Include="Assets\resources\storyline_dialog.xml" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.9/Standalone/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.9/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,13 +12,14 @@ public class CarrotCannon_BulletBehavior : MonoBehaviour {
 
 	public GameObject cannonImpact;
 
-	public ParticleSystem CarrotCannonImpactParticle;
+//	public ParticleSystem CarrotCannonImpactParticle;
   	ElementManager elementManager;
   	ElementManager.Element hero_element;
 	
   	private float distance;     // track the bullets position
   	private float startTime;    
 
+	public ParticleSystem CarrotCannonImpactParticle;
   	private GameManagerBehavior gameManager;    // rewards player when they destroy the enemy
 
  	//public GameObject bulletImpact_particle;
@@ -54,7 +55,10 @@ public class CarrotCannon_BulletBehavior : MonoBehaviour {
 			// INSTANTIATE THE BULLET IMPACT 
 			GameObject impact = (GameObject) Instantiate(cannonImpact);
 			impact.transform.position = targetPosition;
-			Instantiate(CarrotCannonImpactParticle, targetPosition, gameObject.transform.rotation);
+
+			ParticleSystem CC_particle = (ParticleSystem) Instantiate(CarrotCannonImpactParticle, gameObject.transform.position, gameObject.transform.rotation);
+			CC_particle.GetComponent<CarrotCannon_particleBehavior>().CC_areaImpact = impact;
+
 			Destroy(gameObject);
 		}
 //       		if(target != null){

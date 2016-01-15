@@ -21,24 +21,22 @@ public class SoundManager : MonoBehaviour {
       	audio = GetComponent<AudioSource>();
 		Debug.Log(PlayerPrefs.GetInt("sounds"));
 
-		if(soundsText != null && vibrText != null){
-			if(PlayerPrefs.GetInt("sounds") == 1){
-            	soundsText.text = "Sounds: ON";
-				audio.Play();
-			}
-			else{
-           		soundsText.text = "Sounds: OFF";
-				audio.Play();
+		if (soundsText != null && vibrText != null) {
+			if (PlayerPrefs.GetInt ("sounds") == 1) {
+				soundsText.text = "Sounds: ON";
+				audio.Play ();
+			} else {
+				soundsText.text = "Sounds: OFF";
+				audio.Play ();
 				audio.mute = true;
 			}
 
-			if(PlayerPrefs.GetInt("vibr") == 1){		// vibr: On
+			if (PlayerPrefs.GetInt ("vibr") == 1) {		// vibr: On
 				vibrText.text = "Vibration: ON";
-			}
-			else{
+			} else {
 				vibrText.text = "Vibration: OFF";
 			}
-		}
+		} 
     }
     
     void Update() {

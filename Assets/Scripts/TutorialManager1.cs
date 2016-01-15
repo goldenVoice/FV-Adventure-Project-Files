@@ -374,7 +374,6 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[5].gameObject.SetActive(true);
 				buttons[6].gameObject.SetActive(true);
 				buttons[7].gameObject.SetActive(true);
-				buttons[3].gameObject.SetActive(true);
 
 				buttons[0].GetComponent<Button>().interactable = true;			// makapag tanim yung user
 				buttons[0].GetComponent<DragManager>().enabled = true;			// makapag tanim yung user
@@ -400,8 +399,9 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[8].transform.GetChild(1).gameObject.SetActive(false);	// hide highlight of next Wave indicator
 				pauseMenuManagerScript.resumeTheScene();						// resume the gameplay
 
-				// show the pause button. tapos na yung tutorial. pwede na mag restart yung user :D
+				// show the pause button and 2x speed. tapos na yung tutorial. pwede na mag restart yung user :D
 				buttons[2].gameObject.SetActive(true);
+				buttons[3].gameObject.SetActive(true);							// 2x speed button
 				disableTutorial();
 
 				// for the shop tutorial

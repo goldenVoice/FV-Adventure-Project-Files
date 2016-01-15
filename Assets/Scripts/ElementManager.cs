@@ -66,6 +66,7 @@ public class ElementManager : MonoBehaviour {
 
 		// matches and effects for water element
 		else if(attacker == Element.Water && defender == Element.Fire){
+			Debug.Log("dammage(" + damage + ") + 30% (" + ( damage * 0.3f) + ")");
 			return damage + ( damage * 0.3f);
 		}
 		else if(attacker == Element.Water && defender == Element.Air){

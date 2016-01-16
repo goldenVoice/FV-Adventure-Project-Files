@@ -77,6 +77,7 @@
      <Compile Include="Assets\Scripts\GameManagerBehavior.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
+     <Compile Include="Assets\Scripts\HeroAttack_OSaucer.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_multiple.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_mushroom.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_necroMushroom.cs" />
@@ -127,6 +128,7 @@
      <Compile Include="Assets\resources\DialogManager_ending.cs" />
      <Compile Include="Assets\resources\QuestionContainer.cs" />
      <Compile Include="Assets\resources\QuestionLoader.cs" />
+     <Compile Include="Assets\saucerLayerManager.cs" />
      <Compile Include="Assets\shopManager.cs" />
      <Compile Include="Assets\shopTutorialManager.cs" />
      <Compile Include="Assets\showHero.cs" />

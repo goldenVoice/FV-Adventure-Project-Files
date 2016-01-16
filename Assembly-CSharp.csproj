@@ -57,6 +57,7 @@
      <Compile Include="Assets\MoneyChecker.cs" />
      <Compile Include="Assets\MushroomSummon.cs" />
      <Compile Include="Assets\Mushroom_animatorChecker.cs" />
+     <Compile Include="Assets\OSaucer_checkAnimator.cs" />
      <Compile Include="Assets\OnionBulletEffect.cs" />
      <Compile Include="Assets\PlaySound.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
@@ -94,6 +95,7 @@
      <Compile Include="Assets\Scripts\MoveEnemy.cs" />
      <Compile Include="Assets\Scripts\NextScene.cs" />
      <Compile Include="Assets\Scripts\NormalizeTime.cs" />
+     <Compile Include="Assets\Scripts\OS_BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\PotholeManager.cs" />
      <Compile Include="Assets\Scripts\Potholes_list.cs" />
      <Compile Include="Assets\Scripts\ProfileData.cs" />

@@ -24,6 +24,10 @@ public class HeroAttack_OSaucer : MonoBehaviour {
 
 	Animator anim;
 
+	public GameObject OSaucer_bullet;
+	public GameObject originPoint;
+
+	Animator OSaucer_anim;
 	void Awake(){
 		attackSound = gameObject.GetComponent<AudioSource>();
 	}
@@ -36,6 +40,8 @@ public class HeroAttack_OSaucer : MonoBehaviour {
     	anim = (Animator)parent_hero.transform.GetChild(1).GetComponent<Animator>(); 
 		lastShotTime = Time.time;
 		heroData = (HeroData)parent_hero.transform.GetChild(1).GetComponent<HeroData>();
+		OSaucer_anim = OSaucer_bullet.GetComponent<Animator>();
+		
 	}
 	
 	void FixedUpdate(){
@@ -70,7 +76,10 @@ public class HeroAttack_OSaucer : MonoBehaviour {
 						//	anim.SetTrigger("attack");
 						anim.SetTrigger("attack_left");
 						playSound();
-						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
+
+						// instead of shooting, enable the saucer animation
+						OSaucer_anim.enabled = true;
+					
 						lastShotTime = Time.time;
 					}
 
@@ -83,7 +92,7 @@ public class HeroAttack_OSaucer : MonoBehaviour {
 						//	anim.SetTrigger("attack");
 						anim.SetTrigger("attack");
 						playSound();
-						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
+					OSaucer_anim.enabled = true;
 						lastShotTime = Time.time;
 					}
 				}
@@ -124,20 +133,20 @@ public class HeroAttack_OSaucer : MonoBehaviour {
 		}
 	}
 
-	void Shoot (Collider2D target){
-		 bulletPrefab = heroData.bullet;
-
-		 Vector3 startPosition = gameObject.transform.position;
-		 Vector3 targetPosition = target.transform.position;
-		 targetPosition.z = bulletPrefab.transform.position.z;		// so that the bullet would appear above the enemy
-		 startPosition.z = bulletPrefab.transform.position.z;			// bullet should appear below the hero firing it
-
-		 GameObject newBullet = (GameObject)Instantiate(bulletPrefab);
-		 newBullet.transform.position = startPosition;
-		 BulletBehavior bulletComp = newBullet.GetComponent<BulletBehavior>();
-		 bulletComp.target = target.gameObject;
-		 bulletComp.startPosition = startPosition;
-		 bulletComp.targetPosition = targetPosition;
+//	void Shoot (Collider2D target){
+//		 bulletPrefab = heroData.bullet;
+//
+//		 Vector3 startPosition = gameObject.transform.position;
+//		 Vector3 targetPosition = target.transform.position;
+//		 targetPosition.z = bulletPrefab.transform.position.z;		// so that the bullet would appear above the enemy
+//		 startPosition.z = bulletPrefab.transform.position.z;			// bullet should appear below the hero firing it
+//
+//		 GameObject newBullet = (GameObject)Instantiate(bulletPrefab);
+//		 newBullet.transform.position = startPosition;
+//		 BulletBehavior bulletComp = newBullet.GetComponent<BulletBehavior>();
+//		 bulletComp.target = target.gameObject;
+//		 bulletComp.startPosition = startPosition;
+//		 bulletComp.targetPosition = targetPosition;
 
 		 // HERE you make the game more interesting
 		 // play a sound, and animate the hero to fire.
@@ -146,7 +155,7 @@ public class HeroAttack_OSaucer : MonoBehaviour {
 		 // animator.SetTrigger("HeroFires");
 		 // AudioSource audioSource = gameObject.GetComponent<AudioSource>();
 		 // audioSource.PlayOneShot(audioSource.clip);
-	}
+//	}
 
 	// checks if the the insect is kasama sa mga target enemy ng hero (example, flying, walking or both ba yung insect?)
 	bool checkTarget(GameObject target){

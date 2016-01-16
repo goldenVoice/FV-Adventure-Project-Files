@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_OSaucer.cs" />
+     <Compile Include="Assets\Scripts\HeroAttack_leek.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_multiple.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_mushroom.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_necroMushroom.cs" />

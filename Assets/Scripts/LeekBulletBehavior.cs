@@ -10,6 +10,8 @@ public class LeekBulletBehavior : MonoBehaviour {
   	public Vector3 startPosition;
   	public Vector3 targetPosition;
 
+//	public GameObject target;			// use this to reference the real enemy. so you can track its moving direction
+
   	ElementManager elementManager;
   	ElementManager.Element hero_element;
 	
@@ -19,6 +21,11 @@ public class LeekBulletBehavior : MonoBehaviour {
   	private GameManagerBehavior gameManager;    // rewards player when they destroy the enemy
 
  	public GameObject bulletImpact_particle;
+
+	float timeCounter;
+	float DPS_countingInterval;
+	public float DPSinterval;		// ilang seconds bago mag damage ule? Lets say, every 0.7 secs dumadamage
+	public float maxSeconds;		// maximum duration of the tornado
 
 	// Use this for initialization
 	void Start () {
@@ -34,53 +41,66 @@ public class LeekBulletBehavior : MonoBehaviour {
     	gameManager = gm.GetComponent<GameManagerBehavior>();
 		elementManager = (ElementManager) FindObjectOfType(typeof(ElementManager));
 		hero_element = hero.transform.GetChild(1).GetComponent<HeroData>().heroElement;
-	
+		DPS_countingInterval = Time.time;
+		timeCounter = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
     	float timeInterval = Time.time - startTime;
+
+		// dps countinginterval ang nag co count kung kelan mag da damage ang tornado base on dps interval
+		DPS_countingInterval = Time.time - timeCounter;
+
     	// calculate the new bullets position then interpolate using vector3.Lerp
     	gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);
     	// baka dito ilagay  yung code for angular velocity, para umikot ikot ang bullet,
     	// if(bulletIsIkotIkot)  
-
+		//		Debug.Log("ANYOOOONE?");
+		
     	if(gameObject.transform.position.Equals(targetPosition) ){
       	// if you reach the targetPosition you verify if the target exists
-       		if(target != null){
+       		
+			// continually check for the time of dps if tapos na. if yes, destroy
+			if(timeInterval >= maxSeconds){
+				Destroy(gameObject);
+			}
 
-				// instantiate 3 other leek bullets. para magkaron ng effect na dps. 
+			if(target != null){
+				gameObject.transform.position = target.transform.parent.position;
+//				if()
 
-          		Transform healthBarTransform = target.transform.parent.FindChild("HealthBar");
-          		HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
-				Debug.Log(hero.name + " element: " + hero_element);
-		  		// call the method checkElement, to know if the hero_element is weaker/ stronger to the enemy's element, then change the damage depending on the condition, 
-		  		damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, damage); 	// ex: fire defeats air: damage x 2
-		  		Debug.Log ("Damage after checkElement: " + damage);
-          		
-				// hatiin ang damage sa tatlo, para mag mukang dps. tas yung instantiate ng bullet impact
-				Instantiate(bulletImpact_particle, targetPosition, transform.rotation);
-				healthBar.currentHealth -= Mathf.Max(damage * 0.3f, 0);
+				if(DPS_countingInterval >= DPSinterval){		// maxSeconds = 2; dps interval = 0.5; pero ang dame lang ng bes na mababawasan sya ay 3 times. hindi 4 times (kase 2 / 0.5 = 4) there something about this computation na ganon yung nangyayare. and im too lazy now to figure out why
 
-          		Instantiate(bulletImpact_particle, targetPosition, transform.rotation);
-		  		healthBar.currentHealth -= Mathf.Max(damage * 0.3f, 0);
+					Transform healthBarTransform = target.transform.parent.FindChild("HealthBar");
+					HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
+					Debug.Log(hero.name + " element: " + hero_element);
+					// call the method checkElement, to know if the hero_element is weaker/ stronger to the enemy's element, then change the damage depending on the condition, 
+					damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, damage); 	// ex: fire defeats air: damage x 2
+					Debug.Log ("Damage after checkElement: " + damage);
+					
+					Instantiate(bulletImpact_particle, targetPosition, transform.rotation);
+					healthBar.currentHealth -= Mathf.Max(damage, 0);
+					
+					if(healthBar.currentHealth <= 0){
+						// dahil yung mismong parent na enemy gameObject ang i destroy para mawala yung lahat ng components ng enemy
+						Destroy(target.transform.parent.gameObject);
+						// code below, mag play ng sound ng enemy pag namatay, KUNG may sound sa gameObject na enemy
+						//AudioSource audioSource = target.GetComponent<AudioSource>();
+						//AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+						
+						// reward the user water when the enemy is destroyed
+						gameManager.water += target.GetComponent<EnemyData>().waterRewarded;
+						gameManager.displayWater();
+						Destroy(gameObject);
+					}
 
-          		Instantiate(bulletImpact_particle, new Vector3(targetPosition.x + 0.5f, targetPosition.y, targetPosition.z), transform.rotation);
-		  		healthBar.currentHealth -= Mathf.Max(damage * 0.4f, 0);
-       			
-          		if(healthBar.currentHealth <= 0){
-					// dahil yung mismong parent na enemy gameObject ang i destroy para mawala yung lahat ng components ng enemy
-            		Destroy(target.transform.parent.gameObject);
-            		// code below, mag play ng sound ng enemy pag namatay, KUNG may sound sa gameObject na enemy
-            		//AudioSource audioSource = target.GetComponent<AudioSource>();
-            		//AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
-
-            		// reward the user water when the enemy is destroyed
-            		gameManager.water += target.GetComponent<EnemyData>().waterRewarded;
-            		gameManager.displayWater();
-          		}
+					timeCounter = Time.time;	// restart time counter to start counting again
+				}
         	}
-        	Destroy(gameObject);  // destroy the bullet
+			
+			// do not yer destroy the gameobject
+        	//Destroy(gameObject);  // destroy the bullet
     	}
 	}
 

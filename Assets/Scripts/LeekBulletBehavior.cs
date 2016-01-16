@@ -66,6 +66,10 @@ public class LeekBulletBehavior : MonoBehaviour {
 				Destroy(gameObject);
 			}
 
+			if (target == null){
+				Destroy(gameObject);
+			}
+
 			if(target != null){
 				gameObject.transform.position = target.transform.parent.position;
 //				if()
@@ -79,7 +83,7 @@ public class LeekBulletBehavior : MonoBehaviour {
 					damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, damage); 	// ex: fire defeats air: damage x 2
 					Debug.Log ("Damage after checkElement: " + damage);
 					
-					Instantiate(bulletImpact_particle, targetPosition, transform.rotation);
+					Instantiate(bulletImpact_particle, gameObject.transform.position, transform.rotation);
 					healthBar.currentHealth -= Mathf.Max(damage, 0);
 					
 					if(healthBar.currentHealth <= 0){

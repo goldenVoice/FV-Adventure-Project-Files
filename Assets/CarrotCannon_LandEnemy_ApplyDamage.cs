@@ -20,7 +20,7 @@ public class CarrotCannon_LandEnemy_ApplyDamage : MonoBehaviour {
 		// 
 		
 		if (gameObject.GetComponent<EnemyData>().insectPath == EnemyData.pathWay.walking) {
-			if (other.name == "carrotCannon_areaImpact(Clone)") {
+			if (other.name == "carrotCannon_areaImpact(Clone)" || other.name == "blasterMelon_areaImpact(Clone)") {
 //				Debug.Log("gumana friend name is: " + other.name);
 					
 				other.SendMessage("ApplyDamage", gameObject.GetComponent<Collider2D>());

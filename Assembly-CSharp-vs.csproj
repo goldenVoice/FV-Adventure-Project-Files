@@ -127,6 +127,7 @@
      <Compile Include="Assets\UnlockHero.cs" />
      <Compile Include="Assets\UpgradeHero.cs" />
      <Compile Include="Assets\VibrManager.cs" />
+     <Compile Include="Assets\blasterMelon_layerManager.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
      <Compile Include="Assets\resources\DialogManager_ending.cs" />
      <Compile Include="Assets\resources\QuestionContainer.cs" />

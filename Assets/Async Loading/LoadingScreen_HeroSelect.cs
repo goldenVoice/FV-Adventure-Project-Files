@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class LoadingScreen1 : MonoBehaviour {
+public class LoadingScreen_HeroSelect : MonoBehaviour {
 	
 	string levelToLoad;
 
@@ -22,6 +22,8 @@ public class LoadingScreen1 : MonoBehaviour {
 	private float progress = 0;
 	
 	public AsyncOperation asyncop;
+
+	public GameObject selectedHeroPanel;
 
 	void Awake(){
 		background = GameObject.Find ("dark BG");
@@ -73,6 +75,14 @@ public class LoadingScreen1 : MonoBehaviour {
 				progressBar.transform.localScale = new Vector3 (newProgress, progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
 				asyncop.allowSceneActivation = true;
+
+				// activate all the selected heroes
+				for(int i = 0; i < selectedHeroPanel.transform.childCount; i++){
+					if(selectedHeroPanel.transform.GetChild(i) != null ){
+						selectedHeroPanel.transform.GetChild(i).gameObject.SendMessage("ActivateScript");
+					}
+				}
+
 			}
 		}
 	}
@@ -91,8 +101,8 @@ public class LoadingScreen1 : MonoBehaviour {
 		//isLoading = true;
 	}			
 
-	public void LoadSceneWithHeroes(){
-
+	public void setSceneNameToLoad(string sceneName){
+		levelToLoad = sceneName; 	// levelName typed in the inspector
 	}
 
 }

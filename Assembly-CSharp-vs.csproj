@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Async Loading\LoadingScreen1.cs" />
+     <Compile Include="Assets\Async Loading\LoadingScreen_HeroSelect.cs" />
      <Compile Include="Assets\CarrotCannon_Impact_Behavior.cs" />
      <Compile Include="Assets\CarrotCannon_LandEnemy_ApplyDamage.cs" />
      <Compile Include="Assets\CarrotCannon_particleBehavior.cs" />
+     <Compile Include="Assets\GetHero.cs" />
+     <Compile Include="Assets\HeroSelectionManager.cs" />
      <Compile Include="Assets\Inventory\Inventory.cs" />
      <Compile Include="Assets\Inventory\Item.cs" />
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />

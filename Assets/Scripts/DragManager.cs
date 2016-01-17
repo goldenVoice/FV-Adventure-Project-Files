@@ -27,7 +27,7 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 	GameObject[] potholes_list;
 
-
+	GameObject list_pothole;
 
 	void Start(){
 		dragBegin = false;
@@ -36,8 +36,24 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		myEventSystem = GameObject.Find("EventSystem");
 		gameManager = (GameManagerBehavior) FindObjectOfType(typeof(GameManagerBehavior));
 		// get the list of potholes from the Gameobject list_pothole then get the Potholes_list script, then access the potholesList array variable, which is the list of potholes
-		potholes_list = (GameObject[])GameObject.Find("list_pothole").GetComponent<Potholes_list>().potholesList;
+		list_pothole = GameObject.Find("list_pothole");
 	}
+
+	void Update () {
+		if(list_pothole == null){
+			list_pothole = GameObject.Find("list_pothole");
+			if(list_pothole != null){
+				potholes_list = list_pothole.GetComponent<Potholes_list>().potholesList;
+			}
+		}
+		if(gameManager == null){
+			gameManager = (GameManagerBehavior) FindObjectOfType(typeof(GameManagerBehavior));
+		}
+		if(myEventSystem == null){
+			myEventSystem = GameObject.Find("EventSystem");
+		}
+	}
+
 	public void OnBeginDrag(PointerEventData eventData){
 		dragBegin = true;
 		dragEnd = false;
@@ -95,4 +111,7 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		myEventSystem .GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
 	}
 
+	public void ActivateScript(){
+		this.enabled = true;
+	}
 }

@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HeroAttack_rambustun.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\List_hero.cs">
     <Files>
-      <File FileName="Assets\Scripts\HeroAttack_rambutan.cs" Line="20" Column="14" />
-      <File FileName="Assets\Scripts\MoveEnemy.cs" Line="24" Column="25" />
-      <File FileName="Assets\Scripts\HeroAttack_rambustun.cs" Line="93" Column="3" />
+      <File FileName="Assets\Scripts\Heal_hero.cs" Line="70" Column="17" />
+      <File FileName="Assets\Scripts\List_hero.cs" Line="19" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

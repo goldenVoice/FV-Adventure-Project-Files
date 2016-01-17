@@ -47,38 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Async Loading\LoadingScreen1.cs" />
-     <Compile Include="Assets\CWU assets\BezierCurve\Bezier\CubicBezierChain.cs" />
-     <Compile Include="Assets\CWU assets\BezierCurve\Bezier\QuadraticBezierChain.cs" />
-     <Compile Include="Assets\CWU assets\BezierCurve\Example\CubicBezierBlaster.cs" />
-     <Compile Include="Assets\CWU assets\BezierCurve\Example\LineEffects.cs" />
-     <Compile Include="Assets\CWU assets\BezierCurve\Example\PlayerControls.cs" />
-     <Compile Include="Assets\CWU assets\BezierCurve\Example\QuadraticBezierBlaster.cs" />
-     <Compile Include="Assets\CWU assets\BezierCurve\Example\SimplePatrol.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\BackgroundScroll.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\BezierLaser.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\DestroyOnInvisible.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\DestroyParticleWhenFinished.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\EnableAllScriptsOnTrigger.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\EnemyHealth.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\EnemyShoot.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\FodderAI.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\GameOverOnDestroy.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\GibOnTrigger.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\HarrassPlayer.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\LoadLevelOnDestroy.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\LookAtNearestEnemy.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\MoveForward.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\PlayerShoot.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\PowerUp.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\PowerUpManager.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\RandomLinearMove2d.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\RotateBackAndForth2d.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\SeekingMissile.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\SetParentEvent.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\SpawnObjects.cs" />
-     <Compile Include="Assets\CWU assets\Scripts\SpawnWave.cs" />
      <Compile Include="Assets\CarrotCannon_Impact_Behavior.cs" />
      <Compile Include="Assets\CarrotCannon_LandEnemy_ApplyDamage.cs" />
      <Compile Include="Assets\CarrotCannon_particleBehavior.cs" />
@@ -117,6 +85,7 @@
      <Compile Include="Assets\Scripts\HeroAttack_multiple.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_mushroom.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_necroMushroom.cs" />
+     <Compile Include="Assets\Scripts\HeroAttack_rambutan.cs" />
      <Compile Include="Assets\Scripts\HeroData.cs" />
      <Compile Include="Assets\Scripts\IgnoreRaycast.cs" />
      <Compile Include="Assets\Scripts\InputName.cs" />
@@ -175,7 +144,6 @@
      <None Include="Assets\resources\questions.xml" />
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />
      <None Include="Assets\resources\storyline_dialog.xml" />
-     <None Include="Assets\CWU assets\BezierCurve\Bezier\Instructions.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.9/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>

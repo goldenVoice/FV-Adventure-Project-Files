@@ -27,11 +27,13 @@ public class LeekBulletBehavior : MonoBehaviour {
 	public float DPSinterval;		// ilang seconds bago mag damage ule? Lets say, every 0.7 secs dumadamage
 	public float maxSeconds;		// maximum duration of the tornado
 
+	float currentDamage;
+
 	// Use this for initialization
 	void Start () {
 //		Debug.Log(hero.GetComponentInChildren<HeroData>());
 		int currentLevel = PlayerPrefs.GetInt(hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
-		float currentDamage = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;	// then, you look up the corresponding damage depending on the user's current level of attack upgrade
+		currentDamage = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;	// then, you look up the corresponding damage depending on the user's current level of attack upgrade
 		damage = currentDamage;
 		Debug.Log("hero.GetComponentInChildren<HeroData>().attackLevels[" + currentLevel + "]");
 		Debug.Log("damage: " + damage);
@@ -81,7 +83,7 @@ public class LeekBulletBehavior : MonoBehaviour {
 					HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
 					Debug.Log(hero.name + " element: " + hero_element);
 					// call the method checkElement, to know if the hero_element is weaker/ stronger to the enemy's element, then change the damage depending on the condition, 
-					damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, damage); 	// ex: fire defeats air: damage x 2
+					damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, currentDamage); 	// ex: fire defeats air: damage x 2
 					Debug.Log ("Damage after checkElement: " + damage);
 					
 					Instantiate(bulletImpact_particle, gameObject.transform.position, transform.rotation);

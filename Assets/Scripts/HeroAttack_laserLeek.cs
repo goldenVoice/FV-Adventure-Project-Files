@@ -61,6 +61,14 @@ public class HeroAttack_laserLeek : MonoBehaviour {
 			float minimalEnemyDistance = float.MaxValue;		// the maximum possible distance
 			foreach(GameObject enemy in enemiesInRange){		// iterate through the list of enemies
 				float distanceToGoal = enemy.transform.parent.GetComponent<MoveEnemy>().distanceToGoal();		// get the distanceToGoal of the current enemy
+				
+			
+				// dahil fave target nya ang air
+				if(enemy.GetComponent<EnemyData>().insectPath == EnemyData.pathWay.flying){
+					target = enemy;
+					break;
+				}
+
 				if(distanceToGoal < minimalEnemyDistance){	// kapag yung distance to the end of the stage area (yung goal) ay mas maliit sa minimalEnemyDistance
 					target = enemy;
 					minimalEnemyDistance = distanceToGoal;		// set as new minimal distance.

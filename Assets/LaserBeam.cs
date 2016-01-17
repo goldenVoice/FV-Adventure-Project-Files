@@ -18,7 +18,7 @@ public class LaserBeam : MonoBehaviour {
 
 	float startTime;
 
-	LaserBehavior laserBehavior;
+	public LaserBehavior laserBehavior;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +28,7 @@ public class LaserBeam : MonoBehaviour {
 		timeCounter = Time.time;
 		startTime = Time.time;
 		Debug.Log ("tis is calleds");
-		laserBehavior = transform.parent.GetComponent<LaserBehavior> ();
+	//	laserBehavior = transform.parent.GetComponent<LaserBehavior> ();
 	}
 	
 	// Update is called once per frame
@@ -45,14 +45,14 @@ public class LaserBeam : MonoBehaviour {
 
 		}
 		
-		if (target == null){
+		if (target == null) {
 			this.enabled = false;
 			laser.enabled = false;
+		} else {
+			point2.position = target.transform.parent.position;
+			laser.SetPosition (0, transform.position);
+			laser.SetPosition (1, point2.position);
 		}
-
-		point2.position = target.transform.parent.position;
-		laser.SetPosition (0, transform.position);
-		laser.SetPosition (1, point2.position);
 
 		if(DPS_countingInterval >= DPSinterval){		// maxSeconds = 2; dps interval = 0.5; pero ang dame lang ng bes na mababawasan sya ay 3 times. hindi 4 times (kase 2 / 0.5 = 4) there something about this computation na ganon yung nangyayare. and im too lazy now to figure out why
 			laserBehavior.SendMessage("ApplyDamage", target);

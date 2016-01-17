@@ -6,43 +6,29 @@ public class LaserBehavior : MonoBehaviour {
   	public GameObject hero;
   	public float damage;
   	public GameObject target;
-  	public Vector3 startPosition;
-  	public Vector3 targetPosition;
-
-//	public GameObject target;			// use this to reference the real enemy. so you can track its moving direction
 
   	ElementManager elementManager;
   	ElementManager.Element hero_element;
 	
-  	private float distance;     // track the bullets position
-  	private float startTime;    
 
   	private GameManagerBehavior gameManager;    // rewards player when they destroy the enemy
 
  	public GameObject bulletImpact_particle;
 
 	float currentDamage;
-//	float timeCounter;
-//	float DPS_countingInterval;
-//	public float DPSinterval;		// ilang seconds bago mag damage ule? Lets say, every 0.7 secs dumadamage
-//	public float maxSeconds;		// maximum duration of the tornado
 
+	public LaserBeam laserBeam1;
 	// Use this for initialization
 	void Start () {
-//		Debug.Log(hero.GetComponentInChildren<HeroData>());
 		int currentLevel = PlayerPrefs.GetInt(hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
 		currentDamage = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;	// then, you look up the corresponding damage depending on the user's current level of attack upgrade
 		damage = currentDamage;
 		Debug.Log("hero.GetComponentInChildren<HeroData>().attackLevels[" + currentLevel + "]");
 		Debug.Log("damage: " + damage);
-		startTime = Time.time;
-    	distance = Vector3.Distance (startPosition, targetPosition);
     	GameObject gm = GameObject.Find("GameManager");
     	gameManager = gm.GetComponent<GameManagerBehavior>();
 		elementManager = (ElementManager) FindObjectOfType(typeof(ElementManager));
 		hero_element = hero.transform.GetChild(1).GetComponent<HeroData>().heroElement;
-//		DPS_countingInterval = Time.time;
-//		timeCounter = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -72,7 +58,9 @@ public class LaserBehavior : MonoBehaviour {
 				// reward the user water when the enemy is destroyed
 				gameManager.water += target.GetComponent<EnemyData>().waterRewarded;
 				gameManager.displayWater();
-				Destroy(gameObject);
+				// disable laser beam, wala ka ng titirahin
+				laserBeam1.enabled = false;
+				laserBeam1.GetComponent<LineRenderer>().enabled = false;
 			}
 			
 //			timeCounter = Time.time;	// restart time counter to start counting again

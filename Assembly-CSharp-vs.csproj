@@ -85,6 +85,7 @@
      <Compile Include="Assets\Scripts\HeroAttack_multiple.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_mushroom.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_necroMushroom.cs" />
+     <Compile Include="Assets\Scripts\HeroAttack_rambustun.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_rambutan.cs" />
      <Compile Include="Assets\Scripts\HeroData.cs" />
      <Compile Include="Assets\Scripts\IgnoreRaycast.cs" />

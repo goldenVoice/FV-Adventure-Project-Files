@@ -78,6 +78,7 @@
      <Compile Include="Assets\Scripts\Fading.cs" />
      <Compile Include="Assets\Scripts\GameManagerBehavior.cs" />
      <Compile Include="Assets\Scripts\Heal_hero.cs" />
+     <Compile Include="Assets\Scripts\Heal_hero_HB.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\HeroAttack.cs" />
      <Compile Include="Assets\Scripts\HeroAttack_OSaucer.cs" />

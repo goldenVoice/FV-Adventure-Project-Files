@@ -67,6 +67,7 @@ public class LeekBulletBehavior : MonoBehaviour {
 			}
 
 			if (target == null){
+
 				Destroy(gameObject);
 			}
 
@@ -106,6 +107,34 @@ public class LeekBulletBehavior : MonoBehaviour {
 			// do not yer destroy the gameobject
         	//Destroy(gameObject);  // destroy the bullet
     	}
+	}
+
+	public void ApplyDamage(Collider2D target){
+			
+			Transform healthBarTransform = target.transform.parent.FindChild("HealthBar");
+			HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar>();
+			Debug.Log(hero.name + " element: " + hero_element);
+			// call the method checkElement, to know if the hero_element is weaker/ stronger to the enemy's element, then change the damage depending on the condition, 
+			damage = elementManager.checkElement(hero_element, target.GetComponentInChildren<EnemyData>().enemyElement, damage); 	// ex: fire defeats air: damage x 2
+			Debug.Log ("Damage after checkElement: " + damage);
+			
+			Instantiate(bulletImpact_particle, gameObject.transform.position, transform.rotation);
+			healthBar.currentHealth -= Mathf.Max(damage, 0);
+			
+			if(healthBar.currentHealth <= 0){
+				// dahil yung mismong parent na enemy gameObject ang i destroy para mawala yung lahat ng components ng enemy
+				Destroy(target.transform.parent.gameObject);
+				// code below, mag play ng sound ng enemy pag namatay, KUNG may sound sa gameObject na enemy
+				//AudioSource audioSource = target.GetComponent<AudioSource>();
+				//AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
+				
+				// reward the user water when the enemy is destroyed
+				gameManager.water += target.GetComponent<EnemyData>().waterRewarded;
+				gameManager.displayWater();
+				Destroy(gameObject);
+			}
+			
+			timeCounter = Time.time;	// restart time counter to start counting again
 	}
 
 }

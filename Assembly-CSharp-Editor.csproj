@@ -51,6 +51,7 @@
      <None Include="Assets\resources\questions.xml" />
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />
      <None Include="Assets\resources\storyline_dialog.xml" />
+     <None Include="Assets\CWU assets\BezierCurve\Bezier\Instructions.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.9/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>

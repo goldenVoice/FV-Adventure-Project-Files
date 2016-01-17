@@ -1,0 +1,54 @@
+Drag script onto an object
+
+
+quadratic
+Curve starts at P0 and curves toward P1 on the way to P2, creating a parabolic curve
+(curve usually does not pass through P1)	// see wikipedia for a graph of the curve
+
+
+cubic
+Curve starts at P0 and curves toward P1, then curves out of an arc near P2 on the way to P3
+(curve usually does not pass through P1 or P2)	// see wikipedia for a graph of the curve
+
+
+/*
+ * the "Total Subdivisions" is calculated from "Subdivisions Per Section" and is only for display
+ * when the curve is created, the subdivisions per section is forced to 1-100 inclusive
+ * (the 1-100 limit is mainly to prevent lag from dragging the value to an extreme number in the editor)
+ */
+if( the curve is not smooth enough )
+	increase the "Subdivisions Per Section";
+
+
+/* 
+ * the line renderer box will create a new line renderer, or use one already attached to the object
+ * unchecking will not remove an existing line renderer (in case it has a setup the user wants to save)
+ */
+if( you want a LineRenderer to draw the bezier curve in-game )
+	check the "Use Line Renderer" box;
+
+
+/*
+ * transform positions and rotations will be used
+ * the values are global and will be effected by parent transforms as well
+ */
+if( you want the bezier to stay with the transform )
+	check the "Stay With Transform" box;
+
+
+/*
+ * transform scale will be used
+ * the values are global and will be effected by parent transforms as well
+ */
+if( you want the bezier to use the transform scale )
+	check the "Use Transform Scale" box;
+
+
+/*
+ * changing the bezier curve via script functions will cause the curve to update once,
+ * instead of every frame (unless the curve is changed via script every frame)
+ */
+if( you want the bezier to keep updating because of manual changes )
+	check the "Continual Recalculate" box;
+
+

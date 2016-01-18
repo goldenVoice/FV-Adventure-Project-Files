@@ -53,6 +53,7 @@
      <Compile Include="Assets\CarrotCannon_particleBehavior.cs" />
      <Compile Include="Assets\CheckBeforeDestroy.cs" />
      <Compile Include="Assets\CheckIfHeroUnlocked.cs" />
+     <Compile Include="Assets\DisplayHeroInfo.cs" />
      <Compile Include="Assets\GetHero.cs" />
      <Compile Include="Assets\GoButtonChecker.cs" />
      <Compile Include="Assets\HeroRemover.cs" />
@@ -153,6 +154,7 @@
      <Compile Include="Assets\shopManager.cs" />
      <Compile Include="Assets\shopTutorialManager.cs" />
      <Compile Include="Assets\showHero.cs" />
+     <Compile Include="Assets\showHero_library.cs" />
      <None Include="Assets\Sorting View\ReadMe.txt" />
      <None Include="Assets\resources\questions.xml" />
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />

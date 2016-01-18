@@ -51,13 +51,17 @@
      <Compile Include="Assets\CarrotCannon_Impact_Behavior.cs" />
      <Compile Include="Assets\CarrotCannon_LandEnemy_ApplyDamage.cs" />
      <Compile Include="Assets\CarrotCannon_particleBehavior.cs" />
+     <Compile Include="Assets\CheckBeforeDestroy.cs" />
      <Compile Include="Assets\GetHero.cs" />
+     <Compile Include="Assets\GoButtonChecker.cs" />
+     <Compile Include="Assets\HeroRemover.cs" />
      <Compile Include="Assets\HeroSelectionManager.cs" />
      <Compile Include="Assets\Inventory\Inventory.cs" />
      <Compile Include="Assets\Inventory\Item.cs" />
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\InventoryManager.cs" />
      <Compile Include="Assets\LaserBeam.cs" />
+     <Compile Include="Assets\LevelDisplay.cs" />
      <Compile Include="Assets\MoneyChecker.cs" />
      <Compile Include="Assets\MushroomSummon.cs" />
      <Compile Include="Assets\Mushroom_animatorChecker.cs" />
@@ -131,6 +135,7 @@
      <Compile Include="Assets\Scripts\pauseScene.cs" />
      <Compile Include="Assets\Scripts\showOrHideCanvas.cs" />
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
+     <Compile Include="Assets\SelectHeroManager.cs" />
      <Compile Include="Assets\SoundButtonManager.cs" />
      <Compile Include="Assets\StageUnlock.cs" />
      <Compile Include="Assets\StorylineSoundManager.cs" />

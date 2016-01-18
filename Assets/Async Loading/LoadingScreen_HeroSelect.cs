@@ -78,10 +78,14 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 
 				// activate all the selected heroes
 				for(int i = 0; i < selectedHeroPanel.transform.childCount; i++){
-					if(selectedHeroPanel.transform.GetChild(i) != null ){
-						selectedHeroPanel.transform.GetChild(i).gameObject.SendMessage("ActivateScript");
+					if(selectedHeroPanel.transform.GetChild(i).childCount != 0 ){
+						selectedHeroPanel.transform.GetChild(i).GetChild(0).gameObject.SendMessage("ActivateScript");
 					}
 				}
+
+				// make it a child of the lower right panel on the level
+				//selectedHeroPanel.transform.SetParent (GameObject.Find ("HeroSelectPanel").transform, false );
+				selectedHeroPanel.transform.parent.gameObject.SendMessage("ActivateScript");
 
 			}
 		}

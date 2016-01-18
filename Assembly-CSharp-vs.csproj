@@ -52,6 +52,7 @@
      <Compile Include="Assets\CarrotCannon_LandEnemy_ApplyDamage.cs" />
      <Compile Include="Assets\CarrotCannon_particleBehavior.cs" />
      <Compile Include="Assets\CheckBeforeDestroy.cs" />
+     <Compile Include="Assets\CheckIfHeroUnlocked.cs" />
      <Compile Include="Assets\GetHero.cs" />
      <Compile Include="Assets\GoButtonChecker.cs" />
      <Compile Include="Assets\HeroRemover.cs" />
@@ -67,6 +68,7 @@
      <Compile Include="Assets\Mushroom_animatorChecker.cs" />
      <Compile Include="Assets\OSaucer_checkAnimator.cs" />
      <Compile Include="Assets\OnionBulletEffect.cs" />
+     <Compile Include="Assets\PanelChecker.cs" />
      <Compile Include="Assets\PlaySound.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />

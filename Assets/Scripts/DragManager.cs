@@ -25,9 +25,13 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	[HideInInspector]
 	public GameObject heroPreview;
 
-	GameObject[] potholes_list;
+	public GameObject[] potholes_list;
 
-	GameObject list_pothole;
+	private GameObject list_pothole;
+
+	void Awake(){
+
+	}
 
 	void Start(){
 		dragBegin = false;
@@ -40,21 +44,28 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	}
 
 	void Update () {
-		if(list_pothole == null){
-			list_pothole = GameObject.Find("list_pothole");
-			if(list_pothole != null){
-				potholes_list = list_pothole.GetComponent<Potholes_list>().potholesList;
-			}
+		if (list_pothole == null) {
+			list_pothole = GameObject.Find ("list_pothole");
 		}
+		else if(list_pothole != null){
+				//Debug.Log("yo" );
+				potholes_list = list_pothole.GetComponent<Potholes_list>().potholesList;
+		}
+
 		if(gameManager == null){
 			gameManager = (GameManagerBehavior) FindObjectOfType(typeof(GameManagerBehavior));
 		}
 		if(myEventSystem == null){
 			myEventSystem = GameObject.Find("EventSystem");
 		}
-		if( !(gameObject.transform.parent.IsChildOf((GameObject.Find ("HeroSelectPanel").transform) ) ) ){
-			gameObject.transform.parent.SetParent (GameObject.Find ("HeroSelectPanel").transform, false );
-			
+
+		//GameObject.Find("HeroSelectPanel").transform)
+
+		if(GameObject.Find("HeroSelectPanel") != null ){
+			if( !(gameObject.transform.parent.IsChildOf((GameObject.Find ("HeroSelectPanel").transform) ) ) ){
+				gameObject.transform.parent.SetParent (GameObject.Find ("HeroSelectPanel").transform, false );
+				
+			}
 		}
 	}
 

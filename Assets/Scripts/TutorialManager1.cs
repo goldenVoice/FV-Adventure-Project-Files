@@ -293,6 +293,8 @@ public class TutorialManager1 : MonoBehaviour {
 				buttons[0].SetActive(true);										// show the carrot
 				buttons[0].GetComponent<Button>().interactable = false;			// so the user cant click the button
 				buttons[0].transform.GetChild(1).gameObject.SetActive(false);	// hide the highlight
+				buttons[18].SetActive(true);										// show the hero selection panel
+				
 				// SHOW THE WATER BAR
 				buttons[5].SetActive(true);
 				GameObject waterText = GameObject.Find("WaterBarText");
@@ -466,5 +468,6 @@ public class TutorialManager1 : MonoBehaviour {
 
 	public void restartStageFromTut(){
 		PlayerPrefs.SetInt("playerReturns_toLvl_1", 1);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
+		//DontDestroyOnLoad(GameObject.Find("HeroSelectPanel_tutorial").gameObject);
 	}
 }

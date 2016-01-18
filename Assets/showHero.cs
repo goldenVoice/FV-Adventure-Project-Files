@@ -9,6 +9,7 @@ public class showHero : MonoBehaviour {
 			Debug.Log("active watermelon");
 			gameObject.GetComponent<Image>().enabled = true;
 			gameObject.GetComponent<Button>().interactable = true;
+			gameObject.transform.GetChild(1).gameObject.SetActive(false);
 		}
 	}
 	// Use this for initialization

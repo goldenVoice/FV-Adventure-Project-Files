@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class LoadingScreen_HeroSelect : MonoBehaviour {
 	
@@ -91,8 +92,8 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 		}
 	}
 
-	public void LoadScene(string levelName){
-		levelToLoad = levelName; 	// levelName typed in the inspector
+	public void LoadScene(){
+		//levelToLoad = levelName; 	// levelName typed in the inspector
 		this.enabled = true;	// enable the script to start loading
 		//isLoading = true;
 	}
@@ -105,8 +106,9 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 		//isLoading = true;
 	}			
 
-	public void setSceneNameToLoad(string sceneName){
-		levelToLoad = sceneName; 	// levelName typed in the inspector
+	public void setSceneNameToLoad(){
+		print (EventSystem.current.currentSelectedGameObject.name);
+		levelToLoad = EventSystem.current.currentSelectedGameObject.name; 	// levelName typed in the inspector
 	}
 
 }

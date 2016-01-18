@@ -50,7 +50,7 @@ public class shopTutorialManager : MonoBehaviour {
 			
 			tutorial_dialog.Add("You can also buy certain boosters for your battle.");	
 			
-			tutorial_dialog.Add("Claim rewards in the 'Achievements'.");	
+		//	tutorial_dialog.Add("Claim rewards in the 'Achievements'.");	
 			tutorial_dialog.Add("Browse the 'Library' for references about enemies, etc.");	
 			
 			buttons[1].SetActive(false);

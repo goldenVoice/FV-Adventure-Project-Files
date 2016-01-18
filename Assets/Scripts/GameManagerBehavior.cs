@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GameManagerBehavior : MonoBehaviour {
 
-	public string thisSceneFin;		// pangalan ng current level na nilalaro ng user.
+	string thisSceneFin;		// pangalan ng current level na nilalaro ng user.
 	public int moneyToReward;		// money rewarded when level is finished
 
   	public Text waterText;
@@ -45,7 +45,7 @@ public class GameManagerBehavior : MonoBehaviour {
   	// Use this for initialization
 	void Start () {
      // object.component.property
-
+		thisSceneFin = Application.loadedLevelName;
 		// the starting max health is initialized before the start of the game. before level 1-1. sa may end ng STORYLINE
 		health = PlayerPrefs.GetInt("max health");
 
@@ -111,15 +111,15 @@ public class GameManagerBehavior : MonoBehaviour {
   	public void didPlayerWin(bool playerWin){     // check if player won, 
     	if(playerWin == false){
       		Time.timeScale = 0.0f;  // pause the game
-      		restartConfrimTxt.GetComponent<Text>().text = "You Lost! Restart Level?";
+      		restartConfrimTxt.GetComponent<Text>().text = "You Lost! Go back to level select?";
       		canvas_restart.GetComponent<Canvas>().enabled = true;
-      		GameObject NoButton_backToMap = GameObject.Find("NoButton_backToMap");
-      		GameObject NoButton_restart = GameObject.Find("NoButton_restart");
-      		NoButton_backToMap.SetActive(true);
-
-			if(NoButton_restart != null){
-      			NoButton_restart.SetActive(false);
-			}
+//      		GameObject NoButton_backToMap = GameObject.Find("NoButton_backToMap");
+//      		GameObject NoButton_restart = GameObject.Find("NoButton_restart");
+//      		NoButton_backToMap.SetActive(true);
+//
+//			if(NoButton_restart != null){
+//      			NoButton_restart.SetActive(false);
+			//}
 
     	}
     	else{

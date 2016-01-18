@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class NextScene : MonoBehaviour {
 
@@ -16,6 +17,13 @@ public class NextScene : MonoBehaviour {
 		float fadeTime = GameObject.FindObjectOfType<Fading>().BeginFade(1);
 		yield return new WaitForSeconds(fadeTime);
 		Application.LoadLevel(sceneName);
+
+	}
+
+	public void loadHeroSelectScene(){
+		Application.LoadLevel ("heroSelect");
+		PlayerPrefs.SetString ("levelToLoad", EventSystem.current.currentSelectedGameObject.name);
+				
 	}
 
 }

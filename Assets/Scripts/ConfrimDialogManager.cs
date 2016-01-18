@@ -57,6 +57,9 @@ public class ConfrimDialogManager : MonoBehaviour {
 
 	public void RestartScene() {
 		Debug.Log("Current level: " + Application.loadedLevelName);
-		Application.LoadLevel(Application.loadedLevelName);
+		Debug.Log (GameObject.Find ("HeroSelectPanel").gameObject);
+//		DontDestroyOnLoad (GameObject.Find ("HeroSelectPanel").gameObject);
+		Application.LoadLevel(PlayerPrefs.GetString ("lastLevelSelect")) ;
+		//DontDestroyOnLoad (GameObject.Find ("HeroSelectPanel").gameObject);
 	}
 }

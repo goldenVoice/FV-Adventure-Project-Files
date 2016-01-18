@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class LoadingScreen_HeroSelect : MonoBehaviour {
 	
-	string levelToLoad;
+	public string levelToLoad;
 
 	bool isLoading = false;
 
@@ -42,6 +42,7 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Debug.Log (levelToLoad);
 		isLoading = true;
 		asyncop = Application.LoadLevelAsync (levelToLoad);
 //		Debug.Log("Text Object: " + textObj);		
@@ -87,7 +88,7 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 				// make it a child of the lower right panel on the level
 				//selectedHeroPanel.transform.SetParent (GameObject.Find ("HeroSelectPanel").transform, false );
 				selectedHeroPanel.transform.parent.gameObject.SendMessage("ActivateScript");
-
+			//	DontDestroyOnLoad(selectedHeroPanel);
 			}
 		}
 	}
@@ -95,6 +96,7 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 	public void LoadScene(){
 		//levelToLoad = levelName; 	// levelName typed in the inspector
 		this.enabled = true;	// enable the script to start loading
+		PlayerPrefs.SetString("lastLevelSelect", Application.loadedLevelName);
 		//isLoading = true;
 	}
 
@@ -109,6 +111,13 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 	public void setSceneNameToLoad(){
 		print (EventSystem.current.currentSelectedGameObject.name);
 		levelToLoad = EventSystem.current.currentSelectedGameObject.name; 	// levelName typed in the inspector
+		print (levelToLoad);
 	}
+
+//	public void LoadLevelWithHero(){
+//		levelToLoad = (PlayerPrefs.GetString ("levelToLoad"));
+//		this.enabled = true;
+//		
+//	}
 
 }

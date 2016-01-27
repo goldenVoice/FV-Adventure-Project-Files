@@ -54,7 +54,7 @@ public class shopTutorialManager : MonoBehaviour {
 			tutorial_dialog.Add("Browse the 'Library' for references about enemies, etc.");	
 			
 			buttons[1].SetActive(false);
-			buttons[2].SetActive(false);
+//			buttons[2].SetActive(false);
 			buttons[3].SetActive(false);
 			buttons[5].SetActive(false);
 			buttons[6].GetComponent<Button>().enabled = false;	// stage 1 button

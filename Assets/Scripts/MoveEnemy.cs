@@ -70,18 +70,25 @@ public class MoveEnemy : MonoBehaviour {
 
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "up"){
 			// get the child of ant object which is the ant sprite, then set the animation
+			Debug.Log ("going up");
+			//xgameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("up");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("up");
 		}
-		else if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "down"){
+		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "down"){
 
+			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("down");
+			Debug.Log ("going down");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("down");
 		}
-		else if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "right"){
+		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "right"){
 			// unity bug di nag re reset yung ibang trigger so i tried using ResetTrigger , yung i re reset ay ang animation before the animation you want to trigger
-			gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("down");
+			Debug.Log ("going right");
+			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("right");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("right");
 		}
-		else if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "left"){
+		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "left"){
+			Debug.Log ("going left");
+			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("left");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("left");
 		}
 //    Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;

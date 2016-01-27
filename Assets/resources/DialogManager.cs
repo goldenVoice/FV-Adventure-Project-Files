@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour {
 
+	public AudioClip[] voiceOver;
 	public string sceneToLoad;
 	public List<string> dialog_lines;
 	public TextAsset _xml;
@@ -32,8 +33,12 @@ public class DialogManager : MonoBehaviour {
 	public CanvasGroup panel_dialog;
 	public int counter = 0;
 
+	private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
+
+		audio = GameObject.Find ("BGM").GetComponent<AudioSource>();
 
 		fadeCanvas = gameObject.GetComponent<FadeCanvas>();
 		fade_panel = (fade_panelDialog) GameObject.FindObjectOfType(typeof(fade_panelDialog));
@@ -53,6 +58,7 @@ public class DialogManager : MonoBehaviour {
 
 		// print the first line in the dialog, counter should be equal to 0
 		story_text.text = dialog_lines[counter];
+		audio.PlayOneShot(voiceOver[counter]);
 		counter++;	// then iterate the counter variable to proceed to the next line
 	}
 	
@@ -121,10 +127,14 @@ public class DialogManager : MonoBehaviour {
 			
 		}
 		story_text.text = dialog_lines[counter];
+		audio.PlayOneShot(voiceOver[counter], 5f);		
 		counter++;
 	}
 
 	IEnumerator wait(){
 		yield return new WaitForSeconds(2);
 	}
+
+
+
 }

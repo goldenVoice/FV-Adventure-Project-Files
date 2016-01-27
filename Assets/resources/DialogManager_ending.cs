@@ -13,8 +13,12 @@ public class DialogManager_ending : MonoBehaviour {
 	public bool secondStoryline;	// check in the inspector kung the story to play is on 
 	public bool thirdStoryline;	
 	public bool endingStoryline;
-	public string[] dialogs;
 
+	public AudioClip[] voiceOver;
+	private AudioSource audio;
+
+	public string[] dialogs;
+	
 	public Text story_text;
 	public Canvas canvas;
 
@@ -35,12 +39,15 @@ public class DialogManager_ending : MonoBehaviour {
 	public int counter = 0;	
 
 	void Awake(){
+		audio = GameObject.Find ("BGM").GetComponent<AudioSource>();
+
 		if(secondStoryline){
 			dialogs[0] = "\"Is that the queen? Hurry! We must rescue her!\" King Guava proclaimed.";
 			dialogs[1] = "\"Wait... Something's wrong with her.\"";
 			dialogs[2] = "\"Grrr...\"";
 			dialogs[3] = "\"My insects! ATTACK THEM!\" Queen Bitter Gourd yelled!";
 			dialogs[4] = "\"What? Wait... We have no other choice! We have to fight her!\" King Guava exclaimed.";
+			audio.PlayOneShot(voiceOver[0]);
 			story_text.text = dialogs[0];
 		}
 
@@ -57,6 +64,7 @@ public class DialogManager_ending : MonoBehaviour {
 			dialogs[9] = "\"I'll wait at the third place of my chamber! Prove me your worth King Guava!\"";
 			dialogs[10] = "After that, The Insect Queen vanished. Leaving King Guava with a challenge";
 			dialogs[11] = "to avenge his fallen wife, Queen Bitter Gourd, whose now lying cold on the ground.";
+			audio.PlayOneShot(voiceOver[0]);
 			story_text.text = dialogs[0];
 		}
 		else if(endingStoryline){
@@ -70,12 +78,14 @@ public class DialogManager_ending : MonoBehaviour {
 			dialogs[7] = "Gave Queen Bitter Gourd a decent burial...";
 			dialogs[8] = "Peace was restored to Fruity-Veggie World once again...";
 			dialogs[9] = "";
+			audio.PlayOneShot(voiceOver[0]);
 			story_text.text = dialogs[0];
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
+
 
 		fadeCanvas = gameObject.GetComponent<FadeCanvas>();
 		fade_panel = (fade_panelDialog) GameObject.FindObjectOfType(typeof(fade_panelDialog));
@@ -96,6 +106,7 @@ public class DialogManager_ending : MonoBehaviour {
 				panel_dialog.GetComponentInChildren<Button>().interactable = false;
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;
 
 			}
@@ -106,17 +117,20 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;
 
 			}
 			else if(story_text.text == "\"Grrr...\""){
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;
 
 			}
 			else if(story_text.text == "\"My insects! ATTACK THEM!\" Queen Bitter Gourd yelled!"){
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;
 
 			}
@@ -137,11 +151,13 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 				
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;
 			}
 			else if(story_text.text == "King Guava went near to her and said \"My Queen! What happened to you?\""){	
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "\"I'm sorry... I was blinded by my desire to give you children. I hope you can forgiv...\""){	
@@ -151,12 +167,14 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 
 			else if(story_text.text == "Suddenly, the queen was zapped by lightning! The King was shocked"){	
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "to see his wife die right in front of his eyes"){	
@@ -166,11 +184,13 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "\"HAHAHA! You're too weak. I'll get Fruity-Veggie World myself.\""){	
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "It's the Insect Queen! She killed Queen Bitter Gourd!"){	
@@ -180,16 +200,19 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "\"This is too much! I can't let you do this any longer!\" King Guava opposed."){	
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "\"If you can stop me.\" The Insect Queen mocked."){	
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "\"I'll wait at the third place of my chamber! Prove me your worth King Guava!\""){	
@@ -199,11 +222,13 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "After that, The Insect Queen vanished. Leaving King Guava with a challenge"){	
 				
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "to avenge his fallen wife, Queen Bitter Gourd, whose now lying cold on the ground."){	
@@ -225,6 +250,7 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "\"It's over now, Angela.\" The King said with a dominating tone."){	
@@ -235,11 +261,13 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "\"Why?! Why did you chose Bitter Gourd instead of me?! I loved you so much..."){	
 				
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "If I can't make you mine, I won't give you to anyone else! You will die with me!\""){	
@@ -250,6 +278,7 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "But before she could grab her staff, the Fruity-Veggie police came and arrested her."){	
@@ -260,6 +289,7 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "The King returned to Fruity-Veggie world..."){	
@@ -270,6 +300,7 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "Imprisoned the Insect Queen..."){	
@@ -280,6 +311,7 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "Gave Queen Bitter Gourd a decent burial..."){	
@@ -292,6 +324,7 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
+				audio.PlayOneShot(voiceOver[counter]);
 				counter++;	
 			}
 			else if(story_text.text == "Peace was restored to Fruity-Veggie World once again..."){	

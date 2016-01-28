@@ -54,4 +54,27 @@ public class UnlockHero : MonoBehaviour {
 		}
 	}
 
+	public void SE_unlockHero(){
+		PlayerPrefs.SetInt(heroName.name, 1);
+		List_ofHardHero list_hardHero = (List_ofHardHero) GameObject.Find ("List_HardHero").GetComponent<List_ofHardHero>();
+
+		foreach (GameObject circleHero in list_hardHero.heroesToUnlock_SE) {
+			if(circleHero.name == heroName.name){
+				Debug.Log("na unlock na si: " + heroName.name);
+				circleHero.gameObject.SetActive(true);
+//				circleHero.transform.GetChild(3).gameObject.SetActive(true);
+//				circleHero.transform.GetChild(4).gameObject.SetActive(true);
+//				circleHero.transform.GetChild(5).gameObject.SetActive(true);
+				break;
+			}
+		}
+
+		int money = PlayerPrefs.GetInt("Money");							// deduct user money
+		PlayerPrefs.SetInt("Money", money - heroPrice);						// deduct user money
+		money = PlayerPrefs.GetInt("Money");								// get new money
+		moneyText.text = "" + money;										// display money left
+
+		gameObject.SetActive (false);
+	}
+
 }

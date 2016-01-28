@@ -56,6 +56,7 @@
      <Compile Include="Assets\DisplayHeroInfo.cs" />
      <Compile Include="Assets\GetHero.cs" />
      <Compile Include="Assets\GoButtonChecker.cs" />
+     <Compile Include="Assets\HeroPotionChecker.cs" />
      <Compile Include="Assets\HeroRemover.cs" />
      <Compile Include="Assets\HeroSelectionManager.cs" />
      <Compile Include="Assets\Inventory\Inventory.cs" />
@@ -64,6 +65,8 @@
      <Compile Include="Assets\InventoryManager.cs" />
      <Compile Include="Assets\LaserBeam.cs" />
      <Compile Include="Assets\LevelDisplay.cs" />
+     <Compile Include="Assets\List_ofHardHero.cs" />
+     <Compile Include="Assets\MediumHeroesChecker.cs" />
      <Compile Include="Assets\MoneyChecker.cs" />
      <Compile Include="Assets\MushroomSummon.cs" />
      <Compile Include="Assets\Mushroom_animatorChecker.cs" />
@@ -71,6 +74,7 @@
      <Compile Include="Assets\OnionBulletEffect.cs" />
      <Compile Include="Assets\PanelChecker.cs" />
      <Compile Include="Assets\PlaySound.cs" />
+     <Compile Include="Assets\SEquipChecker.cs" />
      <Compile Include="Assets\Scripts\AnimatorChecker.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\CarrotCannon_BulletBehavior.cs" />

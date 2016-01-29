@@ -6,7 +6,7 @@ public class showHero : MonoBehaviour {
 
 	void Awake(){
 		if(PlayerPrefs.GetInt(gameObject.name) == 1){
-			Debug.Log("active watermelon");
+//			Debug.Log("active watermelon");
 			gameObject.GetComponent<Image>().enabled = true;
 			gameObject.GetComponent<Button>().interactable = true;
 			gameObject.transform.GetChild(1).gameObject.SetActive(false);

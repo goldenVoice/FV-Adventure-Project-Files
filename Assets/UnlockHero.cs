@@ -75,6 +75,7 @@ public class UnlockHero : MonoBehaviour {
 		moneyText.text = "" + money;										// display money left
 
 		gameObject.SetActive (false);
+		gameObject.transform.parent.GetChild (3).gameObject.SetActive (true);
 	}
 
 }

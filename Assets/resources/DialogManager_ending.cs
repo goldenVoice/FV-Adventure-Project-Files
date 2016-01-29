@@ -42,7 +42,7 @@ public class DialogManager_ending : MonoBehaviour {
 		audio = GameObject.Find ("BGM").GetComponent<AudioSource>();
 
 		if(secondStoryline){
-			dialogs[0] = "\"Is that the queen? Hurry! We must rescue her!\" King Guava proclaimed.";
+			dialogs[0] = "\"Is that the queen? We must rescue her!\" King Guava proclaimed.";
 			dialogs[1] = "\"Wait... Something's wrong with her.\"";
 			dialogs[2] = "\"Grrr...\"";
 			dialogs[3] = "\"My insects! ATTACK THEM!\" Queen Bitter Gourd yelled!";
@@ -102,7 +102,7 @@ public class DialogManager_ending : MonoBehaviour {
 	public void nextLine(){
 
 		if(secondStoryline){
-			if(story_text.text == "\"Is that the queen? Hurry! We must rescue her!\" King Guava proclaimed."){
+			if(story_text.text == "\"Is that the queen? We must rescue her!\" King Guava proclaimed."){
 				panel_dialog.GetComponentInChildren<Button>().interactable = false;
 
 				story_text.text = dialogs[counter];

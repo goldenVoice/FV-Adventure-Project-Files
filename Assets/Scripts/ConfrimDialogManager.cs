@@ -57,9 +57,24 @@ public class ConfrimDialogManager : MonoBehaviour {
 
 	public void RestartScene() {
 		Debug.Log("Current level: " + Application.loadedLevelName);
-		Debug.Log (GameObject.Find ("HeroSelectPanel").gameObject);
+
+		// algorithm, kunin muna current level ngayon
+		// ex: curlevel  = "Level 2-1"
+		string curLevel = Application.loadedLevelName;
+
+		// kinuha kung anong stage na tayo (example stage 2)
+		// kaya nag substring 
+		// Level '2'-1
+		// yung 2 ang kelangan, eh since pang 6 sya doon sa string na curLevel, kaya ganyan ang format, tapos 1 lang ang length, kase yung isang character na yon lang ang kelangan naten
+		string stageNumber = curLevel.Substring (6, 1) ;
+
+//		Debug.Log (stageNumber);
+//		Debug.Log (GameObject.Find ("HeroSelectPanel").gameObject);
 //		DontDestroyOnLoad (GameObject.Find ("HeroSelectPanel").gameObject);
-		Application.LoadLevel(PlayerPrefs.GetString ("lastLevelSelect")) ;
+
+		// now we load the "Stage 2 - LvlSelect" to apply the restart of the game, by letting them choose the heroes again
+		Application.LoadLevel("Stage " + stageNumber + " - LvlSelect") ;
+		
 		//DontDestroyOnLoad (GameObject.Find ("HeroSelectPanel").gameObject);
 	}
 }

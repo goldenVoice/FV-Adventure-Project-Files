@@ -127,7 +127,7 @@ public class DialogManager : MonoBehaviour {
 			
 		}
 		story_text.text = dialog_lines[counter];
-		audio.PlayOneShot(voiceOver[counter], 5f);		
+		audio.PlayOneShot(voiceOver[counter]);		
 		counter++;
 	}
 

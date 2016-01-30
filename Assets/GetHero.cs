@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GetHero : MonoBehaviour {
 
@@ -25,6 +26,12 @@ public class GetHero : MonoBehaviour {
 
 	public void GetTheHero(GameObject hero){
 		gameManager.currentSelectedHero = hero;
+
+		// SET THE WATER cost of the cur selected hero, by getting the text on the circle_hero's child. the waterCostText
+		int cost = int.Parse (gameObject.transform.GetChild (0).GetComponent<Text> ().text);
+		gameManager.curHeroWatercost = cost;
+
+		//hero.GetComponent<HeroData> ().cost = cost;
 	}
 	
 }

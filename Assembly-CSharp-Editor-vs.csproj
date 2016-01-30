@@ -49,6 +49,7 @@
      <Compile Include="Assets\Sorting View\Editor\SortingView.cs" />
      <None Include="Assets\Sorting View\ReadMe.txt" />
      <None Include="Assets\resources\questions.xml" />
+     <None Include="Assets\resources\Hero_info.xml" />
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />
      <None Include="Assets\resources\storyline_dialog.xml" />
  <Reference Include="UnityEngine.UI">

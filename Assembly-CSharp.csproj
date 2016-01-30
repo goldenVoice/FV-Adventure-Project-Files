@@ -149,6 +149,7 @@
      <Compile Include="Assets\UnlockHero.cs" />
      <Compile Include="Assets\UpgradeHero.cs" />
      <Compile Include="Assets\VibrManager.cs" />
+     <Compile Include="Assets\WaterCost_indicator.cs" />
      <Compile Include="Assets\blasterMelon_layerManager.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
      <Compile Include="Assets\resources\DialogManager_ending.cs" />
@@ -161,6 +162,7 @@
      <Compile Include="Assets\showHero_library.cs" />
      <None Include="Assets\Sorting View\ReadMe.txt" />
      <None Include="Assets\resources\questions.xml" />
+     <None Include="Assets\resources\Hero_info.xml" />
      <None Include="Assets\Art\Kuya Matty new arts\for FV-ADVENTURE\jemoh read me first xDD.txt" />
      <None Include="Assets\resources\storyline_dialog.xml" />
  <Reference Include="UnityEngine.UI">

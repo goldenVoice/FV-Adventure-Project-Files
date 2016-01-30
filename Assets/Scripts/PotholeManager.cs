@@ -80,7 +80,7 @@ public class PotholeManager : MonoBehaviour {
 			heroPrefab_parent = GameManager.currentSelectedHero;              			// set the currentSelected hero as the heroPrefab_parent for the pothole 
 //			Debug.Log(heroPrefab_parent.transform.GetChild(1).gameObject);
 			heroPrefab = heroPrefab_parent.transform.GetChild(1).gameObject;	// the actual heroPrefab. not the empty parent gameObject (heroPrefab_parent)
-			int cost = heroPrefab.GetComponent<HeroData>().cost;       					// in here, getChild(1) is accessing the true carrot hero. then accessed its cost.         
+			int cost = GameManager.curHeroWatercost;       					
 			// pag wala pang hero at may sapat na water pa yung user      
 			if( canPlaceHero() && (GameManager.water >= cost)) {
 				

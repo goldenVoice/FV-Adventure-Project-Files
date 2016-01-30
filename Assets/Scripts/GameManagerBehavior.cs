@@ -32,7 +32,8 @@ public class GameManagerBehavior : MonoBehaviour {
   	GameObject restartConfrimTxt;
 
   	public GameObject currentSelectedHero;
-  
+	public int curHeroWatercost;			
+
   	public PotholeManager potholeManager;
   
 	//private GameObject nextWaveIndicator;

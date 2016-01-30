@@ -30,7 +30,9 @@ public class HeroData : MonoBehaviour {
 		public float health;
 	}
 
+	[HideInInspector]
   	public int cost;
+
   	public GameObject bullet;
 
 	public EnemyData.pathWay target;
@@ -47,7 +49,7 @@ public class HeroData : MonoBehaviour {
 	double result;
 
 	void Awake(){
-
+	
 		// PERFORM CHECKS IF USER IS ON HARD MODE. IF YES, ENABLE THE HEALTH BAR BG AND HEALTH BAR OBJECTS
 
 
@@ -58,6 +60,8 @@ public class HeroData : MonoBehaviour {
 			heroHP.maxHealth = healthLevels[HP_Level].health;				// get the current level of health of the hero, then set it.
 			heroHP.currentHealth = heroHP.maxHealth;						// set the current & max here, kase di alam kung sino mauuna sa 2 script (kung healthbar ba o eto)
 		}
+
+		
 	}
 
 	// Use this for initialization

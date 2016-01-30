@@ -1,0 +1,71 @@
+<HeroInfo>
+	<Hero name = 'circle_carrot'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_banana'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_watermelon'>
+		<Water>100</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_orange'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_rambutan'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_leek'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_mushroom'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_onion'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_coconut'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_carrotCannon'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_healingBanana'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_blasterMelon'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_orangeSaucer'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_rambustun'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_laserLeek'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_necroMushroom'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+	<Hero name = 'circle_megaOnion'>
+		<Water>90</Water>
+		<BuyCost></BuyCost>
+	</Hero>
+		
+</HeroInfo>

@@ -8,7 +8,7 @@ public class LevelUnlock : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log((levelButtons[0].name));
+//		Debug.Log((levelButtons[0].name));
 		if(PlayerPrefs.GetInt(levelButtons[0].name) == 1){											//ex: levelButtons[0].name is Level 1-1, yan yung button na scene. and if = 1 sya, meaning natapos na ng user yung lvl 1
 
 			showStatus(levelButtons[0]);															// show status of level 1: perfect of complete lang
@@ -36,7 +36,7 @@ public class LevelUnlock : MonoBehaviour {
 	}
 
 	void showStatus(Button button){
-		Debug.Log(PlayerPrefs.GetFloat(button.name + "_status"));
+//		Debug.Log(PlayerPrefs.GetFloat(button.name + "_status"));
 		if(PlayerPrefs.GetFloat(button.name + "_status") == 1){
 			button.transform.GetChild(1).GetComponent<Text>().text = "PERFECT!";
 			button.transform.GetChild(1).GetComponent<Text>().color = Color.green;

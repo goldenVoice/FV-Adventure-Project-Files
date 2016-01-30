@@ -1,6 +1,6 @@
 <HeroInfo>
 	<Hero name = 'circle_carrot'>
-		<Water>90</Water>
+		<Water>80</Water>
 		<BuyCost></BuyCost>
 	</Hero>
 	<Hero name = 'circle_banana'>

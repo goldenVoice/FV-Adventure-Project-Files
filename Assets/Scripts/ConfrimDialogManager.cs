@@ -5,10 +5,11 @@ public class ConfrimDialogManager : MonoBehaviour {
  	
  	GameObject canvas_pauseMenu;
 	GameObject canvas_restartDialog; 
-  GameObject canvas_MapDialog;
-
-  public GameObject NoButton_backToMap;		// kailangan to, para i set pabalik yung noButton_backToMap into true; 
+  	GameObject canvas_MapDialog;
+  	public GameObject NoButton_backToMap;		// kailangan to, para i set pabalik yung noButton_backToMap into true; 
 	
+	LoadingScreen1 loadingScreen;
+
 	// Use this for initialization
 	void Start () {
 			// look for the canvas with the pause menu
@@ -19,6 +20,8 @@ public class ConfrimDialogManager : MonoBehaviour {
 
 		canvas_MapDialog = GameObject.Find("Canvas_BackToMapDialog");
 		canvas_MapDialog.GetComponent<Canvas>().enabled = false;	// hide the confirmation dialog
+
+		loadingScreen = (LoadingScreen1) GameObject.FindObjectOfType(typeof(LoadingScreen1));
 	}
 	
 	// Update is called once per frame
@@ -66,15 +69,26 @@ public class ConfrimDialogManager : MonoBehaviour {
 		// kaya nag substring 
 		// Level '2'-1
 		// yung 2 ang kelangan, eh since pang 6 sya doon sa string na curLevel, kaya ganyan ang format, tapos 1 lang ang length, kase yung isang character na yon lang ang kelangan naten
-		string stageNumber = curLevel.Substring (6, 1) ;
+
+		string stageNumber;
+
+		if((Application.loadedLevelName.Length) == 10){		// kapag 10 characters na ang meron, meaning nasa last stage na sya. "Level 10-1" oh diba 10 characters na?
+			stageNumber = curLevel.Substring (6, 2) ;
+		}
+		else{
+			stageNumber = curLevel.Substring (6, 1) ;
+		}
 
 //		Debug.Log (stageNumber);
 //		Debug.Log (GameObject.Find ("HeroSelectPanel").gameObject);
 //		DontDestroyOnLoad (GameObject.Find ("HeroSelectPanel").gameObject);
 
 		// now we load the "Stage 2 - LvlSelect" to apply the restart of the game, by letting them choose the heroes again
-		Application.LoadLevel("Stage " + stageNumber + " - LvlSelect") ;
-		
+		//Application.LoadLevel("Stage " + stageNumber + " - LvlSelect") ;
+
+		// the last corresponding level selection scene depending on what stage the player is
+		loadingScreen.LoadScene ("Stage " + stageNumber + " - LvlSelect");
+
 		//DontDestroyOnLoad (GameObject.Find ("HeroSelectPanel").gameObject);
 	}
 }

@@ -89,6 +89,7 @@ public class PotholeManager : MonoBehaviour {
 				Instantiate(plantedParticle, gameObject.transform.position, gameObject.transform.rotation);
 				hero =  (GameObject) Instantiate(heroPrefab_parent, transform.position, gameObject.transform.rotation);
 				hero.layer = LayerMask.NameToLayer("heroes");
+				hero.transform.GetChild(1).GetComponent<HeroData>().cost = cost;		// set this para na ren tama ang computation sa water refund
 				// set the heroes sorting layer depending on what pothole it was planted
 				//				print (gameObject.renderer.sortingLayerName);
 				if(gameObject.renderer.sortingLayerName == "lower potholes"){

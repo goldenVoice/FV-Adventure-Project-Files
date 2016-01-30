@@ -30,7 +30,7 @@ public class HeroData : MonoBehaviour {
 		public float health;
 	}
 
-	[HideInInspector]
+	//[HideInInspector]
   	public int cost;
 
   	public GameObject bullet;

@@ -24,6 +24,12 @@ public class HeroAttack_multiple : MonoBehaviour {
 
 	Animator anim;
 
+	private AudioSource attackSound;
+
+	void Awake(){
+		attackSound = gameObject.GetComponent<AudioSource>();
+	}
+
 	// Use this for initialization
 	void Start () {
 		enemiesInRange = new List<GameObject>();
@@ -48,6 +54,7 @@ public class HeroAttack_multiple : MonoBehaviour {
 					if(Time.time - lastShotTime > heroData.fireRate){
 
 						anim.SetTrigger("attack_left");
+						playSound();
 						foreach(GameObject enemy in enemiesInRange){
 							if(checkTarget(enemy)){
 								Shoot(enemy.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
@@ -125,6 +132,12 @@ public class HeroAttack_multiple : MonoBehaviour {
 			EnemyDestructionDelegate del = target.gameObject.GetComponent<EnemyDestructionDelegate>();
 			del.enemyDelegate -= OnEnemyDestroy;			// you unregister the enemies in the delegate, now you know whic enemies are in range.
 			return false;	// meaning hindi niya target enemy yan :D
+		}
+	}
+
+	void playSound(){
+		if(PlayerPrefs.GetInt("sounds") == 1){		// sounds: ON
+			attackSound.PlayOneShot(attackSound.clip, 0.7f);
 		}
 	}
 

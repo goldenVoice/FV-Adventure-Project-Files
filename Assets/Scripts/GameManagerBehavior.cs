@@ -113,13 +113,13 @@ public class GameManagerBehavior : MonoBehaviour {
       		Time.timeScale = 0.0f;  // pause the game
       		restartConfrimTxt.GetComponent<Text>().text = "You Lost! Go back to level select?";
       		canvas_restart.GetComponent<Canvas>().enabled = true;
-//      		GameObject NoButton_backToMap = GameObject.Find("NoButton_backToMap");
-//      		GameObject NoButton_restart = GameObject.Find("NoButton_restart");
-//      		NoButton_backToMap.SetActive(true);
-//
-//			if(NoButton_restart != null){
-//      			NoButton_restart.SetActive(false);
-			//}
+      		GameObject NoButton_backToMap = GameObject.Find("NoButton_backToMap");
+      		GameObject NoButton_restart = GameObject.Find("NoButton_restart");
+      		NoButton_backToMap.SetActive(true);
+
+			if(NoButton_restart != null){
+      			NoButton_restart.SetActive(false);
+			}
 
     	}
     	else{

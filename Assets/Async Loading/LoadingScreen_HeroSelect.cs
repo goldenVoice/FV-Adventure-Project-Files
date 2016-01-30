@@ -108,9 +108,10 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 		//isLoading = true;
 	}			
 
-	public void setSceneNameToLoad(){
+	public void setSceneNameToLoad(Button button_level){
 		print (EventSystem.current.currentSelectedGameObject.name);
-		levelToLoad = EventSystem.current.currentSelectedGameObject.name; 	// levelName typed in the inspector
+//		levelToLoad = EventSystem.current.currentSelectedGameObject.name; 	// levelName typed in the inspector
+		levelToLoad = button_level.name;		// the name of the button that indicates the level
 		print (levelToLoad);
 	}
 

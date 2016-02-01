@@ -55,8 +55,10 @@ public class LaserBeam : MonoBehaviour {
 		}
 
 		if(DPS_countingInterval >= DPSinterval){		// maxSeconds = 2; dps interval = 0.5; pero ang dame lang ng bes na mababawasan sya ay 3 times. hindi 4 times (kase 2 / 0.5 = 4) there something about this computation na ganon yung nangyayare. and im too lazy now to figure out why
-			laserBehavior.SendMessage("ApplyDamage", target);
-			timeCounter = Time.time;
+			if(target != null){
+				laserBehavior.SendMessage("ApplyDamage", target);
+				timeCounter = Time.time;
+			}
 		}
 		//	Debug.DrawLine(transform.position, hit.point);
 		//	laserHit.position = hit.point;

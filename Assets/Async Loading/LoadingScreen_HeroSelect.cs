@@ -96,7 +96,7 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 	public void LoadScene(){
 		//levelToLoad = levelName; 	// levelName typed in the inspector
 		this.enabled = true;	// enable the script to start loading
-		PlayerPrefs.SetString("lastLevelSelect", Application.loadedLevelName);
+//		PlayerPrefs.SetString("lastLevelSelect", Application.loadedLevelName);
 		//isLoading = true;
 	}
 

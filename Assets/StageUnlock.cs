@@ -3,14 +3,36 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class StageUnlock : MonoBehaviour {
+	public Transform panelToAdjust;
+	public Transform currentStagePoint;
+	//private Transform thisStageCheckpoint;
+
 	public GameObject[] stages;
+
 
 	// Use this for initialization
 	void Start () {
+
+		Vector3 newPosition;
+		Vector3 tempPosition;
+
 		if(PlayerPrefs.GetInt("Level 1-3") == 1){		// tapos na stage 1
 			// show stage unlock animation
 			stages[1].transform.GetChild(0).GetComponent<Button>().interactable = true;		// stage 2
 			stages[1].transform.GetChild(2).gameObject.SetActive(false);					// hide locked image
+
+//			float distance = Vector3.Distance(currentStagePoint.position, stages[1].transform.GetChild(0).GetChild(0).gameObject.transform.position);
+
+			// code to move the panel according to the latest stage unlocked;
+//			tempPosition = panelToAdjust.transform.position;
+//			newPosition = transform.TransformPoint(currentStagePoint.position) - transform.TransformPoint(stages[1].transform.GetChild(0).GetChild(0).gameObject.transform.position);		// subtract the x values to get the distance
+//			Debug.Log("currentStagePoint.position: " + transform.TransformPoint(currentStagePoint.position));
+//			Debug.Log("this stages .position: " + transform.TransformPoint(stages[1].transform.GetChild(0).GetChild(0).gameObject.transform.position));
+//			Debug.Log("distance: " + newPosition);
+//			tempPosition.x = newPosition.x;
+//
+//			panelToAdjust.transform.position = tempPosition;
+
 		}
 		if(PlayerPrefs.GetInt("Level 2-3") == 1){		// tapos na stage 2
 			// show stage unlock animation

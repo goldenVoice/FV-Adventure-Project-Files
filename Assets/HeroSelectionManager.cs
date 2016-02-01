@@ -45,7 +45,7 @@ public class HeroSelectionManager : MonoBehaviour {
 	}
 
 	public void NextScene_dontDestroy(){
-		DontDestroyOnLoad (obj.gameObject);
+	//	DontDestroyOnLoad (obj.gameObject);
 		DontDestroyOnLoad (selectHeroPanelCanvas.gameObject);
 	}
 }

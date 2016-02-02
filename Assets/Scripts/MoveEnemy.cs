@@ -36,7 +36,7 @@ public class MoveEnemy : MonoBehaviour {
 	void Start () {
 	   lastWaypointSwitchTime = Time.time;
 		once = false;
-
+		SwitchIntoMoveDirection ();		// place on the start para mag switch sa unang defined na direction on the waypoint
      // initializes lastWayPointSwitchTime to the current time.
 	}
 	
@@ -72,24 +72,36 @@ public class MoveEnemy : MonoBehaviour {
 			// get the child of ant object which is the ant sprite, then set the animation
 			Debug.Log ("going up");
 			//xgameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("up");
-			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("up");
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("right", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("left", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("down", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("up", true);
 		}
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "down"){
 
 			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("down");
 			Debug.Log ("going down");
-			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("down");
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("right", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("left", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("up", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("down", true);
 		}
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "right"){
 			// unity bug di nag re reset yung ibang trigger so i tried using ResetTrigger , yung i re reset ay ang animation before the animation you want to trigger
 			Debug.Log ("going right");
 			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("right");
-			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("right");
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("left", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("up", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("down", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("right", true);
 		}
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "left"){
 			Debug.Log ("going left");
 			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("left");
-			gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("left");
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("up", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("down", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("right", false);
+			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("left", true);
 		}
 //    Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;
     Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;

@@ -92,7 +92,7 @@ public class HeroAttack_rambustun : MonoBehaviour {
 					}
 				}
 			}	
-		
+
 			if (target != null) {
 
 //		Debug.Log ( "statement: " + (Time.time - lastShotTime  ) );

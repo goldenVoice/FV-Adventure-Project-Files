@@ -26,14 +26,6 @@ public class StageUnlock : MonoBehaviour {
 //			float distance = Vector3.Distance(currentStagePoint.position, stages[1].transform.GetChild(0).GetChild(0).gameObject.transform.position);
 
 			// code to move the panel according to the latest stage unlocked;
-//			tempPosition = panelToAdjust.transform.position;
-//			newPosition = transform.TransformPoint(currentStagePoint.position) - transform.TransformPoint(stages[1].transform.GetChild(0).GetChild(0).gameObject.transform.position);		// subtract the x values to get the distance
-//			Debug.Log("currentStagePoint.position: " + transform.TransformPoint(currentStagePoint.position));
-//			Debug.Log("this stages .position: " + transform.TransformPoint(stages[1].transform.GetChild(0).GetChild(0).gameObject.transform.position));
-//			Debug.Log("distance: " + newPosition);
-//			tempPosition.x = newPosition.x;
-//
-//			panelToAdjust.transform.position = tempPosition;
 
 			lastUnlocked_stage = stages[1].gameObject;
 
@@ -94,6 +86,16 @@ public class StageUnlock : MonoBehaviour {
 
 		// showw the animation of the latest unlocked stage.
 		lastUnlocked_stage.transform.GetChild (0).GetComponent<Animator> ().enabled = true;
+
+		// adjust the map depending on the latest stage unlocked
+		tempPosition = panelToAdjust.transform.position;
+		newPosition = transform.TransformPoint(currentStagePoint.position) - transform.TransformPoint(lastUnlocked_stage.transform.GetChild(0).GetChild(0).gameObject.transform.position);		// subtract the x values to get the distance
+		Debug.Log("currentStagePoint.position: " + transform.TransformPoint(currentStagePoint.position));
+		Debug.Log("this stages .position: " + transform.TransformPoint(lastUnlocked_stage.transform.GetChild(0).GetChild(0).gameObject.transform.position));
+		Debug.Log("distance: " + newPosition);
+		tempPosition.x += newPosition.x;
+		
+		panelToAdjust.transform.position = tempPosition;
 	}
 	
 	// Update is called once per frame

@@ -295,26 +295,33 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 	void poison (){
-		foreach(GameObject enemy in enemies){
-			if(enemy != null){
+
+		for(int i = enemies.Count - 1; i >= 0; i--){
+			if(enemies[i] != null){
 				counter++;
 				// enemy position
 				// instatntiate poisonParticle
-				Instantiate(poisonParticle, enemy.transform.position, enemy.transform.rotation);
-				HealthBar enemyHealth = enemy.transform.parent.GetChild(2).gameObject.GetComponent<HealthBar>();		// kaya sa parent ko kinuha. kase yung tag na 'Enemy' is nasa child na gameObject, tapos yung moveEnemy script nasa may parent
+				Instantiate(poisonParticle, enemies[i].transform.position, enemies[i].transform.rotation);
+				HealthBar enemyHealth = enemies[i].transform.parent.GetChild(2).gameObject.GetComponent<HealthBar>();		// kaya sa parent ko kinuha. kase yung tag na 'Enemy' is nasa child na gameObject, tapos yung moveEnemy script nasa may parent
 				enemyHealth.currentHealth -= (enemyHealth.maxHealth * 0.03f);		// 3% of the max health. 10 times to mauulet so bale ang mababawas ay 30% of the monsters max health
 				Debug.Log("currentHealth (" + enemyHealth.currentHealth + ") -= maxhealth(" + enemyHealth.maxHealth + ") * 0.03f");
 //				Debug.Log("maxhealth 3% : " + enemyHealth.maxHealth * 0.03f);
 
 				if(enemyHealth.currentHealth <= 0){
-					enemies.Remove(enemy);
-					Destroy(enemy.transform.parent.gameObject);
+					enemies.Remove(enemies[i]);
+					Destroy(enemies[i].transform.parent.gameObject);
 				}
+//				if(enemy[i] == null){
+//					enemies.Remove(enemy[i]);
+//				}
 //				if(counter == 9){
 //					Debug.Log("rounding ...");
 //					enemyHealth.currentHealth = Mathf.RoundToInt(enemyHealth.currentHealth);
 //				}
 
+			}
+			else if(enemies[i] == null){
+				enemies.Remove(enemies[i]);
 			}
 			//			Vector3 origPosition = enemy.transform.position;
 			//			enemy.transform.parent.GetComponent<MoveEnemy>().speed -= (OrigSpeed * 0.3f);	// para hindi 2 tag of the same enemy object yung ma store sa list. 

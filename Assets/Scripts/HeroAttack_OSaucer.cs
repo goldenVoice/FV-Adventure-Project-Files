@@ -58,11 +58,11 @@ public class HeroAttack_OSaucer : MonoBehaviour {
 			 target = null;
 			// 
 			float minimalEnemyDistance = float.MaxValue;		// the maximum possible distance
-			foreach(GameObject enemy in enemiesInRange){		// iterate through the list of enemies
-				float distanceToGoal = enemy.transform.parent.GetComponent<MoveEnemy>().distanceToGoal();		// get the distanceToGoal of the current enemy
+			for(int i = enemiesInRange.Count - 1; i >= 0; i--){		// iterate through the list of enemies
+				float distanceToGoal = enemiesInRange[i].transform.parent.GetComponent<MoveEnemy>().distanceToGoal();		// get the distanceToGoal of the current enemy
 				if(distanceToGoal < minimalEnemyDistance){	// kapag yung distance to the end of the stage area (yung goal) ay mas maliit sa minimalEnemyDistance
-					target = enemy;
-					minimalEnemyDistance = distanceToGoal;		// set as new minimal distance.
+				target = enemiesInRange[i];
+				minimalEnemyDistance = distanceToGoal;		// set as new minimal distance.
 				}
 			}	
 

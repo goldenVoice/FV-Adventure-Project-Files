@@ -77,7 +77,8 @@ public class SpawnEnemy : MonoBehaviour {
 		if (currentWave < waves.Length) {
 			timeInterval = (Time.time) - lastSpawnTime; 	
 			float spawnInterval = waves[currentWave].spawnInterval;	
-			
+//			Debug.Log(gameObject.name + ": enemy(" + enemyIndex + ") of wave: " + currentWave);
+//			Debug.Log(gameObject.name + ": spawnInterval: " + spawnInterval + " , time interval: " + timeInterval);
 			if (timeInterval > spawnInterval && enemyIndex < waves[currentWave].enemies.Length) {		// you havent spawned all enemies for this wave, 
 	
 				lastSpawnTime = Time.time;
@@ -136,58 +137,79 @@ public class SpawnEnemy : MonoBehaviour {
 				newEnemy.GetComponent<MoveEnemy>().waypoints = waypoints;
 			//	enemiesSpawned++;
 			}
-			if (enemyIndex == waves[currentWave].enemies.Length &&  // check kung na spawn na yung max na dame ng enemies
-			     timeInterval >= waves[currentWave].timerDelay ) {	// check if the time that passed is greater than the defined timerDelay before the timer shows up
-				if( !nextWaveButton.activeInHierarchy && currentWave < waves.Length - 1){ 		    // if next wave button is not yet in the hierarchy meaning it is not yet instantiated, and if its not yet the last wave
-					nextWaveButton.SetActive(true);
-					nextWaveButton.GetComponentInChildren<Text>().text =  "" + waves[currentWave].timeBetweenWaves;
-				}
-				else if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") // check if the button is already idle
-				        && !appearAnimation_finished){  																// and if the appear animation is not yet finished
-					appearAnimation_finished = true;	// set it to true para di na daanan tong if statement na to				       																	
-					lastSpawnTime = Time.time;
-					waves[currentWave].timerDelay  = 0;
-					timeInterval = 0;				    // to start the counting						
-				}
-				// check if the nextwavebutton is idle
-				if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") &&
-				   currentWave < waves.Length){
-//					Debug.Log (timeInterval);
-					// show the next wave element
-					nextWaveIndicator.displayNextElement(waves, currentWave + 1);	// this is currentWave + 1, kase nga idi display yung element ng NEXT wave, hindi ng current
-					nextWaveIndicator.gameObject.GetComponent<Image>().enabled = true;
-					if(timeInterval >= 1){ // check if one second has passed
-						waves[currentWave].timeBetweenWaves -= 1;	// if so play the pulsate animation
-						lastSpawnTime = Time.time;
-						timeInterval = 0;		// switch back to 0 to start counting again
 
+			// im putting this here para isang ROAD lang yung nag ha handle ng pag manipulate/ show ng next wave button
+			if(gameObject.name == "Road"){
+				if (enemyIndex == waves[currentWave].enemies.Length &&  // check kung na spawn na yung max na dame ng enemies
+				    timeInterval >= waves[currentWave].timerDelay ) {	// check if the time that passed is greater than the defined timerDelay before the timer shows up
+					if( !nextWaveButton.activeInHierarchy && currentWave < waves.Length - 1){ 		    // if next wave button is not yet in the hierarchy meaning it is not yet instantiated, and if its not yet the last wave
+						nextWaveButton.SetActive(true);
 						nextWaveButton.GetComponentInChildren<Text>().text =  "" + waves[currentWave].timeBetweenWaves;
-						nextWaveButton.GetComponent<Animator>().SetTrigger("pulsate");
-
-//						kung gusto mo ng 3 seconds remaining tas gawing pula. gamitin mo tong condition nato
-//						if(timeBetweenWaves <= 3 && timeBetweenWaves > 0){
-						//							ToDo: CHANGE TEXT COLOR to red
-//   					}
-				
-						// time for the next wave!
-						if(waves[currentWave].timeBetweenWaves <= 0){
-							NextWave();		// start the next wave of enemies
+					}
+					else if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") // check if the button is already idle
+					        && !appearAnimation_finished){  																// and if the appear animation is not yet finished
+						appearAnimation_finished = true;	// set it to true para di na daanan tong if statement na to				       																	
+						lastSpawnTime = Time.time;
+						waves[currentWave].timerDelay  = 0;
+						timeInterval = 0;				    // to start the counting						
+					}
+					// check if the nextwavebutton is idle
+					if(nextWaveButton.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle") &&
+					   currentWave < waves.Length){
+						//					Debug.Log (timeInterval);
+						// show the next wave element
+						nextWaveIndicator.displayNextElement(waves, currentWave + 1);	// this is currentWave + 1, kase nga idi display yung element ng NEXT wave, hindi ng current
+						nextWaveIndicator.gameObject.GetComponent<Image>().enabled = true;
+						if(timeInterval >= 1){ // check if one second has passed
+							waves[currentWave].timeBetweenWaves -= 1;	// if so play the pulsate animation
+							lastSpawnTime = Time.time;
+							timeInterval = 0;		// switch back to 0 to start counting again
+							
+							nextWaveButton.GetComponentInChildren<Text>().text =  "" + waves[currentWave].timeBetweenWaves;
+							nextWaveButton.GetComponent<Animator>().SetTrigger("pulsate");
+							
+							//						kung gusto mo ng 3 seconds remaining tas gawing pula. gamitin mo tong condition nato
+							//						if(timeBetweenWaves <= 3 && timeBetweenWaves > 0){
+							//							ToDo: CHANGE TEXT COLOR to red
+							//   					}
+							
+							// time for the next wave!
+							if(waves[currentWave].timeBetweenWaves <= 0){
+								NextWave();		// start the next wave of enemies
+								Debug.Log("hey next wave na");
+								if(GameObject.Find("Road2") != null){
+									Debug.Log("hey may 2nd road na?!");
+									
+									GameObject.Find("Road2").SendMessage("NextWave_2ndroad");
+								}
+							}
 						}
 					}
-				}
-				else if(currentWave == waves.Length - 1){
-					gameManager.wave++;
+					else if(currentWave == waves.Length - 1){
+						gameManager.wave++;
+					}
 				}
 			}
-
+//			if(gameObject.name == "Road2"){
+//
+//				if(timeInterval >= 1){ 							// check if one second has passed
+//					waves[currentWave].timeBetweenWaves -= 1;	
+//					lastSpawnTime = Time.time;
+//					timeInterval = 0;							// switch back to 0 to start counting again
+//
+//					if(waves[currentWave].timeBetweenWaves <= 0){
+//						NextWave_2ndroad();		// start the next wave of enemies
+//					}
+//				}
+//			}
 		}
 		// if eto na yung last wave, then di pa 0 yung health ng player. NANALO SYA
-		else if ((gameManager.health > 0 && GameObject.FindGameObjectWithTag("Enemy") == null) ){
+		else if ((gameManager.health > 0 && GameObject.FindGameObjectWithTag("Enemy") == null) && gameObject.name == "Road"){
 //			Debug.Log ("forever");
 			gameManager.gameOver = true;    // here, gameOver means tapos na yung laro, 
 			gameManager.didPlayerWin(true); // dito iche-check kung nanalo sya, which is true
 		}
-	    if (gameManager.health <= 0){  // tapos na yung wave, at wala na deng lives yung user.
+		if (gameManager.health <= 0 && gameObject.name == "Road"){  // tapos na yung wave, at wala na deng lives yung user.
 			gameManager.gameOver = true;
 			gameManager.didPlayerWin(false);   // TALO SYA			
 		}
@@ -210,5 +232,23 @@ public class SpawnEnemy : MonoBehaviour {
 		lastSpawnTime = Time.time;
 
 	}
-	
+
+	// still the same code, without incrementing again, kaya nag pro proceed sa next next wave agad eh
+	public void NextWave_2ndroad(){	
+		// play the animator
+		nextWaveButton.GetComponent<Animator>().SetTrigger("next_wave");
+		//		nextWaveButton.GetComponentInChildren<Text>().text =  "" + waves[currentWave+1].timeBetweenWaves;
+		nextWaveButton.SetActive(false);
+		nextWaveIndicator.gameObject.GetComponent<Image>().enabled = false;
+//		gameManager.wave++;
+		hbgCounter = 1;		// balik sa 1 ule para di umabot sa mataas na bilang yung .z ng gameObject, baka mag log
+		hbCounter = 0;    // BALIK SA 0, just like at the top
+		gameManager.displayWave(gameManager.wave);
+		enemiesSpawned = 0;
+		enemyIndex = 0;
+		timeInterval = 0;
+		lastSpawnTime = Time.time;
+		
+	}
+
 }

@@ -17,6 +17,8 @@ public class ElementManager : MonoBehaviour {
 	}
 
 	private SpawnEnemy spawnEnemy;
+	private SpawnEnemy spawnEnemy_road2;	// for the 2nd road
+	
 	public Random rnd;
 
 	// Awake() is called before loading any script in the scene. so pwede ka mag initialize dito before the Start() is called :)
@@ -25,7 +27,11 @@ public class ElementManager : MonoBehaviour {
 		// this should find the only object that has the SpawnEnemy script, which is the object road
 		rnd = new Random();
 		
-		spawnEnemy = (SpawnEnemy) FindObjectOfType(typeof(SpawnEnemy));
+		spawnEnemy = (SpawnEnemy) GameObject.Find ("Road").GetComponent<SpawnEnemy>();
+
+		if (GameObject.Find ("Road2") != null) {
+			spawnEnemy_road2 = (SpawnEnemy) GameObject.Find ("Road2").GetComponent<SpawnEnemy>();
+		}
 		
 		/* Element
 		 * 	Fire = 0
@@ -36,6 +42,11 @@ public class ElementManager : MonoBehaviour {
 		for(int i = 0; i < spawnEnemy.waves.Length; i++){
 			// convert the resulting integer into an enum element
 			spawnEnemy.waves[i].WaveElement = (Element)(Random.Range(0, 3));   // ex: range returned 2, convert to Element, then 2 = Air
+
+			if(spawnEnemy_road2 != null){
+				Debug.Log ("the 2nd road!");
+				spawnEnemy_road2.waves[i].WaveElement = spawnEnemy.waves[i].WaveElement;
+			}
 		}
 	}
 

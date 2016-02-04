@@ -11,7 +11,7 @@ public class WaveManager_2Roads : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		road1 = GameObject.Find("Road1");
+		road1 = GameObject.Find("Road");
 		road2 = GameObject.Find("Road2");
 		nextWaveIndicator  = (SpriteManager) FindObjectOfType(typeof(SpriteManager));
 

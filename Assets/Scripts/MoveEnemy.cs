@@ -70,7 +70,7 @@ public class MoveEnemy : MonoBehaviour {
 
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "up"){
 			// get the child of ant object which is the ant sprite, then set the animation
-			Debug.Log ("going up");
+//			Debug.Log ("going up");
 			//xgameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("up");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("right", false);
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("left", false);
@@ -80,7 +80,7 @@ public class MoveEnemy : MonoBehaviour {
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "down"){
 
 			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("down");
-			Debug.Log ("going down");
+	//		Debug.Log ("going down");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("right", false);
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("left", false);
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("up", false);
@@ -88,7 +88,7 @@ public class MoveEnemy : MonoBehaviour {
 		}
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "right"){
 			// unity bug di nag re reset yung ibang trigger so i tried using ResetTrigger , yung i re reset ay ang animation before the animation you want to trigger
-			Debug.Log ("going right");
+	//		Debug.Log ("going right");
 			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("right");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("left", false);
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("up", false);
@@ -96,7 +96,7 @@ public class MoveEnemy : MonoBehaviour {
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("right", true);
 		}
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "left"){
-			Debug.Log ("going left");
+	//		Debug.Log ("going left");
 			//gameObject.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("left");
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("up", false);
 			gameObject.transform.GetChild(0).GetComponent<Animator>().SetBool("down", false);

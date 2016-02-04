@@ -48,7 +48,10 @@ public class SpawnEnemy : MonoBehaviour {
 
   	float hbgCounter = 1;
   	float hbCounter = 0;
-	
+
+	private LibraryChecker libraryChecker;
+	string toRemove = "(Clone)";
+
 	// Use this for initialization
 	void Start () {
        	lastSpawnTime = Time.time;   // set lastSpawnTime to current time
@@ -56,6 +59,7 @@ public class SpawnEnemy : MonoBehaviour {
 //		elementManager = (ElementManager) FindObjectOfType(typeof(ElementManager));
 		nextWaveIndicator  = (SpriteManager) FindObjectOfType(typeof(SpriteManager));
 //		print("next wave object: " + nextWaveIndicator.gameObject);
+		libraryChecker = (LibraryChecker) GameObject.Find ("List_insects").GetComponent<LibraryChecker> ();
 	 }
 	
 	// Update is called once per frame
@@ -72,30 +76,41 @@ public class SpawnEnemy : MonoBehaviour {
 //		Debug.Log ("health: " + gameManager.health);
 //		Debug.Log ("" + gameManager.health);
 //
-//		Debug.Log ("" + GameObject.FindGameObjectWithTag("Enemy"));
 		// check kung yung current wave is hindi pa huling wave
 		if (currentWave < waves.Length) {
 			timeInterval = (Time.time) - lastSpawnTime; 	
 			float spawnInterval = waves[currentWave].spawnInterval;	
-//			Debug.Log(gameObject.name + ": enemy(" + enemyIndex + ") of wave: " + currentWave);
-//			Debug.Log(gameObject.name + ": spawnInterval: " + spawnInterval + " , time interval: " + timeInterval);
-			if (timeInterval > spawnInterval && enemyIndex < waves[currentWave].enemies.Length) {		// you havent spawned all enemies for this wave, 
+			if (timeInterval > spawnInterval && enemyIndex < waves[currentWave].enemies.Length) {			// you havent spawned all enemies for this wave, 
 	
 				lastSpawnTime = Time.time;
 				GameObject newEnemy = (GameObject)
-					Instantiate(waves[currentWave].enemies[enemyIndex]);	// instantiate the current enemyPrefab using enemyIndex, to determine which enemy to instantiate
+					Instantiate(waves[currentWave].enemies[enemyIndex]);									// instantiate the current enemyPrefab using enemyIndex, to determine which enemy to instantiate
+				Debug.Log("new enemy name: " + newEnemy.name);
 
+				string newEnemy_name = newEnemy.name.Substring(0, newEnemy.name.Length - toRemove.Length);	// subtract the length of "(Clone)" to the overall size of the enemy's name, then use substr, then nakuha mo na yung original name ng enemy
+				Debug.Log("new enemy name after trimmed: " + newEnemy_name);
+
+				// iterate through the list of ALL the insects then see if this insect (newEnemy) is already unlocked
+				foreach(InsectInfo insect in libraryChecker.insects){
+					if(insect.insectPrefab.name == newEnemy_name){
+						if(!insect.unlockInLibrary){					// if di pa unlock sa library
+							libraryChecker.unlockInsect(newEnemy_name);	// unlock here,
+							insect.unlockInLibrary = true;				// then set to true para di na mag paulet ulet
+						}
+						break;
+					}
+				}
 				enemyIndex++;		// increment to instantiate the next enemy, next update frame
 				// set the element of this enemy to the current wave element
 				newEnemy.GetComponentInChildren<EnemyData>().enemyElement = waves[currentWave].WaveElement;
 
 				// set the speed & HP of the enemy here. (pate DAMAGE on hard mode)
-				EnemyData enemyData = newEnemy.transform.GetChild(0).GetComponent<EnemyData>();		//get the enemy data from the child
-				newEnemy.GetComponent<MoveEnemy>().speed = enemyData.enemySpeed[enemyLevel].speed;	// get the enemySpeed array/list then access the appropriate speed using the 'enemyLevel' as the index
+				EnemyData enemyData = newEnemy.transform.GetChild(0).GetComponent<EnemyData>();				//get the enemy data from the child
+				newEnemy.GetComponent<MoveEnemy>().speed = enemyData.enemySpeed[enemyLevel].speed;			// get the enemySpeed array/list then access the appropriate speed using the 'enemyLevel' as the index
 
-				HealthBar enemyHealthBar = newEnemy.transform.GetChild(2).GetComponent<HealthBar>();// get the enemyHealth array/list then 
+				HealthBar enemyHealthBar = newEnemy.transform.GetChild(2).GetComponent<HealthBar>();		// get the enemyHealth array/list then 
 //				Debug.Log(newEnemy.transform.GetChild(2).GetComponent<HealthBar>());
-				enemyHealthBar.maxHealth = enemyData.enemyHP[enemyLevel].health;					// access the appropriate heatlh using the 'enemyLevel' as the index
+				enemyHealthBar.maxHealth = enemyData.enemyHP[enemyLevel].health;							// access the appropriate heatlh using the 'enemyLevel' as the index
 				enemyHealthBar.currentHealth = enemyHealthBar.maxHealth;
 
 				// code to get child of an object

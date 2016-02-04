@@ -10,6 +10,7 @@ public class DisplayHeroInfo : MonoBehaviour {
 	public string descText;
 	public Sprite heroImage; 
 
+	public string path;
 	public GameObject heroDescPanel;
 
 	//string toRemove = "circle_";
@@ -25,13 +26,12 @@ public class DisplayHeroInfo : MonoBehaviour {
 
 	public void displayInfo(){
 
-//		if (Application.loadedLevelName == "library-heroes") {
-//			string newName = gameObject.name.Substring (toRemove.Length);	
-//			heroDescPanel.transform.GetChild (0).GetChild (0).GetChild (0).GetComponent<Text> ().text = newName;	// hero name
-//		}
-//		else {
-//			heroDescPanel.transform.GetChild (0).GetChild (0).GetChild (0).GetComponent<Text> ().text = gameObject.name;	// insect name
-//		}
+		if (Application.loadedLevelName == "library-heroes") {
+			heroDescPanel.transform.GetChild (5).GetComponent<Text> ().text = "Target: " + path;	
+		}
+		else {
+			heroDescPanel.transform.GetChild (5).GetComponent<Text> ().text = "Path: " + path;	
+		}
 
 		heroDescPanel.transform.GetChild (0).GetComponent<Image>().sprite = heroImage;
 		heroDescPanel.transform.GetChild (0).GetChild (0).GetChild (0).GetComponent<Text> ().text = charName;	// insect name

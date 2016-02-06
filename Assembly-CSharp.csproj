@@ -53,6 +53,7 @@
      <Compile Include="Assets\CarrotCannon_particleBehavior.cs" />
      <Compile Include="Assets\CheckBeforeDestroy.cs" />
      <Compile Include="Assets\CheckIfHeroUnlocked.cs" />
+     <Compile Include="Assets\DifficultyChecker.cs" />
      <Compile Include="Assets\DisplayHeroInfo.cs" />
      <Compile Include="Assets\GetHero.cs" />
      <Compile Include="Assets\GoButtonChecker.cs" />

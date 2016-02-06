@@ -11,6 +11,7 @@ public class DisplayHeroInfo : MonoBehaviour {
 	public Sprite heroImage; 
 
 	public string path;
+	public string ability;
 	public GameObject heroDescPanel;
 
 	//string toRemove = "circle_";
@@ -31,6 +32,7 @@ public class DisplayHeroInfo : MonoBehaviour {
 		}
 		else {
 			heroDescPanel.transform.GetChild (5).GetComponent<Text> ().text = "Path: " + path;	
+			heroDescPanel.transform.GetChild (6).GetComponent<Text> ().text = "Ability: " + ability;	
 		}
 
 		heroDescPanel.transform.GetChild (0).GetComponent<Image>().sprite = heroImage;

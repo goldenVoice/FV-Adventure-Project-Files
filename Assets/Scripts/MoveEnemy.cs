@@ -4,18 +4,20 @@ using UnityEngine.UI;
 
 public class MoveEnemy : MonoBehaviour {
 
-  [HideInInspector]
-  public GameObject[] waypoints;
-  private int currentWaypoint = 0;
-  private float lastWaypointSwitchTime;
-  public  float speed = 1.0f;
+  	[HideInInspector]
+  	public GameObject[] waypoints;
+  	private int currentWaypoint = 0;
+  	private float lastWaypointSwitchTime;
 
-	 bool stun = false;
-	 bool afterStun = false;
+	[HideInInspector]
+ 	public  float speed = 1.0f;
+
+	bool stun = false;
+	bool afterStun = false;
 	bool once;		// para isang bes lang mag execute ang statement
 
 	float totalTimeForPath;
-	 float currentTimeOnPath;
+	float currentTimeOnPath;
 
 	Vector3 startPosition;
 	Vector3 endPosition;
@@ -23,11 +25,11 @@ public class MoveEnemy : MonoBehaviour {
 
 	float secondsOfStun = 3f;
 
-	 float runningTime;
+	float runningTime;
 
-	 float stoppedTime;
+	float stoppedTime;
 
-	 float counter;
+	float counter;
 	float lastStopTime;
 
 //	public float currentTimeOnPath;

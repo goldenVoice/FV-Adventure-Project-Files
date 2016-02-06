@@ -158,6 +158,10 @@ public class CarrotCannon_HeroAttack : MonoBehaviour {
 		else if(heroData.target == EnemyData.pathWay.both){	// basta both (flying, walking) ang target ng hero, a atakihin nya yung enemy
 			return true; //target
 		}
+		else if(target.GetComponent<EnemyData>().insectPath == EnemyData.pathWay.both){		// in special cases sa hard mode, an insect can be both in air & land pathway
+			Debug.Log(target.name + " is both air and land. ATTACK!");
+			return true;
+		}
 		else{
 			enemiesInRange.Remove(target.gameObject);
 			EnemyDestructionDelegate del = target.gameObject.GetComponent<EnemyDestructionDelegate>();

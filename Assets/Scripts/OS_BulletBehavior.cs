@@ -44,7 +44,8 @@ public class OS_BulletBehavior : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		EnemyData tempEnemy = other.GetComponent<EnemyData>();
-		if (other.tag == "Enemy" && tempEnemy.insectPath == EnemyData.pathWay.walking) {
+		if (other.tag == "Enemy" && tempEnemy.insectPath == EnemyData.pathWay.walking 
+		    	|| other.GetComponent<EnemyData>().insectPath == EnemyData.pathWay.both) {					// also damage those insects that are both land/air ex: locusts
 
 			Instantiate(bulletImpact_particle, other.transform.position, other.transform.rotation);
 

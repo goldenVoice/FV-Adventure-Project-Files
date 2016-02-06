@@ -87,6 +87,10 @@ public class HeroAttack_mushroom : MonoBehaviour {
 						else if(target.GetComponent<EnemyData>().insectPath == EnemyData.pathWay.walking){
 							shroomBullet = minishroom;	
 						}
+						else{
+							shroomBullet = AirMinishroom;	
+						}
+
 						Summon(target.GetComponent<Collider2D>(), respawnPoint1);	// function shoot, the targets collider2D is used as parameter
 						Summon(target.GetComponent<Collider2D>(), respawnPoint2);	// function shoot, the targets collider2D is used as parameter
 						lastShotTime = Time.time;
@@ -106,6 +110,9 @@ public class HeroAttack_mushroom : MonoBehaviour {
 						}
 						else if(target.GetComponent<EnemyData>().insectPath == EnemyData.pathWay.walking){
 							shroomBullet = minishroom;	
+						}
+						else{
+							shroomBullet = AirMinishroom;	
 						}
 						Summon(target.GetComponent<Collider2D>(), respawnPoint1);	// function shoot, the targets collider2D is used as parameter
 						Summon(target.GetComponent<Collider2D>(), respawnPoint2);	// function shoot, the targets collider2D is used as parameter

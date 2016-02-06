@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour {
 
     void Start() {
       	audio = GetComponent<AudioSource>();
-		Debug.Log(PlayerPrefs.GetInt("sounds"));
+//		Debug.Log(PlayerPrefs.GetInt("sounds"));
 
 		if (soundsText != null && vibrText != null) {
 			if (PlayerPrefs.GetInt ("sounds") == 1) {

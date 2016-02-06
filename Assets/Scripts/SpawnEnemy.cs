@@ -85,10 +85,10 @@ public class SpawnEnemy : MonoBehaviour {
 				lastSpawnTime = Time.time;
 				GameObject newEnemy = (GameObject)
 					Instantiate(waves[currentWave].enemies[enemyIndex]);									// instantiate the current enemyPrefab using enemyIndex, to determine which enemy to instantiate
-				Debug.Log("new enemy name: " + newEnemy.name);
+//				Debug.Log("new enemy name: " + newEnemy.name);
 
 				string newEnemy_name = newEnemy.name.Substring(0, newEnemy.name.Length - toRemove.Length);	// subtract the length of "(Clone)" to the overall size of the enemy's name, then use substr, then nakuha mo na yung original name ng enemy
-				Debug.Log("new enemy name after trimmed: " + newEnemy_name);
+	//			Debug.Log("new enemy name after trimmed: " + newEnemy_name);
 
 				// iterate through the list of ALL the insects then see if this insect (newEnemy) is already unlocked
 				foreach(InsectInfo insect in libraryChecker.insects){

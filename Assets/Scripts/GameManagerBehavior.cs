@@ -50,7 +50,7 @@ public class GameManagerBehavior : MonoBehaviour {
 		// the starting max health is initialized before the start of the game. before level 1-1. sa may end ng STORYLINE
 		health = PlayerPrefs.GetInt("max health");
 
-		Debug.Log ("Time scale!: " + Time.timeScale);
+//		Debug.Log ("Time scale!: " + Time.timeScale);
 
 		maxhealth = health;
     	canvas_restart = GameObject.Find("Canvas_RestartDialog");  // get the gameObject canvasRestartDialog

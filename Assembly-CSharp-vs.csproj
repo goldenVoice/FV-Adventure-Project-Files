@@ -87,6 +87,7 @@
      <Compile Include="Assets\Scripts\DropManager.cs" />
      <Compile Include="Assets\Scripts\ElementManager.cs" />
      <Compile Include="Assets\Scripts\ElementManager_2Roads.cs" />
+     <Compile Include="Assets\Scripts\EnemyAttack.cs" />
      <Compile Include="Assets\Scripts\EnemyData.cs" />
      <Compile Include="Assets\Scripts\EnemyDestructionDelegate.cs" />
      <Compile Include="Assets\Scripts\FadeCanvas.cs" />

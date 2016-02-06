@@ -8,7 +8,7 @@
 		<BuyCost></BuyCost>
 	</Hero>
 	<Hero name = 'circle_watermelon'>
-		<Water>100</Water>
+		<Water>110</Water>
 		<BuyCost></BuyCost>
 	</Hero>
 	<Hero name = 'circle_orange'>

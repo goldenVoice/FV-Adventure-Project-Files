@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;		// dont forget to include this
+using UnityEngine.UI;
 
 											// also this 3 always include them, they specify the events for
 									  // begin of dragging , while dragging, end of dragging
@@ -28,6 +29,8 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	public GameObject[] potholes_list;
 
 	private GameObject list_pothole;
+
+	GameObject curSelectedHero;
 
 	void Awake(){
 
@@ -72,7 +75,13 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	public void OnBeginDrag(PointerEventData eventData){
 		dragBegin = true;
 		dragEnd = false;
+
+		curSelectedHero = EventSystem.current.currentSelectedGameObject.gameObject;
+
 		gameManager.currentSelectedHero = heroPrefab;
+		int cost = int.Parse (curSelectedHero.transform.GetChild (0).GetComponent<Text> ().text);
+		gameManager.curHeroWatercost = cost;
+
 		// loop through all the current potholes in the scene
 		foreach(GameObject pothole in potholes_list){
 			// make them the 'listener' of this script. Para alam ng pothole kung anong hero ang kasalukuyang dina drag ng user

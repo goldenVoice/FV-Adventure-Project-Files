@@ -32,6 +32,9 @@ public class UpgradeHero : MonoBehaviour {
 
 		// int.Parse(string) convert string to int
 		checkMoney();	// if money is not enough disable upgrade button
+
+		checkIfMaxUpgrade ();
+		
 	}
 	
 	// Update is called once per frame
@@ -59,6 +62,7 @@ public class UpgradeHero : MonoBehaviour {
 		moneyText.text = "" + money;										// display money left
 		checkMoney();														// if may enough money pa. if not, disable button
 		Debug.Log("level after upgrade: " + currentLevel);
+		checkIfMaxUpgrade ();
 	}
 
 	void displayBars(){
@@ -105,6 +109,13 @@ public class UpgradeHero : MonoBehaviour {
 		int money = int.Parse( moneyText.text);
 		if( money < upgradePrice[currentLevel] ){	// if kulang pera ng user
 			gameObject.transform.GetChild(2).GetComponent<Button>().interactable = false;	// disable upgrade button	
+		}
+	}
+
+	void checkIfMaxUpgrade(){
+		
+		if (currentLevel == upgradePrice.Length - 1) {	// if kulang pera ng user
+			gameObject.transform.GetChild (2).GetComponent<Button> ().interactable = false;	// disable upgrade button	
 		}
 	}
 }

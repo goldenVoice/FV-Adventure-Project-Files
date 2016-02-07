@@ -37,7 +37,7 @@ public class DisplayHeroInfo : MonoBehaviour {
 
 		heroDescPanel.transform.GetChild (0).GetComponent<Image>().sprite = heroImage;
 		heroDescPanel.transform.GetChild (0).GetChild (0).GetChild (0).GetComponent<Text> ().text = charName;	// insect name
-		heroDescPanel.transform.GetChild (1).GetComponent<Text>().text = "Attack: " + attackText;			// attack
+		heroDescPanel.transform.GetChild (1).GetComponent<Text>().text = "Strength: " + attackText;			// attack
 		heroDescPanel.transform.GetChild (2).GetComponent<Text>().text = "Speed: " + speedText; // speed
 		heroDescPanel.transform.GetChild (3).GetComponent<Text>().text = "HP: " + HPtext;// HP
 		heroDescPanel.transform.GetChild (4).GetChild(0).GetComponent<Text> ().text = descText;

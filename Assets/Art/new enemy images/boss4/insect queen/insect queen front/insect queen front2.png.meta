@@ -47,8 +47,8 @@ TextureImporter:
     - name: insect queen front2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 400
+        y: 289
         width: 676
         height: 706
       alignment: 0

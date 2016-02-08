@@ -57,7 +57,9 @@
      <Compile Include="Assets\DisplayHeroInfo.cs" />
      <Compile Include="Assets\GetHero.cs" />
      <Compile Include="Assets\GoButtonChecker.cs" />
+     <Compile Include="Assets\HealthChecker.cs" />
      <Compile Include="Assets\HeroPotionChecker.cs" />
+     <Compile Include="Assets\HeroPotion_StageChecker.cs" />
      <Compile Include="Assets\HeroRemover.cs" />
      <Compile Include="Assets\HeroSelectionManager.cs" />
      <Compile Include="Assets\Inventory\Inventory.cs" />

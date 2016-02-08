@@ -106,7 +106,8 @@ public class SpawnEnemy : MonoBehaviour {
 
 				// set the speed & HP of the enemy here. (pate DAMAGE on hard mode)
 				EnemyData enemyData = newEnemy.transform.GetChild(0).GetComponent<EnemyData>();				//get the enemy data from the child
-				newEnemy.GetComponent<MoveEnemy>().speed = enemyData.enemySpeed[enemyLevel].speed;			// get the enemySpeed array/list then access the appropriate speed using the 'enemyLevel' as the index
+				// di na nag babago ang speed so i commented the line below
+				//newEnemy.GetComponent<MoveEnemy>().speed = enemyData.enemySpeed[enemyLevel].speed;			// get the enemySpeed array/list then access the appropriate speed using the 'enemyLevel' as the index
 
 				HealthBar enemyHealthBar = newEnemy.transform.GetChild(2).GetComponent<HealthBar>();		// get the enemyHealth array/list then 
 //				Debug.Log(newEnemy.transform.GetChild(2).GetComponent<HealthBar>());

@@ -100,6 +100,25 @@ public class InventoryManager : MonoBehaviour {
 			heroPotionButton.interactable = false;
 		}
 
+		// code to check if HERO POTION should be visible, (sa hard lang kse dapat makita)
+		string curLevel = Application.loadedLevelName;
+		
+		string stageNumber;
+		
+		if((Application.loadedLevelName.Length) == 10){		// kapag 10 characters na ang meron, meaning nasa last stage na sya. "Level 10-1" oh diba 10 characters na?
+			stageNumber = curLevel.Substring (6, 2) ;
+		}
+		else{
+			stageNumber = curLevel.Substring (6, 1) ;
+		}
+		
+		int stageNum = int.Parse (stageNumber);
+		
+		if (stageNum <= 7) {
+			transform.GetChild(0).GetChild(3).gameObject.SetActive (false);
+		}
+
+
 	}
 	
 	// Update is called once per frame

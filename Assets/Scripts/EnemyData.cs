@@ -9,10 +9,10 @@ public class EnemyData : MonoBehaviour {
 		both,	// actually tong 'both' never mong gagamitin to for enemy. ang gagamit lang nito is hero
 	}
 
-	[System.Serializable]
-	public class speedLevel{
-		public float speed;
-	}
+//	[System.Serializable]
+//	public class speedLevel{
+//		public float speed;
+//	}
 
 	[System.Serializable]
 	public class healthLevel{
@@ -25,7 +25,7 @@ public class EnemyData : MonoBehaviour {
   	public int waterRewarded;
 	public ElementManager.Element enemyElement;
 	public pathWay insectPath;
-	public List<speedLevel> enemySpeed;
+//	public List<speedLevel> enemySpeed;
 	public List<healthLevel> enemyHP;
 	
 	// Use this for initialization

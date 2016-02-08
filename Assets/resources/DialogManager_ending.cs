@@ -78,7 +78,7 @@ public class DialogManager_ending : MonoBehaviour {
 			dialogs[7] = "Gave Queen Bitter Gourd a decent burial...";
 			dialogs[8] = "Peace was restored to Fruity-Veggie World once again...";
 			dialogs[9] = "";
-			audio.PlayOneShot(voiceOver[0]);
+			audio.PlayOneShot(voiceOver[0],2f);
 			story_text.text = dialogs[0];
 		}
 	}
@@ -250,7 +250,7 @@ public class DialogManager_ending : MonoBehaviour {
 				fade_panel.fadeInPanel(panel_dialog);
 
 				story_text.text = dialogs[counter];
-				audio.PlayOneShot(voiceOver[counter]);
+				audio.PlayOneShot(voiceOver[counter],1f);
 				counter++;	
 			}
 			else if(story_text.text == "\"It's over now, Angela.\" The King said with a dominating tone."){	

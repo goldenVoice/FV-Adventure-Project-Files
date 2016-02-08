@@ -9,7 +9,7 @@ public class MoveEnemy : MonoBehaviour {
   	private int currentWaypoint = 0;
   	private float lastWaypointSwitchTime;
 
-	[HideInInspector]
+	//[HideInInspector]
  	public  float speed = 1.0f;
 
 	bool stun = false;

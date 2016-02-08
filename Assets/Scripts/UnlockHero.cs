@@ -78,4 +78,7 @@ public class UnlockHero : MonoBehaviour {
 		gameObject.transform.parent.GetChild (3).gameObject.SetActive (true);
 	}
 
+	public void SE_lockHero(){
+		PlayerPrefs.SetInt(heroName.name, 0);
+	}
 }

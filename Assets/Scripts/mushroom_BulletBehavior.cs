@@ -41,7 +41,7 @@ public class mushroom_BulletBehavior : MonoBehaviour {
 	void Update () {
     	
 		float timeInterval = Time.time - startTime;
-			Debug.Log("should show kase tapos na!");
+//			Debug.Log("should show kase tapos na!");
 
     	// calculate the new bullets position then interpolate using vector3.Lerp
     	gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, timeInterval * speed / distance);

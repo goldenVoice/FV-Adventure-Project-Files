@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DisplayHeroInfo.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\UpgradeHero.cs">
     <Files>
-      <File FileName="Assets\Scripts\EnemyAttack.cs" Line="43" Column="61" />
-      <File FileName="Assets\HeroPotionChecker.cs" Line="10" Column="4" />
-      <File FileName="Assets\DifficultyChecker.cs" Line="13" Column="3" />
-      <File FileName="Assets\DisplayHeroInfo.cs" Line="25" Column="2" />
+      <File FileName="Assets\Scripts\UpgradeHero.cs" Line="113" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

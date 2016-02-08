@@ -116,6 +116,7 @@ public class UpgradeHero : MonoBehaviour {
 		
 		if (currentLevel == upgradePrice.Length - 1) {	// if kulang pera ng user
 			gameObject.transform.GetChild (2).GetComponent<Button> ().interactable = false;	// disable upgrade button	
+			gameObject.transform.GetChild (2).GetChild(0).GetComponent<Text>().text = "MAX";
 		}
 	}
 }

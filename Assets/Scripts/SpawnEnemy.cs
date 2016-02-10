@@ -176,9 +176,11 @@ public class SpawnEnemy : MonoBehaviour {
 						// show the next wave element
 						nextWaveIndicator.displayNextElement(waves, currentWave + 1);	// this is currentWave + 1, kase nga idi display yung element ng NEXT wave, hindi ng current
 						nextWaveIndicator.gameObject.GetComponent<Image>().enabled = true;
+						Debug.Log("this is the time interval: " + timeInterval);
 						if(timeInterval >= 1){ // check if one second has passed
 							waves[currentWave].timeBetweenWaves -= 1;	// if so play the pulsate animation
 							lastSpawnTime = Time.time;
+							waves[currentWave].timerDelay  = 1.5f;			// this will automatic count by 1/
 							timeInterval = 0;		// switch back to 0 to start counting again
 							
 							nextWaveButton.GetComponentInChildren<Text>().text =  "" + waves[currentWave].timeBetweenWaves;

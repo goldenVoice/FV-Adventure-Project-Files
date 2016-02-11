@@ -67,6 +67,7 @@
      <Compile Include="Assets\Inventory\ItemDatabase.cs" />
      <Compile Include="Assets\InventoryManager.cs" />
      <Compile Include="Assets\LaserBeam.cs" />
+     <Compile Include="Assets\Level9_2ndstroyline.cs" />
      <Compile Include="Assets\LevelDisplay.cs" />
      <Compile Include="Assets\LibraryChecker.cs" />
      <Compile Include="Assets\List_ofHardHero.cs" />

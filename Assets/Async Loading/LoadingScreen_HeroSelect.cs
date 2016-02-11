@@ -121,4 +121,8 @@ public class LoadingScreen_HeroSelect : MonoBehaviour {
 //		
 //	}
 
+	public void setSceneNameToLoad(string sceneName){
+		levelToLoad = sceneName;		// the name of the button that indicates the level
+	}
+
 }

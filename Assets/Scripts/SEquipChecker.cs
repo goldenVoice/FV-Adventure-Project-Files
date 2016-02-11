@@ -7,7 +7,7 @@ public class SEquipChecker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (PlayerPrefs.GetInt ("Level 4-3") == 1) {		// tapos na last stage ng easy mode
+		if (PlayerPrefs.GetInt ("Level 7-3") == 1) {		// tapos na last stage ng medium mode
 			gameObject.SetActive(true);						// show the special equipment button
 		}
 		else {

@@ -64,6 +64,8 @@ public class PotholeManager : MonoBehaviour {
 		if(drop){
 			PlantHero();
 			drop = false;
+			//dragManager.currentPothole = null;
+		//	GameManager.currentSelectedHero = null;
 		}
 	}
 	void OnMouseExit(){

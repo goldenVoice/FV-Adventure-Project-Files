@@ -133,6 +133,8 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		}
 		// deselect the selected hero circle
 		myEventSystem .GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+
+//		currentPothole
 	}
 
 	public void ActivateScript(){

@@ -133,6 +133,11 @@ public class SpawnEnemy : MonoBehaviour {
 					newEnemy.transform.GetChild(5).gameObject.SetActive(true);
 //					enemy_element = newEnemy.transform.GetChild(5).gameObject.transform;
 				}
+				else if(waves[currentWave].WaveElement == ElementManager.Element.Earth){
+					newEnemy.transform.GetChild(6).gameObject.SetActive(true);
+					//					enemy_element = newEnemy.transform.GetChild(5).gameObject.transform;
+				}
+
 				// before changing the z coordinates, store the orig x and y values ng healthbarBackground
 				float hbg_x = healthBarBackground.transform.localPosition.x;
 				float hbg_y = healthBarBackground.transform.localPosition.y;

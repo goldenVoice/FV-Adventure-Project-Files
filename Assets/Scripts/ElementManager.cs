@@ -14,6 +14,7 @@ public class ElementManager : MonoBehaviour {
 		Fire,		// the Fire, Water, Air, each items are
 		Water,		// called enumerator
 		Air,
+		Earth,
 	}
 
 	private SpawnEnemy spawnEnemy;
@@ -41,7 +42,7 @@ public class ElementManager : MonoBehaviour {
 		// loop through the waves and assign a random element
 		for(int i = 0; i < spawnEnemy.waves.Length; i++){
 			// convert the resulting integer into an enum element
-			spawnEnemy.waves[i].WaveElement = (Element)(Random.Range(0, 3));   // ex: range returned 2, convert to Element, then 2 = Air
+			spawnEnemy.waves[i].WaveElement = (Element)(Random.Range(0, 4));   // ex: range returned 2, convert to Element, then 2 = Air
 
 			if(spawnEnemy_road2 != null){
 				Debug.Log ("the 2nd road!");
@@ -74,6 +75,9 @@ public class ElementManager : MonoBehaviour {
 		else if(attacker == Element.Fire && defender == Element.Fire){
 			return damage;
 		}
+		else if(attacker == Element.Fire && defender == Element.Earth){
+			return damage;
+		}
 
 		// matches and effects for water element
 		else if(attacker == Element.Water && defender == Element.Fire){
@@ -81,15 +85,19 @@ public class ElementManager : MonoBehaviour {
 			return damage + ( damage * 0.1f);
 		}
 		else if(attacker == Element.Water && defender == Element.Air){
-			return damage  - ( damage * 0.1f);
+			return damage;
 		}
 		else if(attacker == Element.Water && defender == Element.Water){
 			return damage;
 		}
+		else if(attacker == Element.Water && defender == Element.Earth){
+			return damage  - ( damage * 0.1f);
+		}
+
 
 		// matches and effects for Air element
 		else if(attacker == Element.Air && defender == Element.Water){
-			return damage + ( damage * 0.1f);
+			return damage;
 		}
 		else if(attacker == Element.Air && defender == Element.Fire){
 			return damage  - ( damage * 0.1f);
@@ -97,6 +105,24 @@ public class ElementManager : MonoBehaviour {
 		else if(attacker == Element.Air && defender == Element.Air){
 			return damage;
 		}
+		else if(attacker == Element.Air && defender == Element.Earth){
+			return damage  + ( damage * 0.1f);
+		}
+
+		// matches and effects for Earth element
+		else if(attacker == Element.Earth && defender == Element.Water){
+			return damage  + ( damage * 0.1f);
+		}
+		else if(attacker == Element.Earth && defender == Element.Fire){
+			return damage;
+		}
+		else if(attacker == Element.Earth && defender == Element.Air){
+			return damage  - ( damage * 0.1f);
+		}
+		else if(attacker == Element.Earth && defender == Element.Earth){
+			return damage;
+		}
+
 		// this shouldnt match
 		else{
 			Debug.LogError("Element checker reached an impossible match! Damage may ");

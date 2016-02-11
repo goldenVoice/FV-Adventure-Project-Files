@@ -34,6 +34,10 @@ public class SpriteManager : MonoBehaviour {
 			waveElement = "air";
 			
 		}
+		else if(waves[nextWave].WaveElement == ElementManager.Element.Earth){
+			waveElement = "earth";
+			
+		}
 		foreach(GameObject enemy in waves[nextWave].enemies){
 			// loop through each enemy, check if it is a flying or walking insect
 			// if they are both, set the insect pathway string to 'both'

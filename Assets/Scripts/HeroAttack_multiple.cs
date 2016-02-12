@@ -55,9 +55,9 @@ public class HeroAttack_multiple : MonoBehaviour {
 
 						anim.SetTrigger("attack_left");
 						playSound();
-						foreach(GameObject enemy in enemiesInRange){
-							if(checkTarget(enemy)){
-								Shoot(enemy.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
+					for(int i = enemiesInRange.Count - 1; i >= 0; i--){
+							if(checkTarget(enemiesInRange[i].gameObject)){
+								Shoot(enemiesInRange[i].GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
 								attackCounter++;
 								if(attackCounter > maxEnemyAttack){			// max number of enemy to attack. if it exceeds. break the loop. stop attacking
 									break;
@@ -88,6 +88,7 @@ public class HeroAttack_multiple : MonoBehaviour {
 	void OnTriggerExit2D (Collider2D other){
 		if(other.gameObject.tag.Equals("Enemy")){
 			enemiesInRange.Remove(other.gameObject);
+			checkTarget(other.gameObject);
 			EnemyDestructionDelegate del = other.gameObject.GetComponent<EnemyDestructionDelegate>();
 			del.enemyDelegate -= OnEnemyDestroy;			// you unregister the enemies in the delegate, now you know whic enemies are in range.
 		}

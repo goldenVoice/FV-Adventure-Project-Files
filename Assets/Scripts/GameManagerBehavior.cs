@@ -43,6 +43,121 @@ public class GameManagerBehavior : MonoBehaviour {
   	private bool heroSelected;
   	GameObject canvas_PlayerWin;
 
+	void Awake(){
+		
+		// level 1 checker
+		if(Application.loadedLevelName == "Level 1-1"){
+			moneyToReward = 90;
+		}
+		else if(Application.loadedLevelName == "Level 1-2"){
+			moneyToReward = 100;
+		}
+		else if(Application.loadedLevelName == "Level 1-3"){
+			moneyToReward = 200;
+		}
+		
+		// level 2 checker
+		else if(Application.loadedLevelName == "Level 2-1"){
+			moneyToReward = 100;
+		}
+		else if(Application.loadedLevelName == "Level 2-2"){
+			moneyToReward = 100;
+		}
+		else if(Application.loadedLevelName == "Level 2-3"){
+			moneyToReward = 5;
+		}
+		
+		// level 3 checker
+		else if(Application.loadedLevelName == "Level 3-1"){
+			moneyToReward = 6;
+		}
+		else if(Application.loadedLevelName == "Level 3-2"){
+			moneyToReward = 7;
+		}
+		else if(Application.loadedLevelName == "Level 3-3"){
+			moneyToReward = 8;
+		}
+		
+		// level 4 checker
+		else if(Application.loadedLevelName == "Level 4-1"){
+			moneyToReward = 9;
+		}
+		else if(Application.loadedLevelName == "Level 4-2"){
+			moneyToReward = 10;
+		}
+		else if(Application.loadedLevelName == "Level 4-3"){
+			moneyToReward = 11;
+		}
+		
+		// level 5 checker
+		else if(Application.loadedLevelName == "Level 5-1"){
+			moneyToReward = 100;
+		}
+		else if(Application.loadedLevelName == "Level 5-2"){
+			moneyToReward = 13;
+		}
+		else if(Application.loadedLevelName == "Level 5-3"){
+			moneyToReward = 14;
+		}
+		
+		// level 6 checker
+		else if(Application.loadedLevelName == "Level 6-1"){
+			moneyToReward = 15;
+		}
+		else if(Application.loadedLevelName == "Level 6-2"){
+			moneyToReward = 16;
+		}
+		else if(Application.loadedLevelName == "Level 6-3"){
+			moneyToReward = 17;
+		}
+		
+		// level 7 checker
+		else if(Application.loadedLevelName == "Level 7-1"){
+			moneyToReward = 18;
+		}
+		else if(Application.loadedLevelName == "Level 7-2"){
+			moneyToReward = 19;
+		}
+		else if(Application.loadedLevelName == "Level 7-3"){
+			moneyToReward = 20;
+		}
+		
+		// level 8 checker
+		else if(Application.loadedLevelName == "Level 8-1"){
+			moneyToReward = 21;
+		}
+		else if(Application.loadedLevelName == "Level 8-2"){
+			moneyToReward = 22;
+		}
+		else if(Application.loadedLevelName == "Level 8-3"){
+			moneyToReward = 23;
+		}
+		
+		// level 9 checker
+		else if(Application.loadedLevelName == "Level 9-1"){
+			moneyToReward = 24;
+		}
+		else if(Application.loadedLevelName == "Level 9-2"){
+			moneyToReward = 25;
+		}
+		else if(Application.loadedLevelName == "Level 9-3"){
+			moneyToReward = 26;
+		}
+		
+		// level 10 checker
+		else if(Application.loadedLevelName == "Level 10-1"){
+			moneyToReward = 27;
+		}
+		else if(Application.loadedLevelName == "Level 10-2"){
+			moneyToReward = 28;
+		}
+		else if(Application.loadedLevelName == "Level 10-3"){
+			moneyToReward = 29;
+		}
+		
+	}
+
+
   	// Use this for initialization
 	void Start () {
      // object.component.property
@@ -157,7 +272,27 @@ public class GameManagerBehavior : MonoBehaviour {
 				}
 				else{		// naka perfect na sya last time. natapos nya ule.
 					Debug.Log("dito ka dumiretso, dapat. perffect ka nanaman eh");
-					moneyToReward = Mathf.RoundToInt(moneyToReward * 0.05f);		// give him 5 percent. HAHAHA
+					if(health == 5){
+						Debug.Log ("The money rewarded is 35%");
+						moneyToReward = Mathf.RoundToInt(moneyToReward * 0.35f);		// give him 5 percent. HAHAHA
+					}
+					else if(health == 4){
+						Debug.Log ("The money rewarded is 30%");
+						moneyToReward = Mathf.RoundToInt(moneyToReward * 0.30f);		// give him 5 percent. HAHAHA
+					}
+					else if(health == 3){
+						Debug.Log ("The money rewarded is 25%");
+						moneyToReward = Mathf.RoundToInt(moneyToReward * 0.25f);		// give him 5 percent. HAHAHA
+					}
+					else if(health == 2){
+						Debug.Log ("The money rewarded is 20%");
+						moneyToReward = Mathf.RoundToInt(moneyToReward * 0.20f);		// give him 5 percent. HAHAHA
+					}
+					else if(health == 1){
+						Debug.Log ("The money rewarded is 15%");
+						moneyToReward = Mathf.RoundToInt(moneyToReward * 0.15f);		// give him 5 percent. HAHAHA
+					}
+
 					moneyComputed = true;
 					perfectStatus = true;
 				}
@@ -236,6 +371,7 @@ public class GameManagerBehavior : MonoBehaviour {
 			}
 			else{
 				float newPercent = lastPercent + percentAllowance;
+			//	Debug.Log("percent allowance: " + );
 				PlayerPrefs.SetFloat(thisSceneFin + "_status", newPercent);	// if di pa ren perfect, pero nahigitan nya naman yung last percent nya
 																								//add yung last percent sa percent allowance na nakuha nya ngayon
 				Debug.Log("Try again next time be :( ayos lang yan may nadagdag na " +percentAllowance+ "% sa last game mong naka "+lastPercent+"% ka lamang :D");

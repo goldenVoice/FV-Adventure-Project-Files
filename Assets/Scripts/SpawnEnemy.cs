@@ -52,6 +52,120 @@ public class SpawnEnemy : MonoBehaviour {
 	private LibraryChecker libraryChecker;
 	string toRemove = "(Clone)";
 
+	void Awake(){
+
+		// level 1 checker
+		if(Application.loadedLevelName == "Level 1-1"){
+			enemyLevel = 0;
+		}
+		else if(Application.loadedLevelName == "Level 1-2"){
+			enemyLevel = 1;
+		}
+		else if(Application.loadedLevelName == "Level 1-3"){
+			enemyLevel = 2;
+		}
+
+		// level 2 checker
+		else if(Application.loadedLevelName == "Level 2-1"){
+			enemyLevel = 3;
+		}
+		else if(Application.loadedLevelName == "Level 2-2"){
+			enemyLevel = 4;
+		}
+		else if(Application.loadedLevelName == "Level 2-3"){
+			enemyLevel = 5;
+		}
+
+		// level 3 checker
+		else if(Application.loadedLevelName == "Level 3-1"){
+			enemyLevel = 6;
+		}
+		else if(Application.loadedLevelName == "Level 3-2"){
+			enemyLevel = 7;
+		}
+		else if(Application.loadedLevelName == "Level 3-3"){
+			enemyLevel = 8;
+		}
+
+		// level 4 checker
+		else if(Application.loadedLevelName == "Level 4-1"){
+			enemyLevel = 9;
+		}
+		else if(Application.loadedLevelName == "Level 4-2"){
+			enemyLevel = 10;
+		}
+		else if(Application.loadedLevelName == "Level 4-3"){
+			enemyLevel = 11;
+		}
+
+		// level 5 checker
+		else if(Application.loadedLevelName == "Level 5-1"){
+			enemyLevel = 12;
+		}
+		else if(Application.loadedLevelName == "Level 5-2"){
+			enemyLevel = 13;
+		}
+		else if(Application.loadedLevelName == "Level 5-3"){
+			enemyLevel = 14;
+		}
+
+		// level 6 checker
+		else if(Application.loadedLevelName == "Level 6-1"){
+			enemyLevel = 15;
+		}
+		else if(Application.loadedLevelName == "Level 6-2"){
+			enemyLevel = 16;
+		}
+		else if(Application.loadedLevelName == "Level 6-3"){
+			enemyLevel = 17;
+		}
+
+		// level 7 checker
+		else if(Application.loadedLevelName == "Level 7-1"){
+			enemyLevel = 18;
+		}
+		else if(Application.loadedLevelName == "Level 7-2"){
+			enemyLevel = 19;
+		}
+		else if(Application.loadedLevelName == "Level 7-3"){
+			enemyLevel = 20;
+		}
+
+		// level 8 checker
+		else if(Application.loadedLevelName == "Level 8-1"){
+			enemyLevel = 21;
+		}
+		else if(Application.loadedLevelName == "Level 8-2"){
+			enemyLevel = 22;
+		}
+		else if(Application.loadedLevelName == "Level 8-3"){
+			enemyLevel = 23;
+		}
+
+		// level 9 checker
+		else if(Application.loadedLevelName == "Level 9-1"){
+			enemyLevel = 24;
+		}
+		else if(Application.loadedLevelName == "Level 9-2"){
+			enemyLevel = 25;
+		}
+		else if(Application.loadedLevelName == "Level 9-3"){
+			enemyLevel = 26;
+		}
+
+		// level 10 checker
+		else if(Application.loadedLevelName == "Level 10-1"){
+			enemyLevel = 27;
+		}
+		else if(Application.loadedLevelName == "Level 10-2"){
+			enemyLevel = 28;
+		}
+		else if(Application.loadedLevelName == "Level 10-3"){
+			enemyLevel = 29;
+		}
+
+	}
+
 	// Use this for initialization
 	void Start () {
        	lastSpawnTime = Time.time;   // set lastSpawnTime to current time
@@ -60,6 +174,7 @@ public class SpawnEnemy : MonoBehaviour {
 		nextWaveIndicator  = (SpriteManager) FindObjectOfType(typeof(SpriteManager));
 //		print("next wave object: " + nextWaveIndicator.gameObject);
 		libraryChecker = (LibraryChecker) GameObject.Find ("List_insects").GetComponent<LibraryChecker> ();
+
 	 }
 	
 	// Update is called once per frame
@@ -181,7 +296,7 @@ public class SpawnEnemy : MonoBehaviour {
 						// show the next wave element
 						nextWaveIndicator.displayNextElement(waves, currentWave + 1);	// this is currentWave + 1, kase nga idi display yung element ng NEXT wave, hindi ng current
 						nextWaveIndicator.gameObject.GetComponent<Image>().enabled = true;
-						Debug.Log("this is the time interval: " + timeInterval);
+//						Debug.Log("this is the time interval: " + timeInterval);
 						if(timeInterval >= 1){ // check if one second has passed
 							waves[currentWave].timeBetweenWaves -= 1;	// if so play the pulsate animation
 							lastSpawnTime = Time.time;

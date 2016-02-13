@@ -164,6 +164,7 @@
      <Compile Include="Assets\Scripts\showOrHideCanvas.cs" />
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
      <Compile Include="Assets\blasterMelon_layerManager.cs" />
+     <Compile Include="Assets\grasshopper_jump.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
      <Compile Include="Assets\resources\DialogManager_ending.cs" />
      <Compile Include="Assets\resources\QuestionContainer.cs" />

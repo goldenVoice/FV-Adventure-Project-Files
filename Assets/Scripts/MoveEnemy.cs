@@ -67,9 +67,9 @@ public class MoveEnemy : MonoBehaviour {
 		}
 	}
 
-  private void SwitchIntoMoveDirection(){
+  public void SwitchIntoMoveDirection(){
 
-
+		Debug.Log ("waypoint #: " + currentWaypoint);
 		if(waypoints[currentWaypoint + 1].GetComponent<Text>().text == "up"){
 			// get the child of ant object which is the ant sprite, then set the animation
 //			Debug.Log ("going up");

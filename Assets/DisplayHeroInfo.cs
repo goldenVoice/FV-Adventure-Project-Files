@@ -30,6 +30,9 @@ public class DisplayHeroInfo : MonoBehaviour {
 		if (Application.loadedLevelName == "library-heroes") {
 			heroDescPanel.transform.GetChild (5).GetComponent<Text> ().text = "Target: " + path;	
 		}
+		if (Application.loadedLevelName == "library-heroes alfie") {
+			heroDescPanel.transform.GetChild (5).GetComponent<Text> ().text = "Target: " + path;	
+		}
 		else {
 			heroDescPanel.transform.GetChild (5).GetComponent<Text> ().text = "Path: " + path;	
 			heroDescPanel.transform.GetChild (6).GetComponent<Text> ().text = "Ability: " + ability;	

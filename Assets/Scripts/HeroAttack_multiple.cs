@@ -56,6 +56,7 @@ public class HeroAttack_multiple : MonoBehaviour {
 						anim.SetTrigger("attack_left");
 						playSound();
 					for(int i = enemiesInRange.Count - 1; i >= 0; i--){
+						if(enemiesInRange[i].gameObject != null){
 							if(checkTarget(enemiesInRange[i].gameObject)){
 								Shoot(enemiesInRange[i].GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
 								attackCounter++;
@@ -64,6 +65,7 @@ public class HeroAttack_multiple : MonoBehaviour {
 								}
 							}
 						}
+					}	
 						attackCounter = 1;
 						lastShotTime = Time.time;
 					}
@@ -120,6 +122,15 @@ public class HeroAttack_multiple : MonoBehaviour {
 
 	// checks if the the insect is kasama sa mga target enemy ng hero (example, flying, walking or both ba yung insect?)
 	bool checkTarget(GameObject target){
+
+		// this is for the grasshopper that can jump para hindi sya ma attack pag tumalon sya.
+		if (target.name == "Grasshopper jumping"){
+			if(target.GetComponent<grasshopper_jump>().cannotAttack){
+				Debug.Log("Hey " + transform.parent.gameObject.name + " you cannot attack this jumping grasshopper");
+				return false;
+			}
+		}
+
 		Debug.Log("insect path: " + target.GetComponent<EnemyData>().insectPath);
 		Debug.Log("hero target: " + heroData.target);
 		if(target.GetComponent<EnemyData>().insectPath == heroData.target){

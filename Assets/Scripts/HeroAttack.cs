@@ -150,9 +150,27 @@ public class HeroAttack : MonoBehaviour {
 
 	// checks if the the insect is kasama sa mga target enemy ng hero (example, flying, walking or both ba yung insect?)
 	bool checkTarget(GameObject target){
+
+		// this is for the grasshopper that can jump para hindi sya ma attack pag tumalon sya.
+		if (target.name == "Grasshopper jumping"){
+			if(target.GetComponent<grasshopper_jump>().cannotAttack){
+				Debug.Log("Hey " + transform.parent.gameObject.name + " you cannot attack this jumping grasshopper");
+				return false;
+			}
+		}
+
 		Debug.Log("insect path: " + target.GetComponent<EnemyData>().insectPath);
 		Debug.Log("hero target: " + heroData.target);
 		Debug.Log (target.GetComponent<EnemyData>().insectPath == EnemyData.pathWay.both);
+
+		// this is for the grasshopper that can jump para hindi sya ma attack pag tumalon sya.
+		if (target.name == "Grasshopper jumping"){
+			if(target.GetComponent<grasshopper_jump>().cannotAttack){
+				Debug.Log("you cannot attack this jumping grasshopper");
+				return false;
+			}
+		}
+
 		if(target.GetComponent<EnemyData>().insectPath == heroData.target ){
 			return true; //target
 		}

@@ -1,8 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\grasshopper_jump.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HeroAttack_multiple.cs">
     <Files>
-      <File FileName="Assets\grasshopper_jump.cs" Line="56" Column="40" />
+      <File FileName="Assets\Scripts\HeroAttack.cs" Line="161" Column="3" />
+      <File FileName="Assets\Scripts\HeroAttack_leek.cs" Line="169" Column="1" />
+      <File FileName="Assets\Scripts\banana_HeroAttack.cs" Line="163" Column="3" />
+      <File FileName="Assets\Scripts\HeroAttack_multiple.cs" Line="141" Column="4" />
+      <File FileName="Assets\Scripts\HeroAttack_rambutan.cs" Line="226" Column="4" />
+      <File FileName="Assets\Scripts\HeroAttack_OSaucer.cs" Line="165" Column="3" />
+      <File FileName="Assets\Scripts\HeroAttack_mushroom.cs" Line="195" Column="4" />
+      <File FileName="Assets\Scripts\HeroAttack_rambustun.cs" Line="221" Column="5" />
+      <File FileName="Assets\Scripts\CarrotCannon_HeroAttack.cs" Line="160" Column="4" />
+      <File FileName="Assets\Scripts\OS_BulletBehavior.cs" Line="80" Column="8" />
+      <File FileName="Assets\Scripts\HeroAttack_laserLeek.cs" Line="194" Column="26" />
+      <File FileName="Assets\Scripts\HeroAttack_necroMushroom.cs" Line="199" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

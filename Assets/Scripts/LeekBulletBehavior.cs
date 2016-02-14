@@ -28,11 +28,15 @@ public class LeekBulletBehavior : MonoBehaviour {
 	public float maxSeconds;		// maximum duration of the tornado
 
 	float currentDamage;
-
+	string currentProfile;
+	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
+	}
 	// Use this for initialization
 	void Start () {
 //		Debug.Log(hero.GetComponentInChildren<HeroData>());
-		int currentLevel = PlayerPrefs.GetInt(hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
+		int currentLevel = PlayerPrefs.GetInt(currentProfile + hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
 		currentDamage = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;	// then, you look up the corresponding damage depending on the user's current level of attack upgrade
 		damage = currentDamage;
 		Debug.Log("hero.GetComponentInChildren<HeroData>().attackLevels[" + currentLevel + "]");

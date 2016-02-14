@@ -11,12 +11,17 @@ public class InsectInfo{
 public class LibraryChecker : MonoBehaviour {
 
 	public InsectInfo[] insects;
-
+	string currentProfile;
+	
+	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
+	}
 	// Use this for initialization
 	void Start () {
 		// loop through all the insects then check if its already seen in the library
 		foreach (InsectInfo insect in insects) {							// playerprefs.getint(key, defaultvalue)  it goes to the default value if the key is non-existent
-			if(PlayerPrefs.GetInt(insect.insectPrefab.name, 0) == 1){		// get the name of the insect, check usin playerprefs. if its 1 then means mkkta na tong insect na to sa library
+			if(PlayerPrefs.GetInt(currentProfile + insect.insectPrefab.name, 0) == 1){		// get the name of the insect, check usin playerprefs. if its 1 then means mkkta na tong insect na to sa library
 				insect.unlockInLibrary = true;
 			}
 		}
@@ -28,6 +33,6 @@ public class LibraryChecker : MonoBehaviour {
 	}
 
 	public void unlockInsect(string insectName){
-		PlayerPrefs.SetInt (insectName, 1);
+		PlayerPrefs.SetInt (currentProfile + insectName, 1);
 	}
 }

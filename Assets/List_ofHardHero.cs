@@ -6,11 +6,14 @@ public class List_ofHardHero : MonoBehaviour {
 
 	public List<GameObject> heroesToUnlock_SE;		// heroes to unlock using special equipments
 
-	// Use this for initialization
-	void Start () {
+	string currentProfile;
+	
+	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
 
 		foreach (GameObject circleHero in heroesToUnlock_SE) {
-			if(PlayerPrefs.GetInt(circleHero.name) == 1 ){
+			if(PlayerPrefs.GetInt(currentProfile + circleHero.name) == 1 ){
 				circleHero.gameObject.SetActive(true);
 			}
 			else{

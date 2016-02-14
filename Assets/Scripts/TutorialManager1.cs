@@ -35,7 +35,10 @@ public class TutorialManager1 : MonoBehaviour {
 
 	private pauseMenuManager pauseMenuManagerScript;
 
+	string currentProfile;
+	
 	void Awake(){
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
 
 		gameManager = (GameManagerBehavior) GameObject.FindObjectOfType(typeof(GameManagerBehavior));
 		list_potholes = (Potholes_list) GameObject.FindObjectOfType(typeof(Potholes_list));
@@ -44,7 +47,7 @@ public class TutorialManager1 : MonoBehaviour {
 		
 		pauseMenuManagerScript = (pauseMenuManager) GameObject.FindObjectOfType(typeof(pauseMenuManager));
 
-		if(PlayerPrefs.GetInt("Tutorial") == 1){		// tutorial enabled
+		if(PlayerPrefs.GetInt(currentProfile + "Tutorial") == 1){		// tutorial enabled
 			ElementManager elementManager = (ElementManager) GameObject.FindObjectOfType(typeof(ElementManager));
 			elementManager.GetComponent<ElementManager>().enabled = false;								// ng wag mag random ang mga element
 			
@@ -77,7 +80,7 @@ public class TutorialManager1 : MonoBehaviour {
 			tutorial_dialog.Add("You may tap the Next Wave Button if you want to fight them right away");	
 			tutorial_dialog.Add("Notice that the Next Wave indicator changed. Water element is next");	
 		}
-		else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("playerReturns_toLvl_1") == 1 ){
+		else if(PlayerPrefs.GetInt(currentProfile + "Tutorial") == 0 && PlayerPrefs.GetInt(currentProfile + "playerReturns_toLvl_1") == 1 ){
 				// DO NOTHING. JUST HIDE THE INVENTORY BOX PLAYER JUST RETURNED TO LEVEL 1. PWEDENG NAG RETRY SYA GANON
 			buttons[16].SetActive(false);
 		}
@@ -92,8 +95,8 @@ public class TutorialManager1 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		Debug.Log ("HEYYY");
-		if(PlayerPrefs.HasKey("Tutorial")){		 // this key is set from the storyline.
-			if(PlayerPrefs.GetInt("Tutorial") == 1){
+		if(PlayerPrefs.HasKey( currentProfile + "Tutorial")){		 // this key is set from the storyline.
+			if(PlayerPrefs.GetInt(currentProfile + "Tutorial") == 1){
 				tutorial = true;							// if true, 1st time mag laro ng user & he needs to undergo tutorial
 				
 				kingGuavaEntered = false;
@@ -129,7 +132,7 @@ public class TutorialManager1 : MonoBehaviour {
 				counter++;
 			}
 
-			else if(PlayerPrefs.GetInt("Tutorial") == 0 && PlayerPrefs.GetInt("playerReturns_toLvl_1") == 1){
+			else if(PlayerPrefs.GetInt(currentProfile + "Tutorial") == 0 && PlayerPrefs.GetInt(currentProfile + "playerReturns_toLvl_1") == 1){
 				tutorial = false;							// this means pwedeng na fail ni user yung level 1 tas kelangan nya laruin ule
 //				Debug.Log("Tutorial is already finished");
 				if(GameObject.Find("circle_carrot") != null){
@@ -407,7 +410,7 @@ public class TutorialManager1 : MonoBehaviour {
 				disableTutorial();
 
 				// for the shop tutorial
-				PlayerPrefs.SetInt("ShopTutorial", 1);
+				//PlayerPrefs.SetInt("ShopTutorial", 1);
 				//nextMessage();
 			}
 
@@ -463,11 +466,11 @@ public class TutorialManager1 : MonoBehaviour {
 
 	// called when the resume & back to map button is pressed.
 	public void disableTutorial(){
-		PlayerPrefs.SetInt("Tutorial", 0);
+		PlayerPrefs.SetInt(currentProfile + "Tutorial", 0);
 	}
 
 	public void restartStageFromTut(){
-	//	PlayerPrefs.SetInt("playerReturns_toLvl_1", 1);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
+		PlayerPrefs.SetInt(currentProfile + "playerReturns_toLvl_1", 1);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
 		//DontDestroyOnLoad(GameObject.Find("HeroSelectPanel_tutorial").gameObject);
 	}
 }

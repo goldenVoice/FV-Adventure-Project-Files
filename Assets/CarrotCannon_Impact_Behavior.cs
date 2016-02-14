@@ -26,8 +26,16 @@ public class CarrotCannon_Impact_Behavior : MonoBehaviour {
 	
 	private ParticleSystem cannonParticle; 		// to be used to track if the cannon impact is still not destroyed
 	// Use this for initialization
+
+	string currentProfile;
+	
+	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
+	}
+
 	void Start () {
-		int currentLevel = PlayerPrefs.GetInt(hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
+		int currentLevel = PlayerPrefs.GetInt(currentProfile + hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
 		currentDamage = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;	// then, you look up the corresponding damage depending on the user's current level of attack upgrade
 		damage = currentDamage;
 //		Debug.Log("hero.GetComponentInChildren<HeroData>().attackLevels[" + currentLevel + "]");

@@ -42,7 +42,10 @@ public class HeroAttack_rambustun : MonoBehaviour {
 
 	public ParticleSystem bulletImpact_particle;
 
+	string currentProfile;
 	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
 		attackSound = gameObject.GetComponent<AudioSource>();
 	}
 
@@ -50,7 +53,7 @@ public class HeroAttack_rambustun : MonoBehaviour {
 	void Start () {
 		enemiesInRange = new List<GameObject>();
 		// at the start, there are no enemies, so you create an empty list
-		int currentLevel = PlayerPrefs.GetInt(hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
+		int currentLevel = PlayerPrefs.GetInt(currentProfile + hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
 		currentDamage = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;	// then, you look up the corresponding damage depending on the user's current level of attack upgrade
 
 		GameObject parent_hero = gameObject.transform.parent.gameObject;

@@ -4,7 +4,11 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class NextScene : MonoBehaviour {
-
+	string currentProfile;
+	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
+	}
   public void LoadNextScene (string sceneName) {
       Application.LoadLevel(sceneName);
   }

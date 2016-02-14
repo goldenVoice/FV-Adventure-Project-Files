@@ -13,7 +13,11 @@ public class UpgradeHero : MonoBehaviour {
 
 	bool heroUpgraded = false;	// determines if an upgrade happened
 
+	string currentProfile;
+	
 	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
 		moneyText = GameObject.Find ("MoneyText").GetComponent<Text>();			// the moneyText gameObject
 	}
 
@@ -22,7 +26,7 @@ public class UpgradeHero : MonoBehaviour {
 		heroUpgraded = false;
 
 		// ex: kung ilang upgrade na, hal: naka 3 na sya.
-		currentLevel = PlayerPrefs.GetInt(gameObject.name);				// hal: playerPrefs('Carrot speed') 
+		currentLevel = PlayerPrefs.GetInt(currentProfile + gameObject.name);				// hal: playerPrefs('Carrot speed') 
 							
 		// display current bars upgraded
 		displayBars();
@@ -52,11 +56,11 @@ public class UpgradeHero : MonoBehaviour {
 
 	public void Upgrade(){
 		Debug.Log("level before upgrade: " + currentLevel);
-		int money = PlayerPrefs.GetInt("Money");							// deduct user money
-		PlayerPrefs.SetInt("Money", money - upgradePrice[currentLevel]);	// deduct user money
-		money = PlayerPrefs.GetInt("Money");								// get new money
+		int money = PlayerPrefs.GetInt(currentProfile + "Money");							// deduct user money
+		PlayerPrefs.SetInt(currentProfile + "Money", money - upgradePrice[currentLevel]);	// deduct user money
+		money = PlayerPrefs.GetInt(currentProfile + "Money");								// get new money
 		currentLevel++;														// increment the level upgrade
-		PlayerPrefs.SetInt(gameObject.name, currentLevel);					// dagdagan ng isa, hero upgraded na
+		PlayerPrefs.SetInt(currentProfile + gameObject.name, currentLevel);					// dagdagan ng isa, hero upgraded na
 		displayBars();														// refresh the bars, nag upgrade na kase
 		displayUpgradePrice();												// refresh upgrade price
 		moneyText.text = "" + money;										// display money left
@@ -91,9 +95,9 @@ public class UpgradeHero : MonoBehaviour {
 	}
 
 	public void magicPera(){	// ikaw ay mabibigyan ng pa bwenas na 500. (for debugging purposes only)
-		int money = PlayerPrefs.GetInt("Money");
-		PlayerPrefs.SetInt("Money", money + 500);
-		money = PlayerPrefs.GetInt("Money");
+		int money = PlayerPrefs.GetInt(currentProfile + "Money");
+		PlayerPrefs.SetInt(currentProfile + "Money", money + 500);
+		money = PlayerPrefs.GetInt(currentProfile + "Money");
 
 		moneyText.text = "" + money;
 	}

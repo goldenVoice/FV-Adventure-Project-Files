@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour {
 
+	public ParticleSystem healingParticle;
+	
 	bool inventoryEnabled;
 	bool poisonActivate = false;
 
@@ -46,9 +48,22 @@ public class InventoryManager : MonoBehaviour {
 	private GameManagerBehavior gameManager;
 
 	GameObject inventoryPanel;
-	
+
+	string currentProfile;
+	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
+	}
+
+	// for healing
+	List_hero list_hero;
+	public List<GameObject> heroesToHeal;
+
+
 	// Use this for initialization
 	void Start () {
+
+		list_hero = (List_hero)GameObject.FindObjectOfType(typeof(List_hero));
 
 		counter = 0;
 
@@ -72,30 +87,30 @@ public class InventoryManager : MonoBehaviour {
 
 		// ilagay sa qtyText kung ilang boosters meron ang user
 		poisonQty = poisonButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-		poisonQty.text = PlayerPrefs.GetInt("poison qty:").ToString();
+		poisonQty.text = PlayerPrefs.GetInt(currentProfile + "poison qty:").ToString();
 
 		LifePotionQty = LifePotionButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-		LifePotionQty.text = PlayerPrefs.GetInt("life potion qty:").ToString();
+		LifePotionQty.text = PlayerPrefs.GetInt(currentProfile + "life potion qty:").ToString();
 
 		waterBoosterQty = waterBoosterButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-		waterBoosterQty.text = PlayerPrefs.GetInt("water booster qty:").ToString();
+		waterBoosterQty.text = PlayerPrefs.GetInt(currentProfile + "water booster qty:").ToString();
 
 		heroPotionQty = heroPotionButton.transform.GetChild(0).GetChild(0).GetComponent<Text>();
-		heroPotionQty.text = PlayerPrefs.GetInt("hero potion qty:").ToString();
+		heroPotionQty.text = PlayerPrefs.GetInt(currentProfile + "hero potion qty:").ToString();
 
-		if(PlayerPrefs.GetInt("poison qty:") == 0){
+		if(PlayerPrefs.GetInt(currentProfile + "poison qty:") == 0){
 			// disable button kase 0 yung booster
 			poisonButton.interactable = false;
 		}
-		if(PlayerPrefs.GetInt("life potion qty:") == 0){
+		if(PlayerPrefs.GetInt(currentProfile + "life potion qty:") == 0){
 			// disable button kase 0 yung booster
 			LifePotionButton.interactable = false;
 		}
-		if(PlayerPrefs.GetInt("water booster qty:") == 0){
+		if(PlayerPrefs.GetInt(currentProfile + "water booster qty:") == 0){
 			// disable button kase 0 yung booster
 			waterBoosterButton.interactable = false;
 		}
-		if(PlayerPrefs.GetInt("hero potion qty:") == 0){
+		if(PlayerPrefs.GetInt(currentProfile + "hero potion qty:") == 0){
 			// disable button kase 0 yung booster
 			heroPotionButton.interactable = false;
 		}
@@ -123,7 +138,7 @@ public class InventoryManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		heroesToHeal = list_hero.plantedHeroes;
 		if(poisonActivate){
 			timeCounter = Time.time - lastActivateTime;
 			poisonButton.interactable = false;
@@ -237,11 +252,11 @@ public class InventoryManager : MonoBehaviour {
 			gameManager.displayHealth();
 		}
 
-		int qty = PlayerPrefs.GetInt("life potion qty:");
+		int qty = PlayerPrefs.GetInt(currentProfile + "life potion qty:");
 		qty--;
-		PlayerPrefs.SetInt("life potion qty:", qty);
-		qty = PlayerPrefs.GetInt("life potion qty:");
-		LifePotionQty.text = PlayerPrefs.GetInt("life potion qty:").ToString();
+		PlayerPrefs.SetInt(currentProfile + "life potion qty:", qty);
+		qty = PlayerPrefs.GetInt(currentProfile + "life potion qty:");
+		LifePotionQty.text = PlayerPrefs.GetInt(currentProfile + "life potion qty:").ToString();
 		
 		if(qty <= 0){
 			LifePotionButton.interactable = false;
@@ -253,11 +268,11 @@ public class InventoryManager : MonoBehaviour {
 		gameManager.water += 200;
 		gameManager.displayWater();
 
-		int qty = PlayerPrefs.GetInt("water booster qty:");
+		int qty = PlayerPrefs.GetInt(currentProfile + "water booster qty:");
 		qty--;
-		PlayerPrefs.SetInt("water booster qty:", qty);
-		qty = PlayerPrefs.GetInt("water booster qty:");
-		waterBoosterQty.text = PlayerPrefs.GetInt("water booster qty:").ToString();
+		PlayerPrefs.SetInt(currentProfile + "water booster qty:", qty);
+		qty = PlayerPrefs.GetInt(currentProfile + "water booster qty:");
+		waterBoosterQty.text = PlayerPrefs.GetInt(currentProfile + "water booster qty:").ToString();
 
 		if(qty <= 0){
 			waterBoosterButton.interactable = false;
@@ -288,11 +303,11 @@ public class InventoryManager : MonoBehaviour {
 		
 		lastActivateTime = Time.time;
 
-		int qty = PlayerPrefs.GetInt("poison qty:");
+		int qty = PlayerPrefs.GetInt(currentProfile + "poison qty:");
 		qty--;
-		PlayerPrefs.SetInt("poison qty:", qty);
-		qty = PlayerPrefs.GetInt("poison qty:");
-		poisonQty.text = PlayerPrefs.GetInt("poison qty:").ToString();
+		PlayerPrefs.SetInt(currentProfile + "poison qty:", qty);
+		qty = PlayerPrefs.GetInt(currentProfile + "poison qty:");
+		poisonQty.text = PlayerPrefs.GetInt(currentProfile + "poison qty:").ToString();
 		
 		if(qty <= 0){
 			poisonButton.interactable = false;
@@ -302,11 +317,28 @@ public class InventoryManager : MonoBehaviour {
 	public void useHP(){	// HP = hero potion
 		// IMPLEMENTATION HERE
 
-		int qty = PlayerPrefs.GetInt("hero potion qty:");
+		foreach (GameObject hero in list_hero.plantedHeroes) {		// iterate through the list of enemies
+			if (hero != null) {
+				
+				HealthBar heroHealth = hero.transform.GetChild (6).GetComponent<HealthBar> ();
+				if (heroHealth.currentHealth < heroHealth.maxHealth) {
+					// 30 percent
+					if (heroHealth.currentHealth + (heroHealth.maxHealth * 0.5f) >= heroHealth.maxHealth) {
+						heroHealth.currentHealth = heroHealth.maxHealth;
+						Instantiate (healingParticle, heroHealth.transform.parent.GetChild (1).transform.position, transform.rotation);
+						counter++;
+					} else {
+						heroHealth.currentHealth += (heroHealth.maxHealth * 0.5f);
+						Instantiate (healingParticle, heroHealth.transform.parent.GetChild (1).transform.position, transform.rotation);
+					}
+				}
+			}
+		}
+		int qty = PlayerPrefs.GetInt(currentProfile + "hero potion qty:");
 		qty--;
-		PlayerPrefs.SetInt("hero potion qty:", qty);
-		qty = PlayerPrefs.GetInt("hero potion qty:");
-		heroPotionQty.text = PlayerPrefs.GetInt("hero potion qty:").ToString();
+		PlayerPrefs.SetInt(currentProfile + "hero potion qty:", qty);
+		qty = PlayerPrefs.GetInt(currentProfile + "hero potion qty:");
+		heroPotionQty.text = PlayerPrefs.GetInt(currentProfile + "hero potion qty:").ToString();
 		
 		if(qty <= 0){
 			heroPotionButton.interactable = false;

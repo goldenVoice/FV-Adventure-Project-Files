@@ -4,9 +4,15 @@ using UnityEngine.UI;
 
 public class CheckIfHeroUnlocked : MonoBehaviour {
 
+	string currentProfile;
+	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
+	}
 	// Use this for initialization
 	void Start () {
-		if (PlayerPrefs.GetInt (gameObject.name) == 1) {
+
+		if (PlayerPrefs.GetInt (currentProfile + gameObject.name) == 1) {
 
 
 		}

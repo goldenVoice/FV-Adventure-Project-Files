@@ -4,8 +4,13 @@ using UnityEngine.UI;
 
 public class showHero : MonoBehaviour {
 
+	string currentProfile;
+	
 	void Awake(){
-		if(PlayerPrefs.GetInt(gameObject.name) == 1){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
+
+		if(PlayerPrefs.GetInt(currentProfile + gameObject.name) == 1){
 //			Debug.Log("active watermelon");
 			gameObject.GetComponent<Image>().enabled = true;
 			gameObject.GetComponent<Button>().interactable = true;

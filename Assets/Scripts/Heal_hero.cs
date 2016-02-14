@@ -32,8 +32,10 @@ public class Heal_hero : MonoBehaviour {
 	Animator anim;
 
 	public GameObject hero;
-
+	string currentProfile;
 	void Awake(){
+		
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
 		attackSound = gameObject.GetComponent<AudioSource>();
 	}
 
@@ -43,7 +45,7 @@ public class Heal_hero : MonoBehaviour {
 
 		//heroesInRange = new List<GameObject>();
 
-		int currentLevel = PlayerPrefs.GetInt(hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
+		int currentLevel = PlayerPrefs.GetInt(currentProfile + hero.name + " attack");													// ex: 'Carrot attack' this is same with the shop. iisa lang format ng name para sa player prefs
 		healingPower = hero.transform.GetChild(1).GetComponent<HeroData>().attackLevels[currentLevel].damage;
 
 		GameObject parent_hero = gameObject.transform.parent.gameObject;

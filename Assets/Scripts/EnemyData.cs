@@ -19,6 +19,12 @@ public class EnemyData : MonoBehaviour {
 		public float health;
 	}
 
+	[System.Serializable]
+	public class attackLevel{
+		public float attack;
+	}
+
+
 	[HideInInspector]
 	public bool slowed;		// para sa onion hero. will be used to check if this enemy is already hit first time. para di maging super slow
 
@@ -27,6 +33,7 @@ public class EnemyData : MonoBehaviour {
 	public pathWay insectPath;
 //	public List<speedLevel> enemySpeed;
 	public List<healthLevel> enemyHP;
+	public List<attackLevel> enemyAttack;
 	
 	// Use this for initialization
 	void Start () {

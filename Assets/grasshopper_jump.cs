@@ -8,6 +8,7 @@ public class grasshopper_jump : MonoBehaviour {
 	bool notJump;
 
 	public bool cannotAttack;
+	public bool grasshopperCanAttack;	// para sa hardmode
 	//bool jumpOnce;
 
 	Animator anim;
@@ -27,6 +28,7 @@ public class grasshopper_jump : MonoBehaviour {
 		moveEnemy = transform.parent.GetComponent<MoveEnemy> ();
 		healthBar = transform.parent.GetChild(2).GetComponent<HealthBar>();
 		cannotAttack = false;
+		grasshopperCanAttack = true;	// para sa hard mode
 	}
 	
 	// Update is called once per frame
@@ -43,10 +45,12 @@ public class grasshopper_jump : MonoBehaviour {
 			lastJumptime = Time.time;
 			//GetComponent<BoxCollider2D>().enabled = false;
 			cannotAttack = true;		// para di sya ma atake ng heroes
+			grasshopperCanAttack = false;
 			anim.SetBool("jump", true);
 		//	if(anim.GetCurrentAnimatorStateInfo(0).){
 		//	}
 			jump = false;
+
 		//	jump = false;
 		//	notJump = false;
 		}
@@ -64,6 +68,7 @@ public class grasshopper_jump : MonoBehaviour {
 				// switch into move direction
 				//GetComponent<BoxCollider2D>().enabled = true;
 				cannotAttack = false;		// nasa lupa na ule sya. pwede na atakihin
+			grasshopperCanAttack = true;
 				moveEnemy.SwitchIntoMoveDirection();
 			
 		}

@@ -15,7 +15,7 @@ public class EnemyAttack : MonoBehaviour {
 
 	private GameObject target;
 
-	private GameObject bulletPrefab;
+	public GameObject bulletPrefab;
 
 	private AudioSource attackSound;
 //	public GameObject bulletPrefab;
@@ -24,6 +24,12 @@ public class EnemyAttack : MonoBehaviour {
 
 	Animator anim;
 
+	//private SpawnEnemy spawnEnemy;
+
+	int enemyLevel;
+
+	public int fireRate;
+
 	void Awake(){
 		attackSound = gameObject.GetComponent<AudioSource>();
 	}
@@ -31,6 +37,7 @@ public class EnemyAttack : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		enemiesInRange = new List<GameObject>();
+		enemyLevel = GameObject.Find ("Road").GetComponent<SpawnEnemy> ().enemyLevel;
 		// at the start, there are no enemies, so you create an empty list
 	//	GameObject parent_hero = gameObject.transform.parent.gameObject;
 //    	anim = (Animator)parent_hero.transform.GetChild(1).GetComponent<Animator>(); 
@@ -38,32 +45,34 @@ public class EnemyAttack : MonoBehaviour {
 		//heroData = (HeroData)parent_hero.transform.GetChild(1).GetComponent<HeroData>();
 	}
 	
-	void FixedUpdate(){
-		// arguments:			     (center of the circle, radius of the circle, layerMask for filtering objects)
-	//	Physics2D.OverlapCircle(range_center.position, range_radius.radius, enemyLayerMask);
-//		Debug.Log(Physics2D.OverlapCircle(range_center.position, range_radius.radius, enemyLayerMask) );
-		
-	}
-	// Update is called once per frame
+//	void FixedUpdate(){
+//		// arguments:			     (center of the circle, radius of the circle, layerMask for filtering objects)
+//	//	Physics2D.OverlapCircle(range_center.position, range_radius.radius, enemyLayerMask);
+////		Debug.Log(Physics2D.OverlapCircle(range_center.position, range_radius.radius, enemyLayerMask) );
+//		
+//	}
+//	 Update is called once per frame
 	void Update () {
 
 		// the hero 
 
 			 target = null;
 			// 
-			float minimalEnemyDistance = float.MaxValue;		// the maximum possible distance
+			//float minimalEnemyDistance = float.MaxValue;		// the maximum possible distance
 			foreach(GameObject enemy in enemiesInRange){		// iterate through the list of enemies
-				float distanceToGoal = enemy.transform.parent.GetComponent<MoveEnemy>().distanceToGoal();		// get the distanceToGoal of the current enemy
-				if(distanceToGoal < minimalEnemyDistance){	// kapag yung distance to the end of the stage area (yung goal) ay mas maliit sa minimalEnemyDistance
-					target = enemy;
-					minimalEnemyDistance = distanceToGoal;		// set as new minimal distance.
-				}
+				//float distanceToGoal = enemy.transform.parent.GetComponent<MoveEnemy>().distanceToGoal();		// get the distanceToGoal of the current enemy
+				target = enemy;		
+				//if(distanceToGoal < minimalEnemyDistance){	// kapag yung distance to the end of the stage area (yung goal) ay mas maliit sa minimalEnemyDistance
+//					target = enemy;
+//					minimalEnemyDistance = distanceToGoal;		// set as new minimal distance.
+//				}
 			}	
 
 			if(target != null){
 				
-					if(Time.time - lastShotTime > heroData.fireRate){
+					if(Time.time - lastShotTime > fireRate){
 						//	anim.SetTrigger("attack");
+				Debug.Log("you should go and shoot now");
 						playSound();
 						Shoot(target.GetComponent<Collider2D>() );	// function shoot, the targets collider2D is used as parameter
 						lastShotTime = Time.time;
@@ -107,7 +116,6 @@ public class EnemyAttack : MonoBehaviour {
 	}
 
 	void Shoot (Collider2D target){
-		 bulletPrefab = heroData.bullet;
 
 		 Vector3 startPosition = gameObject.transform.position;
 		 Vector3 targetPosition = target.transform.position;
@@ -116,7 +124,8 @@ public class EnemyAttack : MonoBehaviour {
 
 		 GameObject newBullet = (GameObject)Instantiate(bulletPrefab);
 		 newBullet.transform.position = startPosition;
-		 BulletBehavior bulletComp = newBullet.GetComponent<BulletBehavior>();
+		 EnemyBulletBehavior_Locust bulletComp = newBullet.GetComponent<EnemyBulletBehavior_Locust>();
+		 bulletComp.currentEnemyLevel = enemyLevel;
 		 bulletComp.target = target.gameObject;
 		 bulletComp.startPosition = startPosition;
 		 bulletComp.targetPosition = targetPosition;

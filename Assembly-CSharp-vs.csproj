@@ -55,6 +55,8 @@
      <Compile Include="Assets\CheckIfHeroUnlocked.cs" />
      <Compile Include="Assets\DifficultyChecker.cs" />
      <Compile Include="Assets\DisplayHeroInfo.cs" />
+     <Compile Include="Assets\EnemyBulletBehavior_Locust.cs" />
+     <Compile Include="Assets\EnemyBulletBehavior_grasshopper.cs" />
      <Compile Include="Assets\GetHero.cs" />
      <Compile Include="Assets\GoButtonChecker.cs" />
      <Compile Include="Assets\HealthChecker.cs" />
@@ -92,6 +94,7 @@
      <Compile Include="Assets\Scripts\ElementManager.cs" />
      <Compile Include="Assets\Scripts\ElementManager_2Roads.cs" />
      <Compile Include="Assets\Scripts\EnemyAttack.cs" />
+     <Compile Include="Assets\Scripts\EnemyAttack_grasshopper.cs" />
      <Compile Include="Assets\Scripts\EnemyData.cs" />
      <Compile Include="Assets\Scripts\EnemyDestructionDelegate.cs" />
      <Compile Include="Assets\Scripts\FadeCanvas.cs" />
@@ -164,6 +167,7 @@
      <Compile Include="Assets\Scripts\showOrHideCanvas.cs" />
      <Compile Include="Assets\Scripts\testCoRoutine.cs" />
      <Compile Include="Assets\blasterMelon_layerManager.cs" />
+     <Compile Include="Assets\collider_checker.cs" />
      <Compile Include="Assets\grasshopper_jump.cs" />
      <Compile Include="Assets\resources\DialogManager.cs" />
      <Compile Include="Assets\resources\DialogManager_ending.cs" />

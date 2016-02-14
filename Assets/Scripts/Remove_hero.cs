@@ -31,6 +31,7 @@ public class Remove_hero : MonoBehaviour {
   }
 
 	void RemoveTheHero(){
+		Debug.Log ("napindot ang x");
 		GameObject hero_parent = transform.parent.gameObject;
 		gameManager.water += hero_parent.transform.GetChild(1).GetComponent<HeroData>().waterRefund;
 	//	gameManager.water += gameObject.GetComponentInParent<HeroData>().waterRefund; // before destroying the parent gameObject na hero, refund muna ng water.
@@ -44,6 +45,18 @@ public class Remove_hero : MonoBehaviour {
 		
 		Destroy (gameObject.transform.parent.gameObject); // destroy the parent gameObject
 		list_hero.removeHeroFromList(gameObject.transform.parent.gameObject);	// iterate through the list of heroes. then find the hero to remove
+	}
+
+	void RemoveKilledHero(){
+		potholeManager.heroPrefab_parent = null;
+		potholeManager.transform.GetChild(0).renderer.enabled = false;    // hide the soil image 
+		potholeManager.GetComponent<BoxCollider2D>().enabled = true;	  // enable the collider so the user can plant heroes again
+
+		list_hero = (List_hero)GameObject.Find("list_hero").GetComponent<List_hero>();
+		
+		list_hero.removeHeroFromList(gameObject.transform.parent.gameObject);	// iterate through the list of heroes. then find the hero to remove
+		Destroy (gameObject.transform.parent.gameObject); // destroy the parent gameObject
+
 	}
 
 }

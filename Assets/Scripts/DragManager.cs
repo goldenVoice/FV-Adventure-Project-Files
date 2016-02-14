@@ -32,6 +32,8 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 	GameObject curSelectedHero;
 
+	BoxCollider2D[] colliders;
+
 	void Awake(){
 
 	}
@@ -102,6 +104,11 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		heroPreview.transform.GetChild(1).GetComponent<Animator>().SetBool("preview", true);
 		heroPreview.transform.GetChild (2).renderer.enabled = true;
 		heroPreview.transform.GetChild(1).renderer.sortingLayerName = "hero_preview";
+		colliders = heroPreview.GetComponents<BoxCollider2D> ();
+
+		for(int i = 0; i < colliders.Length; i++){
+			colliders[i].enabled = false;
+		}
 //		Debug.Log (heroPreview.transform.GetChild (2).gameObject.name);
 //		Debug.Log(Input.mousePosition);
 //		Debug.Log("Value of RectTransform: " + this.transform.GetComponentInParent<RectTransform>().position);
@@ -118,6 +125,11 @@ public class DragManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	public void OnEndDrag(PointerEventData eventData){
 		dragBegin = false;
 		dragEnd = true;
+
+		for(int i = 0; i < colliders.Length; i++){
+			colliders[i].enabled = true;
+		}
+
 		Destroy(heroPreview);
 		if(currentPothole != null){
 			currentPothole.drop = true;

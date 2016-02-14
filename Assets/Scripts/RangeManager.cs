@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class RangeManager : MonoBehaviour {
 
+
 	public bool heroSelected;
 
 	public GameObject range;
@@ -15,6 +16,7 @@ public class RangeManager : MonoBehaviour {
 	private List_hero list_hero;
 
 	bool selected = false;
+
 
 	// Use this for initialization
 	void Start () {

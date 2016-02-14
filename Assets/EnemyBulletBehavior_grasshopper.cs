@@ -49,7 +49,12 @@ public class EnemyBulletBehavior_grasshopper : MonoBehaviour {
 				Transform healthBarTransform = target.transform.FindChild ("HealthBar");
 				HealthBar healthBar = healthBarTransform.gameObject.GetComponent<HealthBar> ();
 				Instantiate (bulletImpact_particle, targetPosition, transform.rotation);
+				Debug.Log("the enemy element: " + enemyElement);
+				Debug.Log("hero element: " + target.GetComponentInChildren<HeroData> ().heroElement);
+				Debug.Log("damage before check element: " + damage);
 				damage = elementManager.checkElement (enemyElement, target.GetComponentInChildren<HeroData> ().heroElement, damage); 	// ex: fire defeats air: damage x 2
+				Debug.Log("damage after check element: " + damage);
+				
 				healthBar.currentHealth -= Mathf.Max (damage, 0);
 
 				if (healthBar.currentHealth <= 0) {

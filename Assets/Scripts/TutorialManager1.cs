@@ -55,7 +55,7 @@ public class TutorialManager1 : MonoBehaviour {
 
 			tutorial_dialog.Add("The insects have arrived! Defend our place!"); 
 			tutorial_dialog.Add("I will give you my Veggie hero, the Carrot.");	
-			tutorial_dialog.Add("one carrot costs 80 water, as shown below.");	
+			tutorial_dialog.Add("one carrot costs 40 water, as shown below.");	
 			tutorial_dialog.Add("Tap on the Carrot then tap on the pothole.");	
 			tutorial_dialog.Add("DRAG the Carrot hero to plant. Try it!");	
 			tutorial_dialog.Add("Tap a Carrot to see an X mark, range and element");
@@ -303,7 +303,7 @@ public class TutorialManager1 : MonoBehaviour {
 			else if(tutorialText.text ==  "I will give you my Veggie hero, the Carrot."){
 				nextMessage();
 			}
-			else if(tutorialText.text ==  "one carrot costs 80 water, as shown below."){
+			else if(tutorialText.text ==  "one carrot costs 40 water, as shown below."){
 				nextMessage();
 				showTutorialStuffs();
 			}
@@ -467,7 +467,7 @@ public class TutorialManager1 : MonoBehaviour {
 	}
 
 	public void restartStageFromTut(){
-		PlayerPrefs.SetInt("playerReturns_toLvl_1", 1);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
+	//	PlayerPrefs.SetInt("playerReturns_toLvl_1", 1);		// basta gagamitin mo to para di mag true yung tutorial na pang gameplay na dapat for shop
 		//DontDestroyOnLoad(GameObject.Find("HeroSelectPanel_tutorial").gameObject);
 	}
 }

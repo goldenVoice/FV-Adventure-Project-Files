@@ -23,4 +23,8 @@ public class PlaySound : MonoBehaviour {
 
 		}
 	}
+
+	public void DontDestroy(){
+		DontDestroyOnLoad (GameObject.Find ("BGM").gameObject );
+	}
 }

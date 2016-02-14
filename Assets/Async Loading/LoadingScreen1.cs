@@ -23,13 +23,16 @@ public class LoadingScreen1 : MonoBehaviour {
 	
 	public AsyncOperation asyncop;
 
+	string currentProfile;
+
 	void Awake(){
 		background = GameObject.Find ("dark BG");
 		progressBar_bg = GameObject.Find ("progressBar_BG");
 		progressBar = GameObject.Find ("progressBar");
 		textObj = GameObject.Find ("LoadText");
 		loadPanel = GameObject.Find ("Load panel");
-		
+
+		currentProfile = PlayerPrefs.GetString ("currentProfile");
 //		background.SetActive(false);
 //		progressBar_bg.SetActive(false);
 //		progressBar.SetActive(false);
@@ -85,7 +88,7 @@ public class LoadingScreen1 : MonoBehaviour {
 
 	public void LoadTutorialScene(string levelName){
 		PlayerPrefs.SetInt("Tutorial", 1); 						// this will be used later para malaman na kailangan ng user mag tutorial pag dating ng level 1
-		PlayerPrefs.SetInt("max health", 5);					// the starting max health of the user is 5
+	//	PlayerPrefs.SetInt("max health", 5);					// the starting max health of the user is 5
 		levelToLoad = levelName; 	// levelName typed in the inspector
 		this.enabled = true;	// enable the script to start loading
 		//isLoading = true;

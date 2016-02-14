@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class GameManagerBehavior : MonoBehaviour {
 
+	public bool thisIsHardMode;
+
 	string thisSceneFin;		// pangalan ng current level na nilalaro ng user.
 	public int moneyToReward;		// money rewarded when level is finished
 
@@ -125,34 +127,43 @@ public class GameManagerBehavior : MonoBehaviour {
 		// level 8 checker
 		else if(Application.loadedLevelName == "Level 8-1"){
 			moneyToReward = 21;
+			thisIsHardMode = true;
 		}
 		else if(Application.loadedLevelName == "Level 8-2"){
 			moneyToReward = 22;
+			thisIsHardMode = true;
 		}
 		else if(Application.loadedLevelName == "Level 8-3"){
 			moneyToReward = 23;
+			thisIsHardMode = true;
 		}
 		
 		// level 9 checker
 		else if(Application.loadedLevelName == "Level 9-1"){
 			moneyToReward = 24;
+			thisIsHardMode = true;
 		}
 		else if(Application.loadedLevelName == "Level 9-2"){
 			moneyToReward = 25;
+			thisIsHardMode = true;
 		}
 		else if(Application.loadedLevelName == "Level 9-3"){
 			moneyToReward = 26;
+			thisIsHardMode = true;
 		}
 		
 		// level 10 checker
 		else if(Application.loadedLevelName == "Level 10-1"){
 			moneyToReward = 27;
+			thisIsHardMode = true;
 		}
 		else if(Application.loadedLevelName == "Level 10-2"){
 			moneyToReward = 28;
+			thisIsHardMode = true;
 		}
 		else if(Application.loadedLevelName == "Level 10-3"){
 			moneyToReward = 29;
+			thisIsHardMode = true;
 		}
 		
 	}
@@ -163,7 +174,7 @@ public class GameManagerBehavior : MonoBehaviour {
      // object.component.property
 		thisSceneFin = Application.loadedLevelName;
 		// the starting max health is initialized before the start of the game. before level 1-1. sa may end ng STORYLINE
-		health = PlayerPrefs.GetInt("max health");
+	//	health = PlayerPrefs.GetInt("max health");
 
 //		Debug.Log ("Time scale!: " + Time.timeScale);
 

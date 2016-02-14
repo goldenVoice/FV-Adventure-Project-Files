@@ -90,6 +90,13 @@ public class PotholeManager : MonoBehaviour {
 				gameObject.transform.GetChild(0).renderer.enabled = true;
 				Instantiate(plantedParticle, gameObject.transform.position, gameObject.transform.rotation);
 				hero =  (GameObject) Instantiate(heroPrefab_parent, transform.position, gameObject.transform.rotation);
+
+				BoxCollider2D[] colliders = hero.GetComponents<BoxCollider2D>();
+
+				for(int i = 0; i < colliders.Length; i++){
+					colliders[i].enabled = true;
+				}
+
 				hero.layer = LayerMask.NameToLayer("heroes");
 				hero.transform.GetChild(1).GetComponent<HeroData>().cost = cost;		// set this para na ren tama ang computation sa water refund
 				// set the heroes sorting layer depending on what pothole it was planted
@@ -122,6 +129,12 @@ public class PotholeManager : MonoBehaviour {
 
 				gameObject.GetComponent<BoxCollider2D>().enabled = false;						// disable the potholes 2D collider, for now, para clickable yung hero,		
 				hero.transform.GetChild(0).GetComponent<Remove_hero>().potholeManager = this;	// make this script instance the potholeManager script to use it to remove the hero later
+
+
+				if (GameManager.thisIsHardMode){
+					hero.transform.GetChild(5).gameObject.SetActive(true);	// HealthBar BG
+					hero.transform.GetChild(6).gameObject.SetActive(true);	// HealthBar
+				}
 
 				// play sound
 				if(PlayerPrefs.GetInt("sounds") == 1){		// if sounds: ON

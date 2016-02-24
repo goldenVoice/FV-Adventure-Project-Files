@@ -44,7 +44,7 @@ public class GameManagerBehavior : MonoBehaviour {
 
   	private bool heroSelected;
   	GameObject canvas_PlayerWin;
-
+	SpawnEnemy spawnEnemy;
 	string currentProfile;
 	
 	void Awake(){
@@ -188,7 +188,6 @@ public class GameManagerBehavior : MonoBehaviour {
      	water = initialWater;
      	currentSelectedHero = null;
      	wave = 0;    // kailangan talaga 0 to, kase sa Wave[] array sa SpawnEnemy script yung elements non nag sisimula sa 0
-     	waveText.GetComponent<Text>().text = "Wave: " + (wave + 1);
 
 		money = PlayerPrefs.GetInt(currentProfile + "Money");
 		moneyText.GetComponent<Text>().text = "" + money; 
@@ -198,12 +197,14 @@ public class GameManagerBehavior : MonoBehaviour {
 		perfectStatus = false;
 
     	canvas_PlayerWin = GameObject.Find("Canvas_playerWin");
-		SpawnEnemy spawnEnemy = (SpawnEnemy) FindObjectOfType(typeof(SpawnEnemy));
+		spawnEnemy = (SpawnEnemy) FindObjectOfType(typeof(SpawnEnemy));
 		spriteManager  = (SpriteManager) FindObjectOfType(typeof(SpriteManager));
 		LevelFinished levelFinised = (LevelFinished) FindObjectOfType(typeof(LevelFinished));
 		
 		// display the element of the first wave in the nextWave indicator
 		spriteManager.displayNextElement(spawnEnemy.waves, 0);
+
+		waveText.GetComponent<Text>().text = "Wave: " + (wave + 1) + " of " + spawnEnemy.waves.Length;
 	}
 	
 	// Update is called once per frame
@@ -226,7 +227,7 @@ public class GameManagerBehavior : MonoBehaviour {
 	}
 
   	public void displayWave(int waveNumber){
-    	waveText.GetComponent<Text>().text = "Wave: " + (waveNumber + 1);   // so you wont start counting with 0
+		waveText.GetComponent<Text>().text = "Wave: " + (wave + 1) + " of " + spawnEnemy.waves.Length;
   	}
 
 	public void displayHealth(){
